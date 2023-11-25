@@ -8,6 +8,14 @@ sudo apt update
 sudo apt install build-essential -y
 
 ###
+# Install curl
+###
+if ! command -v <curl> &> /dev/null
+then
+    sudo apt install curl
+fi
+
+###
 # Install zsh
 ###
 printf "\n🚀 Installing zsh\n"
