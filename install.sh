@@ -53,7 +53,6 @@ fi
 printf "\n🚀 Installing powerlevel10k\n"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-
 ###
 # Installing dotfiles
 ###
@@ -62,7 +61,6 @@ cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
 cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
 cp $(pwd)/dotfiles/hyper/.hyper.js ${HOME}/.hyper.js
-
 
 echo "Installing NVM"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -74,7 +72,6 @@ source ~/.nvm/nvm.sh
 wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
 unzip ~/.fonts/Meslo.zip -d ~/.fonts/Meslo
 rm -rf ~/.fonts/Meslo.zip
-
 
 ###
 # Downloading AppImages
@@ -90,7 +87,6 @@ chmod +x ~/Applications/appimaged-*.AppImage
 
 # Launch
 ~/Applications/appimaged-*.AppImage
-
 
 ###
 # Generating ssh key
