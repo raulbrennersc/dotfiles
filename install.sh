@@ -82,6 +82,7 @@ curl https://releases.hyper.is/download/AppImage -o ~/Applications/hyper.AppImag
 ###
 # Installing appimaged
 ###
+sudo nala install desktop-file-utils
 wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimaged-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2) -P ~/Applications/
 chmod +x ~/Applications/appimaged-*.AppImage
 
