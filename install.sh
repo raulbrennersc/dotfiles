@@ -24,6 +24,14 @@ then
 fi
 
 ###
+# Install nala
+###
+if ! command -v <nala> &> /dev/null
+then
+    sudo apt install nala
+fi
+
+###
 # Install zsh
 ###
 printf "\n🚀 Installing zsh\n"
