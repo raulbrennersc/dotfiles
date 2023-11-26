@@ -16,6 +16,14 @@ then
 fi
 
 ###
+# Install unzup
+###
+if ! command -v <unzip> &> /dev/null
+then
+    sudo apt install unzip
+fi
+
+###
 # Install zsh
 ###
 printf "\n🚀 Installing zsh\n"
@@ -45,11 +53,20 @@ printf "\n🚀 Installing dotfiles\n"
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
 cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
+cp $(pwd)/dotfiles/hyper/.hyper.js ${HOME}/.hyper.js
 
 
 echo "Installing NVM"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.nvm/nvm.sh
+
+###
+# Installing font
+###
+wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+unzip ~/.fonts/Meslo.zip -d ~/.fonts/Meslo
+rm -rf ~/.fonts/Meslo.zip
+
 
 ###
 # Downloading AppImages
