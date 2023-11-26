@@ -8,22 +8,6 @@ sudo apt update
 sudo apt install build-essential -y
 
 ###
-# Install curl
-###
-if ! command -v <curl> &> /dev/null
-then
-    sudo apt install curl
-fi
-
-###
-# Install unzip
-###
-if ! command -v <unzip> &> /dev/null
-then
-    sudo apt install unzip
-fi
-
-###
 # Install nala
 ###
 if ! command -v <nala> &> /dev/null
@@ -32,10 +16,26 @@ then
 fi
 
 ###
+# Install curl
+###
+if ! command -v <curl> &> /dev/null
+then
+    sudo nala install curl
+fi
+
+###
+# Install unzip
+###
+if ! command -v <unzip> &> /dev/null
+then
+    sudo nala install unzip
+fi
+
+###
 # Install zsh
 ###
 printf "\n🚀 Installing zsh\n"
-sudo apt install zsh -y
+sudo nala install zsh -y
 
 ###
 # Install oh my zsh
