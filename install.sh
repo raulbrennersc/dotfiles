@@ -97,3 +97,4 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
 chsh -s $(which zsh)
+sudo reboot
