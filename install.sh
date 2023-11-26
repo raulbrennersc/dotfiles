@@ -16,7 +16,7 @@ then
 fi
 
 ###
-# Install unzup
+# Install unzip
 ###
 if ! command -v <unzip> &> /dev/null
 then
@@ -82,5 +82,13 @@ chmod +x ~/Applications/appimaged-*.AppImage
 
 # Launch
 ~/Applications/appimaged-*.AppImage
+
+
+###
+# Generating ssh key
+###
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 
 chsh -s $(which zsh)
