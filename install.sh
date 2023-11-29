@@ -57,6 +57,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # Installing dotfiles
 ###
 printf "\n🚀 Installing dotfiles\n"
+mkdir -p ${HOME}/.config/
+cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
 cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
@@ -88,6 +90,18 @@ chmod +x ~/Applications/appimaged-*.AppImage
 
 # Launch
 ~/Applications/appimaged-*.AppImage
+
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install nvim
+brew install nvim
+
+# Install ripgrep (used by nvim)
+brew install ripgrep
+
+# Install nvim packages
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 ###
 # Generating ssh key
