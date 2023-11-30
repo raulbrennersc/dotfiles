@@ -14,4 +14,6 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.nvm/nvm.sh
 
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)" 
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
