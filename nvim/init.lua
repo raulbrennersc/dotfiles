@@ -216,10 +216,12 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  -- Custom plugins
   {
     'weilbith/nvim-code-action-menu',
     cmd = 'CodeActionMenu'
-  }
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -382,7 +384,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'html' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -445,19 +447,39 @@ vim.defer_fn(function()
   }
 end, 0)
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  vim.api.nvim_create_autocmd("BufWritePre", {
+  if client.name == 'eslint' then
+    vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
     })
+  end
+
+  -- Format on save configuration
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+        -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+        vim.lsp.buf.format({ bufnr = bufnr })
+      end,
+    })
+  end
+
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
