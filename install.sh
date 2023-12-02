@@ -69,13 +69,13 @@ fi
 echo "Install ripgrep (used by nvim)"
 if ! command -v ripgrep &> /dev/null
 then
-  brew install ripgrep -y
+  brew install ripgrep
 fi
 
 echo "Install nvim"
 if ! command -v nvim &> /dev/null
 then
-  brew install nvim -y
+  brew install nvim
   nvim --headless +qa
   nvim --headless "+Lazy! sync" +qa
 fi
