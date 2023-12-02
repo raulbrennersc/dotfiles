@@ -1,19 +1,12 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export ZSH=$HOME/.oh-my-zsh
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 bindkey '^H' backward-kill-word
 
-plugins=(git gcloud)
+plugins=(git gcloud nvm docker)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.nvm/nvm.sh
-
-eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)" 
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if ! [ -d "/home/linuxbrew/" ]; then
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
