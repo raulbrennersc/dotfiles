@@ -58,7 +58,9 @@ echo "Install nvm"
 if ! command -v nvm &> /dev/null
 then
   PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
+  source ~/.nvm/nvm.sh
 fi
+
 echo "Install Meslo NF"
 if ! [ -d "${HOME}/.fonts/Meslo" ]; then
   wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
