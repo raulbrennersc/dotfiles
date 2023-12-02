@@ -33,7 +33,9 @@ fi
 
 if ! command -v alacritty &> /dev/null; then
   echo  "Install alacritty"
-    sudo nala install alacritty -y
+  sudo nala install alacritty -y
+  mkdir -p ${HOME}.config/alacritty/themes
+  git clone https://github.com/alacritty/alacritty-theme ${HOME}.config/alacritty/themes
 fi
 
 if ! command -v xclip &> /dev/null; then
