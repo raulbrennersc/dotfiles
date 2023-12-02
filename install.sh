@@ -10,19 +10,19 @@ sudo apt install build-essential -y
 echo  "Install nala"
 if ! command -v nala &> /dev/null
 then
-    sudo apt install nala
+    sudo apt install nala -y
 fi
 
 echo "Install curl"
 if ! command -v curl &> /dev/null
 then
-    sudo nala install curl
+    sudo nala install curl -y
 fi
 
 echo "Install unzip"
 if ! command -v unzip &> /dev/null
 then
-    sudo nala install unzip
+    sudo nala install unzip -y
 fi
 
 
@@ -40,7 +40,11 @@ fi
 
 echo "Install powerlevel10k"
 printf "\n🚀 Installing powerlevel10k\n"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+if [ -d "${HOME}/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+  printf "powerlevel10k is already installed\n"
+else
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
 
 echo "Copy dotfiles"
 printf "\n🚀 Installing dotfiles\n"
@@ -49,7 +53,6 @@ cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
 cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
-cp $(pwd)/dotfiles/hyper/.hyper.js ${HOME}/.hyper.js
 
 echo "Installing NVM"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
