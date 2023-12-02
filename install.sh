@@ -39,15 +39,15 @@ if ! command -v zsh &> /dev/null; then
     sudo nala install zsh -y
 fi
 
+if ! command -v curl &> /dev/null; then
+echo "Install curl"
+    sudo nala install curl -y
+fi
+
 if ! [ -d "/home/linuxbrew/" ]; then
   echo "Install Homebrew"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-if ! command -v curl &> /dev/null; then
-echo "Install curl"
-    sudo nala install curl -y
 fi
 
 if ! command -v unzip &> /dev/null; then
