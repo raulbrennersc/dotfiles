@@ -6,7 +6,7 @@ plugins=(git gcloud nvm docker)
 
 source $ZSH/oh-my-zsh.sh
 
-if ! [ -d "/home/linuxbrew/" ]; then
+if [ -d "/home/linuxbrew/" ]; then
   eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi

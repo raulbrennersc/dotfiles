@@ -9,6 +9,13 @@ mkdir -p ${HOME}/.config/
 cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 
+echo "Generating ssh keys"
+if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
+  ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
+  eval "$(ssh-agent -s)"
+  ssh-add ${HOME}/.ssh/id_ed25519
+fi
+
 echo "Installing build-essential"
 sudo apt install build-essential -y
 
@@ -62,13 +69,14 @@ fi
 echo "Install ripgrep (used by nvim)"
 if ! command -v ripgrep &> /dev/null
 then
-  sudo nala install ripgrep -y
+  brew install ripgrep -y
 fi
 
 echo "Install nvim"
 if ! command -v nvim &> /dev/null
 then
-  sudo nala install neovim -y
+  brew install nvim -y
+  nvim --headless +qa
   nvim --headless "+Lazy! sync" +qa
 fi
 
@@ -76,13 +84,6 @@ echo "Install docker ce"
 if ! command -v docker &> /dev/null
 then
   curl -fsSL https://get.docker.com -o- | sh
-fi
-
-echo "Generating ssh keys"
-if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
-  ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
-  eval "$(ssh-agent -s)"
-  ssh-add ${HOME}/.ssh/id_ed25519
 fi
 
 chsh -s $(which zsh)
