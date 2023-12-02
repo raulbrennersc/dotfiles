@@ -86,9 +86,6 @@ brew install nvim
 echo "Install ripgrep (used by nvim)"
 brew install ripgrep
 
-echo "Install nvim packages"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
 echo "Generating ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
