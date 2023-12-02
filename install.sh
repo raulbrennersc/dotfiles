@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -e
 set -f
@@ -16,6 +16,12 @@ echo  "Install nala"
 if ! command -v nala &> /dev/null
 then
     sudo apt install nala -y
+fi
+
+echo  "Install zsh"
+if ! command -v zsh &> /dev/null
+then
+    sudo nala install zsh -y
 fi
 
 echo "Install Homebrew"
