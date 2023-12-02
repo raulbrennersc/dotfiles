@@ -3,6 +3,14 @@
 set -e
 set -f
 
+echo "Copy dotfiles"
+printf "\n🚀 Installing dotfiles\n"
+mkdir -p ${HOME}/.config/
+cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
+cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
+cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
+cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
+
 sudo apt update
 echo "Install zsh"
 if ! command -v zsh &> /dev/null
@@ -48,14 +56,6 @@ if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
 else
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
-
-echo "Copy dotfiles"
-printf "\n🚀 Installing dotfiles\n"
-mkdir -p ${HOME}/.config/
-cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
-cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
-cp $(pwd)/dotfiles/zsh/.zprofile ${HOME}/.zprofile
-cp $(pwd)/dotfiles/zsh/.p10k.zsh ${HOME}/.p10k.zsh
 
 echo "Installing NVM"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
