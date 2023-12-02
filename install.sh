@@ -59,6 +59,9 @@ echo "Install nvim"
 sudo nala install neovim -y
 nvim --headless "+Lazy! sync" +qa
 
+echo "Install docker ce"
+curl -fsSL https://get.docker.com -o- | sh
+
 echo "Generating ssh keys"
 ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
