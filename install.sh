@@ -14,9 +14,9 @@ while [ $# -gt 0 ]; do
 done
 
 echo "Copy dotfiles"
-printf "\n🚀 Installing dotfiles\n"
 mkdir -p ${HOME}/.config/
 cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
+cp -r $(pwd)/dotfiles/alacritty ${HOME}/.config
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 
 if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
@@ -37,6 +37,16 @@ fi
 if ! command -v zsh &> /dev/null; then
   echo  "Install zsh"
     sudo nala install zsh -y
+fi
+
+if ! command -v alacritty &> /dev/null; then
+  echo  "Install alacritty"
+    sudo nala install alacritty -y
+fi
+
+if ! command -v xclip &> /dev/null; then
+  echo  "Install xclip"
+    sudo nala install xclip -y
 fi
 
 if ! command -v curl &> /dev/null; then
