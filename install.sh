@@ -41,10 +41,11 @@ if ! [ -d "${HOME}/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-echo "Installing NVM"
-PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-source ${HOME}/.nvm/nvm.sh
-
+echo "Install nvm"
+if ! command -v nvm &> /dev/null
+then
+  PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
+fi
 echo "Install Meslo NF"
 if ! [ -d "${HOME}/.fonts/Meslo" ]; then
   wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
@@ -53,19 +54,30 @@ if ! [ -d "${HOME}/.fonts/Meslo" ]; then
 fi
 
 echo "Install ripgrep (used by nvim)"
-sudo nala install ripgrep -y
+if ! command -v ripgrep &> /dev/null
+then
+  sudo nala install ripgrep -y
+fi
 
 echo "Install nvim"
-sudo nala install neovim -y
-nvim --headless "+Lazy! sync" +qa
+if ! command -v nvim &> /dev/null
+then
+  sudo nala install neovim -y
+  nvim --headless "+Lazy! sync" +qa
+fi
 
 echo "Install docker ce"
-curl -fsSL https://get.docker.com -o- | sh
+if ! command -v docker &> /dev/null
+then
+  curl -fsSL https://get.docker.com -o- | sh
+fi
 
 echo "Generating ssh keys"
-ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
-eval "$(ssh-agent -s)"
-ssh-add ${HOME}/.ssh/id_ed25519
+if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
+  ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
+  eval "$(ssh-agent -s)"
+  ssh-add ${HOME}/.ssh/id_ed25519
+fi
 
 chsh -s $(which zsh)
 sudo reboot
