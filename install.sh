@@ -3,6 +3,7 @@
 set -e
 set -f
 
+sudo apt update
 echo "Install zsh"
 if ! command -v zsh &> /dev/null
 then
@@ -11,7 +12,6 @@ fi
 
 zsh
 
-sudo apt update
 echo "Installing build-essential"
 sudo apt install build-essential -y
 
