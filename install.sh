@@ -3,6 +3,16 @@
 set -e
 set -f
 
+NO_REBOOT=0
+while [ $# -gt 0 ]; do
+	case "$1" in
+		--no-reboot)
+			NO_REBOOT=1
+			;;
+	esac
+	shift $(( $# > 0 ? 1 : 0 ))
+done
+
 echo "Copy dotfiles"
 printf "\n🚀 Installing dotfiles\n"
 mkdir -p ${HOME}/.config/
@@ -89,4 +99,7 @@ then
 fi
 
 chsh -s $(which zsh)
-sudo reboot
+
+if ! [ -z "$NO_REBOOT" ]; then
+  sudo reboot
+fi
