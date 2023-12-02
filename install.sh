@@ -3,6 +3,14 @@
 set -e
 set -f
 
+echo "Install zsh"
+if ! command -v zsh &> /dev/null
+then
+    sudo apt install zsh -y
+fi
+
+zsh
+
 sudo apt update
 echo "Installing build-essential"
 sudo apt install build-essential -y
@@ -24,11 +32,6 @@ if ! command -v unzip &> /dev/null
 then
     sudo nala install unzip -y
 fi
-
-
-echo "Install zsh"
-printf "\n🚀 Installing zsh\n"
-sudo nala install zsh -y
 
 echo "Install oh my zsh"
 printf "\n🚀 Installing oh-my-zsh\n"
