@@ -3,16 +3,6 @@
 set -e
 set -f
 
-NO_REBOOT=0
-while [ $# -gt 0 ]; do
-	case "$1" in
-		--no-reboot)
-			NO_REBOOT=1
-			;;
-	esac
-	shift $(( $# > 0 ? 1 : 0 ))
-done
-
 echo "Copy dotfiles"
 mkdir -p ${HOME}/.config/
 cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
@@ -36,7 +26,9 @@ fi
 
 if ! command -v zsh &> /dev/null; then
   echo  "Install zsh"
-    sudo nala install zsh -y
+  sudo nala install zsh -y
+  chsh -s $(which zsh)
+  NO_REBOOT=1
 fi
 
 if ! command -v alacritty &> /dev/null; then
@@ -104,8 +96,6 @@ if ! command -v docker &> /dev/null; then
   echo "Install docker ce"
   curl -fsSL https://get.docker.com -o- | sh
 fi
-
-chsh -s $(which zsh)
 
 if ! [ -z "$NO_REBOOT" ]; then
   sudo reboot
