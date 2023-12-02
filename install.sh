@@ -75,6 +75,13 @@ if ! [ -d "${HOME}/.fonts/Meslo" ]; then
   rm -rf ${HOME}/.fonts/Meslo.zip
 fi
 
+if ! [ -d "${HOME}/.fonts/FiraCode" ]; then
+  echo "Install FiraCode NF"
+  wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+  unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
+  rm -rf ${HOME}/.fonts/FiraCode.zip
+fi
+
 if ! command -v ripgrep &> /dev/null; then
   echo "Install ripgrep (used by nvim)"
   brew install ripgrep
