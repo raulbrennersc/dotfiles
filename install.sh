@@ -4,42 +4,33 @@ set -e
 set -f
 
 sudo apt update
-# "Installing build-essential"
+echo "Installing build-essential"
 sudo apt install build-essential -y
 
-###
-# Install nala
-###
-if ! command -v <nala> &> /dev/null
+echo  "Install nala"
+if ! command -v nala &> /dev/null
 then
     sudo apt install nala
 fi
 
-###
-# Install curl
-###
-if ! command -v <curl> &> /dev/null
+echo "Install curl"
+if ! command -v curl &> /dev/null
 then
     sudo nala install curl
 fi
 
-###
-# Install unzip
-###
-if ! command -v <unzip> &> /dev/null
+echo "Install unzip"
+if ! command -v unzip &> /dev/null
 then
     sudo nala install unzip
 fi
 
-###
-# Install zsh
-###
+
+echo "Install zsh"
 printf "\n🚀 Installing zsh\n"
 sudo nala install zsh -y
 
-###
-# Install oh my zsh
-###
+echo "Install oh my zsh"
 printf "\n🚀 Installing oh-my-zsh\n"
 if [ -d "${HOME}/.oh-my-zsh" ]; then
   printf "oh-my-zsh is already installed\n"
@@ -47,15 +38,11 @@ else
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-###
-# Installing powerlevel10k
-###
+echo "Install powerlevel10k"
 printf "\n🚀 Installing powerlevel10k\n"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-###
-# Installing dotfiles
-###
+echo "Copy dotfiles"
 printf "\n🚀 Installing dotfiles\n"
 mkdir -p ${HOME}/.config/
 cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
@@ -68,44 +55,36 @@ echo "Installing NVM"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.nvm/nvm.sh
 
-###
-# Installing font
-###
+echo "Install Meslo NF"
 wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
 unzip ~/.fonts/Meslo.zip -d ~/.fonts/Meslo
 rm -rf ~/.fonts/Meslo.zip
 
-###
-# Downloading AppImages
-###
-mkdir -p ~/Applications
-curl https://releases.hyper.is/download/AppImage -o ~/Applications/hyper.AppImage
+# mkdir -p ~/Applications
+# echo "Install Hyper terminal"
+# curl https://releases.hyper.is/download/AppImage -o ~/Applications/hyper.AppImage
 
-###
-# Installing appimaged
-###
-sudo nala install desktop-file-utils
-wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimaged-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2) -P ~/Applications/
-chmod +x ~/Applications/appimaged-*.AppImage
+# echo "Installing appimaged"
+# sudo nala install desktop-file-utils
+# wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimaged-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2) -P ~/Applications/
+# chmod +x ~/Applications/appimaged-*.AppImage
 
 # Launch
-~/Applications/appimaged-*.AppImage
+# ~/Applications/appimaged-*.AppImage
 
-# Install Homebrew
+echo "Install Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install nvim
+echo "Install nvim"
 brew install nvim
 
-# Install ripgrep (used by nvim)
+echo "Install ripgrep (used by nvim)"
 brew install ripgrep
 
-# Install nvim packages
+echo "Install nvim packages"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-###
-# Generating ssh key
-###
+echo "Generating ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
