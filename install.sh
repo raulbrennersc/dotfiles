@@ -29,12 +29,12 @@ fi
 echo "Installing build-essential"
 sudo apt install build-essential -y
 
-if ! command -v nala &> /dev/null then
+if ! command -v nala &> /dev/null; then
   echo  "Install nala"
   sudo apt install nala -y
 fi
 
-if ! command -v zsh &> /dev/null then
+if ! command -v zsh &> /dev/null; then
   echo  "Install zsh"
     sudo nala install zsh -y
 fi
@@ -45,12 +45,12 @@ if ! [ -d "/home/linuxbrew/" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-if ! command -v curl &> /dev/null then
+if ! command -v curl &> /dev/null; then
 echo "Install curl"
     sudo nala install curl -y
 fi
 
-if ! command -v unzip &> /dev/null then
+if ! command -v unzip &> /dev/null; then
 echo "Install unzip"
     sudo nala install unzip -y
 fi
@@ -60,7 +60,7 @@ if ! [ -d "${HOME}/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-if ! command -v nvm &> /dev/null then
+if ! command -v nvm &> /dev/null; then
   echo "Install nvm"
   PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
   source ~/.nvm/nvm.sh
@@ -73,19 +73,24 @@ if ! [ -d "${HOME}/.fonts/Meslo" ]; then
   rm -rf ${HOME}/.fonts/Meslo.zip
 fi
 
-if ! command -v ripgrep &> /dev/null then
+if ! command -v ripgrep &> /dev/null; then
   echo "Install ripgrep (used by nvim)"
   brew install ripgrep
 fi
 
-if ! command -v nvim &> /dev/null then
+if ! command -v nvim &> /dev/null; then
   echo "Install nvim"
   brew install nvim
   nvim --headless +qa
   nvim --headless "+Lazy! sync" +qa
 fi
 
-if ! command -v docker &> /dev/null then
+if ! command -v oh-my-posh &> /dev/null; then
+  echo "Install oh-my-posh"
+  brew install jandedobbeleer/oh-my-posh/oh-my-posh
+fi
+
+if ! command -v docker &> /dev/null; then
   echo "Install docker ce"
   curl -fsSL https://get.docker.com -o- | sh
 fi
