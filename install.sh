@@ -104,6 +104,9 @@ fi
 if ! command -v docker &> /dev/null; then
   echo "Install docker ce"
   curl -fsSL https://get.docker.com -o- | sh
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
 fi
 
 if ! [ -z "$NO_REBOOT" ]; then
