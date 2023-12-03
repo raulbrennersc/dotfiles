@@ -5,7 +5,6 @@ set -f
 
 echo "Copy dotfiles"
 mkdir -p ${HOME}/.config/
-cp -r $(pwd)/dotfiles/nvim ${HOME}/.config
 cp -r $(pwd)/dotfiles/alacritty ${HOME}/.config
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 
@@ -92,6 +91,7 @@ fi
 if ! command -v nvim &> /dev/null; then
   echo "Install nvim"
   brew install nvim
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
   nvim --headless +qa
   nvim --headless "+Lazy! sync" +qa
 fi
