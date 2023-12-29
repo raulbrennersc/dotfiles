@@ -4,8 +4,7 @@ set -e
 set -f
 
 echo "Copy dotfiles"
-mkdir -p ${HOME}/.config/
-cp -r $(pwd)/dotfiles/alacritty ${HOME}/.config
+cp -r $(pwd)/dotfiles/.config ${HOME}
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 
 if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
@@ -33,8 +32,8 @@ fi
 if ! command -v alacritty &> /dev/null; then
   echo  "Install alacritty"
   sudo nala install alacritty -y
-  mkdir -p ${HOME}.config/alacritty/themes
-  git clone https://github.com/alacritty/alacritty-theme ${HOME}.config/alacritty/themes
+  mkdir -p ${HOME}/.config/alacritty/themes
+  git clone https://github.com/alacritty/alacritty-theme ${HOME}/.config/alacritty/themes
 fi
 
 if ! command -v xclip &> /dev/null; then
@@ -66,7 +65,7 @@ fi
 if ! command -v nvm &> /dev/null; then
   echo "Install nvm"
   PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-  source ~/.nvm/nvm.sh
+  source ${HOME}/.nvm/nvm.sh
 fi
 
 if ! [ -d "${HOME}/.fonts/Meslo" ]; then
@@ -91,7 +90,7 @@ fi
 if ! command -v nvim &> /dev/null; then
   echo "Install nvim"
   brew install nvim
-  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  git clone https://github.com/LazyVim/starter ${HOME}/.config/nvim
   nvim --headless +qa
   nvim --headless "+Lazy! sync" +qa
 fi
