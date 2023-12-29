@@ -3,6 +3,7 @@
 set -e
 set -f
 
+REBOOT = 0
 echo "Copy dotfiles"
 cp -r $(pwd)/dotfiles/.config ${HOME}
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
@@ -26,7 +27,7 @@ if ! command -v zsh &> /dev/null; then
   echo  "Install zsh"
   sudo nala install zsh -y
   chsh -s $(which zsh)
-  NO_REBOOT=1
+  REBOOT=1
 fi
 
 if ! command -v alacritty &> /dev/null; then
@@ -108,6 +109,6 @@ if ! command -v docker &> /dev/null; then
   newgrp docker
 fi
 
-if ! [ -z "$NO_REBOOT" ]; then
+if [ -z "$REBOOT" ]; then
   sudo reboot
 fi
