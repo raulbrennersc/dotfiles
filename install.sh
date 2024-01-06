@@ -3,7 +3,6 @@
 set -e
 set -f
 
-REBOOT = 0
 echo "Copy dotfiles"
 cp -r $(pwd)/dotfiles/.config ${HOME}
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
@@ -15,100 +14,57 @@ if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
   ssh-add ${HOME}/.ssh/id_ed25519
 fi
 
-echo "Installing build-essential"
-sudo apt install build-essential -y
+echo "Installing packages"
+sudo apt install nala -y
+sudo nala install build-essential \
+  zsh \
+  alacritty \
+  xclip \
+  curl \
+  unzip \
+  ripgrep \
+  -y
 
-if ! command -v nala &> /dev/null; then
-  echo  "Install nala"
-  sudo apt install nala -y
-fi
+chsh -s $(which zsh)
+git clone https://github.com/alacritty/alacritty-theme ${HOME}/.config/alacritty/themes
 
-if ! command -v zsh &> /dev/null; then
-  echo  "Install zsh"
-  sudo nala install zsh -y
-  chsh -s $(which zsh)
-  REBOOT=1
-fi
 
-if ! command -v alacritty &> /dev/null; then
-  echo  "Install alacritty"
-  sudo nala install alacritty -y
-  mkdir -p ${HOME}/.config/alacritty/themes
-  git clone https://github.com/alacritty/alacritty-theme ${HOME}/.config/alacritty/themes
-fi
+echo "Install oh my zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-if ! command -v xclip &> /dev/null; then
-  echo  "Install xclip"
-    sudo nala install xclip -y
-fi
+echo "Install nvm"
+PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
+source ${HOME}/.nvm/nvm.sh
 
-if ! command -v curl &> /dev/null; then
-echo "Install curl"
-    sudo nala install curl -y
-fi
+echo "Install Meslo NF"
+wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+unzip ${HOME}/.fonts/Meslo.zip -d ${HOME}/.fonts/Meslo
+rm -rf ${HOME}/.fonts/Meslo.zip
 
-if ! [ -d "/home/linuxbrew/" ]; then
-  echo "Install Homebrew"
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+echo "Install FiraCode NF"
+wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
+rm -rf ${HOME}/.fonts/FiraCode.zip
 
-if ! command -v unzip &> /dev/null; then
-echo "Install unzip"
-    sudo nala install unzip -y
-fi
+echo "Install oh-my-posh"
+curl -s https://ohmyposh.dev/install.sh | sudo bash -s
 
-if ! [ -d "${HOME}/.oh-my-zsh" ]; then
-  echo "Install oh my zsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
+echo "Install docker ce"
+curl -fsSL https://get.docker.com -o- | sh
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
-if ! command -v nvm &> /dev/null; then
-  echo "Install nvm"
-  PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-  source ${HOME}/.nvm/nvm.sh
-fi
+echo "Install nvim from source"
+git clone https://github.com/neovim/neovim \
+&& cd neovim \
+&& git checkout stable \
+&& make CMAKE_BUILD_TYPE=RelWithDebInfo \
+&& make install
+rm -rf ${HOME}/.config/nvim
+git clone https://github.com/LazyVim/starter ${HOME}/.config/nvim
+mv /home/raul/dotfiles/.config/nvim/lua/plugins /home/raul/.config/nvim/lua/
+nvim --headless +qa
+nvim --headless "+Lazy! sync" +qa
 
-if ! [ -d "${HOME}/.fonts/Meslo" ]; then
-  echo "Install Meslo NF"
-  wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
-  unzip ${HOME}/.fonts/Meslo.zip -d ${HOME}/.fonts/Meslo
-  rm -rf ${HOME}/.fonts/Meslo.zip
-fi
-
-if ! [ -d "${HOME}/.fonts/FiraCode" ]; then
-  echo "Install FiraCode NF"
-  wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-  unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
-  rm -rf ${HOME}/.fonts/FiraCode.zip
-fi
-
-if ! command -v ripgrep &> /dev/null; then
-  echo "Install ripgrep (used by nvim)"
-  brew install ripgrep
-fi
-
-if ! command -v nvim &> /dev/null; then
-  echo "Install nvim"
-  brew install nvim
-  git clone https://github.com/LazyVim/starter ${HOME}/.config/nvim
-  nvim --headless +qa
-  nvim --headless "+Lazy! sync" +qa
-fi
-
-if ! command -v oh-my-posh &> /dev/null; then
-  echo "Install oh-my-posh"
-  brew install jandedobbeleer/oh-my-posh/oh-my-posh
-fi
-
-if ! command -v docker &> /dev/null; then
-  echo "Install docker ce"
-  curl -fsSL https://get.docker.com -o- | sh
-  sudo groupadd docker
-  sudo usermod -aG docker $USER
-  newgrp docker
-fi
-
-if [ -z "$REBOOT" ]; then
-  sudo reboot
-fi
+sudo reboot
