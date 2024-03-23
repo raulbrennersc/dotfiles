@@ -27,8 +27,6 @@ sudo nala install build-essential \
   -y
 
 chsh -s $(which zsh)
-git clone https://github.com/alacritty/alacritty-theme ${HOME}/.config/alacritty/themes
-
 
 echo "Install oh my zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
