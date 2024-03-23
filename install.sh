@@ -17,9 +17,9 @@ fi
 echo "Installing packages"
 sudo apt update
 sudo apt install nala -y
+sudo nala update
 sudo nala install build-essential \
   zsh \
-  alacritty \
   xclip \
   curl \
   unzip \
