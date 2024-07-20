@@ -8,7 +8,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_mocha.omp.json')"
+  eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/gruvbox.omp.json')"
 fi
 
 if [ -d "/home/linuxbrew/" ]; then

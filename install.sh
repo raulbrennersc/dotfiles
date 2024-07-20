@@ -28,6 +28,16 @@ sudo nala install build-essential \
 
 chsh -s $(which zsh)
 
+echo "Install Homebrew"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+echo "Install alacritty"
+sudo brew install --cask alacritty
+
+echo "Install neovim"
+sudo brew install neovim
+
 echo "Install oh my zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -54,15 +64,8 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 
-echo "Install nvim from source"
-git clone https://github.com/neovim/neovim \
-&& cd neovim \
-&& git checkout stable \
-&& make CMAKE_BUILD_TYPE=RelWithDebInfo \
-&& make install
-rm -rf ${HOME}/.config/nvim
+echo "Install LazyVim"
 git clone https://github.com/LazyVim/starter ${HOME}/.config/nvim
-mv /home/raul/dotfiles/.config/nvim/lua/plugins /home/raul/.config/nvim/lua/
 nvim --headless +qa
 nvim --headless "+Lazy! sync" +qa
 
