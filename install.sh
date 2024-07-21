@@ -32,11 +32,8 @@ echo "Install Homebrew"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-echo "Install alacritty"
-sudo brew install --cask alacritty
-
 echo "Install neovim"
-sudo brew install neovim
+brew install neovim
 
 echo "Install oh my zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -56,7 +53,7 @@ unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip
 
 echo "Install oh-my-posh"
-curl -s https://ohmyposh.dev/install.sh | sudo bash -s
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
