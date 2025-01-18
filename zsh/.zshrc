@@ -1,8 +1,9 @@
 export ZSH=$HOME/.oh-my-zsh
+export PATH=$PATH:$HOME/.local/bin
+
+# sudo setfacl -m u:${USER}:rw /dev/uinput
 
 bindkey '^H' backward-kill-word
-
-plugins=(git gcloud nvm docker)
 
 if [ -d "/home/linuxbrew/" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
