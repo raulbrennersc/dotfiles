@@ -5,6 +5,7 @@ set -f
 
 echo "Copy dotfiles"
 cp -r $(pwd)/dotfiles/.config ${HOME}
+cp -r $(pwd)/dotfiles/.ssh ${HOME}
 cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
 
 echo "Generating ssh keys"
