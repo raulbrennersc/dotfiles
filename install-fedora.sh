@@ -38,7 +38,7 @@ curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/de
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker raul
 newgrp docker
 
 sudo reboot
