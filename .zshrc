@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:$HOME/.local/bin
+export XDG_CONFIG_HOME=$HOME/.config
 
 # sudo setfacl -m u:${USER}:rw /dev/uinput
 
