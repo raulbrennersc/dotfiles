@@ -41,4 +41,7 @@ sudo groupadd docker
 sudo usermod -aG docker raul
 newgrp docker
 
+sudo systemctl enable --now docker.service
+sudo systemctl enable --now containerd.service
+
 sudo reboot
