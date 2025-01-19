@@ -16,7 +16,7 @@ ssh-add ${HOME}/.ssh/id_personal
 ssh-add ${HOME}/.ssh/id_work
 
 echo "Installing packages"
-sudo dnf install solaar zsh-y
+sudo dnf install solaar zsh -y
 chsh -s $(which zsh)
 
 echo "Install Meslo NF"
