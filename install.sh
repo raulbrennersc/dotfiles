@@ -1,46 +1,35 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 set -f
 
-echo "Copy dotfiles"
-cp -r $(pwd)/dotfiles/.config ${HOME}
-cp $(pwd)/dotfiles/zsh/.zshrc ${HOME}/.zshrc
+DOTFILES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+DOTFILES_USER=raul
 
-if ! [ -f "${HOME}/.ssh/id_ed25519" ]; then
-  echo "Generating ssh keys"
-  ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
-  eval "$(ssh-agent -s)"
-  ssh-add ${HOME}/.ssh/id_ed25519
-fi
+echo "Create symlinks for dotfiles"
+ln -s ${DOTFILES_DIR}/.config ~/.config
+ln -s ${DOTFILES_DIR}/.ssh ~/.ssh
+ln -s ${DOTFILES_DIR}/.zshrc ~/.zshrc
 
-echo "Installing packages"
-sudo apt update
-sudo apt install nala -y
-sudo nala update
-sudo nala install build-essential \
-  zsh \
-  xclip \
-  curl \
-  unzip \
-  ripgrep \
-  -y
+mkdir -p ~/.config/VSCodium/User
+ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
 
-chsh -s $(which zsh)
+echo "Generating ssh keys"
+ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_personal -q -P ""
+ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_work -q -P ""
+eval "$(ssh-agent -s)"
+ssh-add ${HOME}/.ssh/id_personal
+ssh-add ${HOME}/.ssh/id_work
 
-echo "Install Homebrew"
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "Install packages"
+sudo dnf install solaar zsh codium -y
 
-echo "Install neovim"
-brew install neovim
+echo "Install codium extensions"
+while read p; do
+  codium --install-extension "$p"
+done < ${DOTFILES_DIR}/vscodium/extensions
 
-echo "Install oh my zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-echo "Install nvm"
-PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-source ${HOME}/.nvm/nvm.sh
+sudo chsh $DOTFILES_USER -s $(which zsh)
 
 echo "Install Meslo NF"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
@@ -53,17 +42,18 @@ unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip
 
 echo "Install oh-my-posh"
-brew install jandedobbeleer/oh-my-posh/oh-my-posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+
+echo "Install DevPod"
+curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
 
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $DOTFILES_USER
 newgrp docker
 
-echo "Install LazyVim"
-git clone https://github.com/LazyVim/starter ${HOME}/.config/nvim
-nvim --headless +qa
-nvim --headless "+Lazy! sync" +qa
+sudo systemctl enable --now docker.service
+sudo systemctl enable --now containerd.service
 
 sudo reboot
