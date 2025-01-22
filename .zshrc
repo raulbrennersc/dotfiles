@@ -19,8 +19,8 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-
 # sudo setfacl -m u:${USER}:rw /dev/uinput
+# line to make solaar work
 
 bindkey '^H' backward-kill-word
 
@@ -29,6 +29,6 @@ if [ -d "/home/linuxbrew/" ]; then
 fi
 
 if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/gruvbox.omp.json')"
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/powerlevel10k_rainbow.omp.json)"
 fi
 

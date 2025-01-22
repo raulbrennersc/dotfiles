@@ -31,6 +31,10 @@ done < ${DOTFILES_DIR}/vscodium/extensions
 
 sudo chsh $DOTFILES_USER -s $(which zsh)
 
+echo "Install homebrew"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 echo "Install Meslo NF"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
 unzip ${HOME}/.fonts/Meslo.zip -d ${HOME}/.fonts/Meslo
@@ -42,7 +46,7 @@ unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip
 
 echo "Install oh-my-posh"
-curl -s https://ohmyposh.dev/install.sh | bash -s
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 echo "Install DevPod"
 curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
