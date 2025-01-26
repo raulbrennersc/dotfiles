@@ -22,6 +22,8 @@ bindkey -e
 # sudo setfacl -m u:${USER}:rw /dev/uinput
 # line to make solaar work
 
+plugins=(git gcloud nvm)
+
 bindkey '^H' backward-kill-word
 
 if [ -d "/home/linuxbrew/" ]; then
