@@ -22,7 +22,7 @@ bindkey -e
 # sudo setfacl -m u:${USER}:rw /dev/uinput
 # line to make solaar work
 
-plugins=(git gcloud nvm)
+plugins=(git gcloud nvm brew)
 
 bindkey '^H' backward-kill-word
 
