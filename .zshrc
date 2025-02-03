@@ -1,12 +1,13 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
+source $ZSH/oh-my-zsh.sh
 
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
-zstyle :compinstall filename '/home/raul/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -22,7 +23,7 @@ bindkey -e
 # sudo setfacl -m u:${USER}:rw /dev/uinput
 # line to make solaar work
 
-plugins=(git gcloud nvm brew)
+plugins=(git gcloud nvm brew docker)
 
 bindkey '^H' backward-kill-word
 

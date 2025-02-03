@@ -37,7 +37,7 @@
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "window.commandCenter": true,
 "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "eq-material-theme-icons",
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

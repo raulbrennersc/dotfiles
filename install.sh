@@ -14,13 +14,13 @@ ln -s ${DOTFILES_DIR}/.zshrc ${HOME}/.zshrc
 mkdir -p ~/.config/VSCodium/User
 ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
 
-echo "Generating ssh keys"
-ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
-eval "$(ssh-agent -s)"
-ssh-add ${HOME}/.ssh/id_ed25519
+# echo "Generating ssh keys"
+# ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
+# eval "$(ssh-agent -s)"
+# ssh-add ${HOME}/.ssh/id_ed25519
 
 echo "Install packages"
-sudo dnf install solaar zsh codium -y
+sudo apt install solaar -y
 
 sudo chsh $DOTFILES_USER -s $(which zsh)
 
@@ -43,14 +43,14 @@ wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/
 unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip
 
+echo "Install zsh"
+brew install zsh
+
 echo "Install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Install oh-my-posh"
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
-
-echo "Install DevPod"
-curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
 
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
@@ -60,5 +60,8 @@ newgrp docker
 
 sudo systemctl enable --now docker.service
 sudo systemctl enable --now containerd.service
+
+echo "Install DevPod"
+curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
 
 sudo reboot
