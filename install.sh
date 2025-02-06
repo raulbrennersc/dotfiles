@@ -8,20 +8,18 @@ DOTFILES_USER=raul
 
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
-ln -s ${DOTFILES_DIR}/.config/solaar ${HOME}/.config/solaar
-ln -s ${DOTFILES_DIR}/.zshrc ${HOME}/.zshrc
+mkdir -p ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/
+ln -s ${HOME}/dotfiles/.config/solaar ${HOME}/.config/solaar
+ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
+ln -s ${HOME}/dotfiles/vscodium/settings.json ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/settings.json
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P "" -C "raulbrennersc"
 eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
-
-mkdir -p ~/.config/VSCodium/User
-ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
-
 echo "Install packages"
-sudo dnf install flatpak solaar -y
+sudo sudo install build-essential flatpak solaar -y
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -37,7 +35,9 @@ done < ${DOTFILES_DIR}/vscodium/extensions
 echo "Install homebrew"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+brew install gcc
 
+mkdir -p ${HOME}/.fonts
 echo "Install Meslo NF"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
 unzip ${HOME}/.fonts/Meslo.zip -d ${HOME}/.fonts/Meslo
@@ -57,7 +57,7 @@ echo "Install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Install oh-my-posh"
-brew install jandedobbeleer/oth-my-posh/oh-my-posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
