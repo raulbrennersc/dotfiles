@@ -7,7 +7,8 @@ DOTFILES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd 
 DOTFILES_USER=raul
 
 echo "Create symlinks for dotfiles"
-ln -s ${DOTFILES_DIR}/.config ${HOME}/.config
+mkdir -p ${HOME}/.config
+ln -s ${DOTFILES_DIR}/.config/solaar ${HOME}/.config/solaar
 ln -s ${DOTFILES_DIR}/.zshrc ${HOME}/.zshrc
 
 echo "Generate ssh keys"
