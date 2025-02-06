@@ -3,6 +3,9 @@ export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
 
+alias code="flatpak run com.vscodium.codium"
+alias codium="flatpak run com.vscodium.codium"
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored

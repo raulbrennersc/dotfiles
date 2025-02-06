@@ -20,13 +20,19 @@ mkdir -p ~/.config/VSCodium/User
 ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
 
 echo "Install packages"
-sudo apt install solaar -y
+sudo dnf install flatpak solaar -y
+
+echo "Enable flathub"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo "Install VSCodium"
+flatpak install com.vscodium.codium
 
 sudo chsh $DOTFILES_USER -s $(which zsh)
 
 echo "Install codium extensions"
 while read p; do
-  codium --install-extension "$p"
+  flatpak run com.vscodium.codium --install-extension "$p"
 done < ${DOTFILES_DIR}/vscodium/extensions
 
 echo "Install homebrew"
