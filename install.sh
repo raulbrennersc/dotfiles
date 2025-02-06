@@ -8,8 +8,13 @@ DOTFILES_USER=raul
 
 echo "Create symlinks for dotfiles"
 ln -s ${DOTFILES_DIR}/.config ${HOME}/.config
-ln -s ${DOTFILES_DIR}/.ssh ${HOME}/.ssh
 ln -s ${DOTFILES_DIR}/.zshrc ${HOME}/.zshrc
+
+echo "Generate ssh keys"
+ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P "" -C "raulbrennersc"
+eval "$(ssh-agent -s)"
+ssh-add ${HOME}/.ssh/id_ed25519
+
 
 mkdir -p ~/.config/VSCodium/User
 ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
