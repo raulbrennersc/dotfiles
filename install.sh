@@ -28,8 +28,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 echo "Install VSCodium"
 flatpak install com.vscodium.codium
 
-sudo chsh $DOTFILES_USER -s $(which zsh)
-
 echo "Install codium extensions"
 while read p; do
   flatpak run com.vscodium.codium --install-extension "$p"
@@ -52,11 +50,13 @@ rm -rf ${HOME}/.fonts/FiraCode.zip
 echo "Install zsh"
 brew install zsh
 
+sudo chsh $DOTFILES_USER -s $(which zsh)
+
 echo "Install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Install oh-my-posh"
-brew install jandedobbeleer/oh-my-posh/oh-my-posh
+brew install jandedobbeleer/oth-my-posh/oh-my-posh
 
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
