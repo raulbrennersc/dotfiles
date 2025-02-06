@@ -14,11 +14,6 @@ ln -s ${DOTFILES_DIR}/.zshrc ${HOME}/.zshrc
 mkdir -p ~/.config/VSCodium/User
 ln -s ${DOTFILES_DIR}/vscodium/settings.json ~/.config/VSCodium/User/settings.json
 
-# echo "Generating ssh keys"
-# ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
-# eval "$(ssh-agent -s)"
-# ssh-add ${HOME}/.ssh/id_ed25519
-
 echo "Install packages"
 sudo apt install solaar -y
 
