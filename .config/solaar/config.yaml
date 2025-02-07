@@ -29,7 +29,7 @@
     gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B36700000000
-  _sensitive: {divert-keys: true}
+  _sensitive: {divert-keys: true, fn-swap: true}
   _serial: 4D181A0D
   _unitId: 4D181A0D
   _wpid: B367
@@ -67,7 +67,7 @@
     adc_power_management]
   _battery: 4100
   _modelId: 4099C0950000
-  _sensitive: {dpi: true, hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore, onboard_profiles: true, rgb_control: true,
+  _sensitive: {dpi: true, hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore, onboard_profiles: ignore, rgb_control: true,
     rgb_zone_1: true}
   _serial: 13C0A9A9
   _unitId: 13C0A9A9

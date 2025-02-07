@@ -25,11 +25,15 @@
 ...
 ---
 - Test: thumb_wheel_up
-- Execute: [pactl, set-sink-volume, '@DEFAULT_SINK@', +1%]
+- KeyPress:
+  - XF86_AudioRaiseVolume
+  - click
 ...
 ---
 - Test: thumb_wheel_down
-- Execute: [pactl, set-sink-volume, '@DEFAULT_SINK@', -1%]
+- KeyPress:
+  - XF86_AudioLowerVolume
+  - click
 ...
 ---
 - Key: [Back Button, pressed]
@@ -45,6 +49,7 @@
 ...
 ---
 - Key: [Smart Shift, pressed]
-- Execute: [dbus-send, --print-reply, --dest=org.mpris.MediaPlayer2.spotify, /org/mpris/MediaPlayer2,
-    org.mpris.MediaPlayer2.Player.PlayPause]
+- KeyPress:
+  - XF86_AudioPlay
+  - click
 ...
