@@ -23,9 +23,6 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-# sudo setfacl -m u:${USER}:rw /dev/uinput
-# line to make solaar work
-
 plugins=(git gcloud nvm brew docker)
 
 bindkey '^H' backward-kill-word
