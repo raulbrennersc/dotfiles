@@ -18,14 +18,47 @@ ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P "" -C "raulbrennersc"
 eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
+sudo apt update
+
+###Ubuntu specific
+ubuntu-report send no
+sudo apt remove ubuntu-report apport apport-gtk -y
+while [ "$(snap list | wc -l)" -gt 0 ]; do
+    for snap in $(snap list | tail -n +2 | cut -d ' ' -f 1); do
+        snap remove --purge "$snap"
+    done
+done
+
+systemctl stop snapd
+systemctl disable snapd
+systemctl mask snapd
+apt purge snapd -y
+rm -rf /snap /var/lib/snapd
+for userpath in /home/*; do
+    rm -rf $userpath/snap
+done
+cat <<-EOF | tee /etc/apt/preferences.d/nosnap.pref
+	Package: snapd
+	Pin: release a=*
+	Pin-Priority: -10
+	EOF
+
+sudo apt install adwaita-icon-theme morewaita -y
+sudo apt install --install-suggests gnome-software -y
+apt autoremove -y
+###Ubuntu specific
+
 echo "Install packages"
-sudo sudo install build-essential flatpak solaar -y
+sudo apt install build-essential flatpak solaar -y
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install VSCodium"
-flatpak install com.vscodium.codium
+flatpak install com.vscodium.codium -y
+
+echo "Install Zen"
+flatpak install app.zen_browser.zen -y 
 
 echo "Install codium extensions"
 while read p; do
