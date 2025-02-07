@@ -18,12 +18,19 @@ ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P "" -C "raulbrennersc"
 eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
-echo "Install packages for Fedora"
-sudo dnf install flatpak solaar -y
-sudo dnf install @development-tools -y
+if command -v dnf &> /dev/null;
+then
+  echo "Install Fedora packages"
+  sudo dnf install flatpak solaar -y
+  sudo dnf install @development-tools -y
+elif command -v apt &> /dev/null;
+then
+  echo "Install Debian"
+  sudo apt install build-essential flatpak solaar -y
+fi
 
-# echo "Install packages for Debian"
-# sudo apt install build-essential flatpak solaar -y
+echo "Enable Solaar"
+sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
