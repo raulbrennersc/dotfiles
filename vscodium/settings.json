@@ -53,7 +53,6 @@
   "workbench.tree.renderIndentGuides": "onHover",
   "update.showReleaseNotes": false,
   "window.density.editorTabHeight": "compact",
-  "window.titleBarStyle": "custom",
   "diffEditor.ignoreTrimWhitespace": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -65,5 +64,16 @@
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "nest",
   "material-icon-theme.hidesExplorerArrows": true,
-  "window.title": "${folderName}${separator}${remoteName}"
+  "window.title": "${folderName}${separator}${remoteName}",
+  "window.titleBarStyle": "custom",
+  "remote.SSH.defaultExtensions": [
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "jeanp413.open-remote-ssh"
+  ],
+  "terminal.integrated.scrollback": 3000,
+  "terminal.integrated.persistentSessionReviveProcess": "never"
 }

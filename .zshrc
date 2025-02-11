@@ -30,7 +30,7 @@ if [ -d "/home/linuxbrew/" ]; then
 fi
 
 if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/powerlevel10k_rainbow.omp.json)"
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/space.omp.json)"
 fi
 
 if [ -d "~/.nvm/" ]; then
