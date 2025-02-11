@@ -20,8 +20,6 @@
   "gitlens.advanced.messages": {
     "suppressGitMissingWarning": true
   },
-  "terminal.external.windowsExec": "c:/Program Files/PowerShell/7/pwsh.exe",
-  "terminal.integrated.scrollback": 3000,
   "security.workspace.trust.untrustedFiles": "newWindow",
   "window.restoreWindows": "none",
   "editor.formatOnSaveMode": "modifications",
@@ -29,31 +27,22 @@
   "terminal.integrated.defaultProfile.linux": "zsh",
   "editor.fontFamily": "'MesloLGS Nerd Font', 'MesloLGS Nerd Font Mono'",
   "terminal.integrated.fontFamily": "'MesloLGS Nerd Font', 'MesloLGS Nerd Font Mono'",
-  "json.schemas": [],
   "terminal.integrated.mouseWheelScrollSensitivity": 0.5,
   "editor.cursorSmoothCaretAnimation": "on",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "underline",
-  "terminal.integrated.persistentSessionReviveProcess": "never",
   "window.commandCenter": true,
-"javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.iconTheme": "eq-material-theme-icons",
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "remote.SSH.remotePlatform": {
-      "raspi": "linux"
-    },
-    "[json]": {
-      "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[javascript]": {
-      "editor.defaultFormatter": "vscode.typescript-language-features"
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-"eslint.validate": [
-    "javascript",
-    "typescript"
-],
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": ["javascript", "typescript"],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -62,21 +51,18 @@
   },
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "onHover",
-  "workbench.colorCustomizations": {
-  "tree.indentGuidesStroke": "#929c95"
-  },
-  "material-icon-theme.activeIconPack": "nest",
-  "material-icon-theme.folders.theme": "classic",
-  "material-icon-theme.hidesExplorerArrows": true,
   "update.showReleaseNotes": false,
-"window.density.editorTabHeight": "compact",
+  "window.density.editorTabHeight": "compact",
   "window.titleBarStyle": "custom",
-"diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "workbench.sideBar.location": "right",
   "window.confirmSaveUntitledWorkspace": false,
   "explorer.compactFolders": false,
-  "workbench.colorTheme": "GitHub Dark Default"
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "nest",
+  "material-icon-theme.hidesExplorerArrows": true
 }

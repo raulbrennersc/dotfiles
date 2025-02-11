@@ -2,9 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
-
-alias code="flatpak run com.vscodium.codium"
-alias codium="flatpak run com.vscodium.codium"
+alias code="codium"
 
 # The following lines were added by compinstall
 
@@ -33,5 +31,11 @@ fi
 
 if command -v oh-my-posh &> /dev/null; then
   eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/powerlevel10k_rainbow.omp.json)"
+fi
+
+if [ -d "~/.nvm/" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 

@@ -3,30 +3,37 @@
 set -e
 set -f
 
-DOTFILES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-DOTFILES_USER=raul
+DOTFILES_USER=${HOME}
 
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/
 ln -s ${HOME}/dotfiles/.config/solaar ${HOME}/.config/solaar
 ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
-ln -s ${HOME}/dotfiles/vscodium/settings.json ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/settings.json
+ln -s ${HOME}/dotfiles/vscodium/settings.json ${HOME}/.config/VSCodium/User/settings.json
 
 echo "Generate ssh keys"
-ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P "" -C "raulbrennersc"
+ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
 if command -v dnf &> /dev/null;
 then
   echo "Install Fedora packages"
-  sudo dnf install flatpak solaar -y
+  sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+  printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
+  sudo dnf install flatpak solaar codium -y
   sudo dnf install @development-tools -y
 elif command -v apt &> /dev/null;
 then
-  echo "Install Debian"
-  sudo apt install build-essential flatpak solaar -y
+  echo "Install Debian packages"
+  wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+  echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+  sudo apt update
+  sudo apt install build-essential flatpak solaar codium -y
 fi
 
 echo "Enable Solaar"
@@ -35,16 +42,13 @@ sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Install VSCodium"
-flatpak install com.vscodium.codium -y
-
 echo "Install Zen"
 flatpak install app.zen_browser.zen -y 
 
 echo "Install codium extensions"
 while read p; do
-  flatpak run com.vscodium.codium --install-extension "$p"
-done < ${DOTFILES_DIR}/vscodium/extensions
+  codium --install-extension "$p"
+done < ${HOME}/dotfiles/vscodium/extensions
 
 echo "Install homebrew"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
