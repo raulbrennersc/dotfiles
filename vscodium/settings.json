@@ -64,5 +64,6 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "nest",
-  "material-icon-theme.hidesExplorerArrows": true
+  "material-icon-theme.hidesExplorerArrows": true,
+  "window.title": "${folderName}${separator}${remoteName}"
 }
