@@ -75,5 +75,6 @@
     "jeanp413.open-remote-ssh"
   ],
   "terminal.integrated.scrollback": 3000,
-  "terminal.integrated.persistentSessionReviveProcess": "never"
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "diffEditor.renderSideBySide": false
 }

@@ -30,12 +30,11 @@ if [ -d "/home/linuxbrew/" ]; then
 fi
 
 if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/space.omp.json)"
+  eval "$(oh-my-posh init zsh --config ${HOME}/dotfiles/.config/oh-my-posh/theme.omp.json)"
 fi
 
-if [ -d "~/.nvm/" ]; then
+if [ -d "$HOME/.nvm/" ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-

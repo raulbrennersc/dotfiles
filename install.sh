@@ -3,14 +3,16 @@
 set -e
 set -f
 
-DOTFILES_USER=${HOME}
+DOTFILES_USER=${USER}
 
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/
 ln -s ${HOME}/dotfiles/.config/solaar ${HOME}/.config/solaar
+ln -s ${HOME}/dotfiles/.config/nvim ${HOME}/.config/nvim
+ln -s ${HOME}/dotfiles/.config/vscodium/settings.json ${HOME}/.config/VSCodium/User/settings.json
 ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
-ln -s ${HOME}/dotfiles/vscodium/settings.json ${HOME}/.config/VSCodium/User/settings.json
+ln -s ${HOME}/dotfiles/.gitconfig ${HOME}/.gitconfig
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
@@ -43,12 +45,43 @@ echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install Zen"
-flatpak install app.zen_browser.zen -y 
+flatpak install app.zen_browser.zen -y
+
+echo "Creating Zen Profile"
+flatpak run app.zen_browser.zen -CreateProfile $DOTFILES_USER
+
+local folder=$(sed -n "/Path=.*\.${DOTFILES_USER}$/ s/.*=//p" ~/.var/app/app.zen_browser.zen/.zen/profiles.ini)
+local zenpath="/home/${DOTFILES_USER}/.var/app/app.zen_browser.zen/.zen/$folder"
+
+ln -s ${HOME}/dotfiles/.config/zen/user.js ${zenpath}/user.js
+
+echo "Downloading Zen Addons"
+
+mozillaurl="https://addons.mozilla.org"
+addontmp=$(mktemp -d)
+mkdir -p "$zenpath/extensions/"
+extension_list=$(grep -oP '"addons_list":\s*\[\K[^\]]+' ${HOME}/dotfiles/.config/zen/config.json | tr -d ' ",')
+
+IFS=','
+for addon in $addons_list; do
+  addon=$(echo "$addon" | tr -d ' ')
+
+  echo "Installing $addon"
+  addonurl=$(curl --silent "$mozillaurl/en-US/firefox/addon/$addon/" | grep -o "$mozillaurl/firefox/downloads/file/[^\"]*")
+  file="${addonurl##*/}"
+
+  curl -LOs "$addonurl" > "$addontmp/$file"
+
+  id=$(unzip -p "$addontmp/$file" manifest.json | grep -o '"id": *"[^"]*' | sed 's/"id": *"//')
+
+  mv "$addontmp/$file" "$path/extensions/$id.xpi"
+done
+rm -fr $addontmp
 
 echo "Install codium extensions"
 while read p; do
   codium --install-extension "$p"
-done < ${HOME}/dotfiles/vscodium/extensions
+done < ${HOME}/dotfiles/.config/vscodium/extensions
 
 echo "Install homebrew"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -56,12 +89,12 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install gcc
 
 mkdir -p ${HOME}/.fonts
-echo "Install Meslo NF"
+echo "Install Meslo Nerd Font"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
 unzip ${HOME}/.fonts/Meslo.zip -d ${HOME}/.fonts/Meslo
 rm -rf ${HOME}/.fonts/Meslo.zip
 
-echo "Install FiraCode NF"
+echo "Install FiraCode Nerd Font"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
 unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip

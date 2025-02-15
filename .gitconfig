@@ -1,2 +1,5 @@
 [push]
-        autoSetupRemote = true
+	autoSetupRemote = true
+[user]
+	name = Raul Costa
+	email = raulbrennersc@gmail.com
