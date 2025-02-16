@@ -9,7 +9,7 @@
           "type": "os",
           "style": "plain",
           "foreground": "#45F1C2",
-          "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}} {{ .UserName }} on",
+          "template": "{{.Icon}} {{ .UserName }} on",
           "properties": {
             "macos": "mac"
           }
