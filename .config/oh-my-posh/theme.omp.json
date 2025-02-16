@@ -21,7 +21,7 @@
             "style": "agnoster_short"
           },
           "style": "plain",
-          "template": " \uf07b {{ .Path }} ",
+          "template": " {{ .Path }} ",
           "type": "path"
         },
         {
