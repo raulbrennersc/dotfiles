@@ -19,5 +19,6 @@ fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install fzf ripgrep neovim tmux zsh jandedobbeleer/oh-my-posh/oh-my-posh
+chsh ${USER} -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
