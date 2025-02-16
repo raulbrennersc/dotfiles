@@ -12,10 +12,12 @@ ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
 ln -s ${HOME}/dotfiles/.gitconfig ${HOME}/.gitconfig
 ln -s ${HOME}/dotfiles/.tmux.conf ${HOME}/.tmux.conf
 
-sudo apt update
-sudo apt install zsh -y
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+if ! [ -d "/home/linuxbrew/" ]; then
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install fzf ripgrep neovim tmux oh-my-posh
+
+brew install fzf ripgrep neovim tmux zsh jandedobbeleer/oh-my-posh/oh-my-posh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

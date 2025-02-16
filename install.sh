@@ -87,7 +87,6 @@ done < ${HOME}/dotfiles/.config/vscodium/extensions
 echo "Install homebrew"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install gcc
 
 mkdir -p ${HOME}/.fonts
 echo "Install Meslo Nerd Font"
@@ -119,6 +118,7 @@ newgrp docker
 
 sudo systemctl enable --now docker.service
 sudo systemctl enable --now containerd.service
+sudo systemctl enable --now sshd
 
 echo "Install DevPod"
 curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
