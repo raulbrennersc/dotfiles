@@ -8,7 +8,6 @@ rm -rf ${HOME}/.zshrc
 rm -rf ${HOME}/.gitconfig
 rm -rf ${HOME}/.tmux.conf
 
-ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
 ln -s ${HOME}/dotfiles/.gitconfig ${HOME}/.gitconfig
 ln -s ${HOME}/dotfiles/.tmux.conf ${HOME}/.tmux.conf
 
@@ -22,6 +21,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 brew install fzf ripgrep neovim tmux jandedobbeleer/oh-my-posh/oh-my-posh
+rm -rf ${HOME}/.zshrc
+ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
+
 
 echo $(whoami)
 sudo chsh -s $(which zsh) $(whoami)

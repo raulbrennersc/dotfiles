@@ -107,6 +107,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo "Install oh-my-posh"
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
+rm -rf ${HOME}/.zshrc
+ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
+
 echo "Install docker ce"
 curl -fsSL https://get.docker.com -o- | sh
 sudo groupadd docker
