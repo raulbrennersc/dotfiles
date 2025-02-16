@@ -25,7 +25,7 @@ then
   echo "Install Fedora packages"
   sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
   printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
-  sudo dnf install flatpak solaar codium tmux -y
+  sudo dnf install flatpak solaar codium tmux zsh -y
   sudo dnf install @development-tools -y
 elif command -v apt &> /dev/null;
 then
@@ -36,7 +36,7 @@ then
   echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | sudo tee /etc/apt/sources.list.d/vscodium.list
   sudo apt update
-  sudo apt install build-essential flatpak solaar codium tmux -y
+  sudo apt install build-essential flatpak solaar codium tmux zsh -y
 fi
 
 echo "Enable Solaar"
@@ -98,9 +98,6 @@ echo "Install FiraCode Nerd Font"
 wget -P ${HOME}/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
 unzip ${HOME}/.fonts/FiraCode.zip -d ${HOME}/.fonts/FiraCode
 rm -rf ${HOME}/.fonts/FiraCode.zip
-
-echo "Install zsh"
-brew install zsh
 
 sudo chsh $DOTFILES_USER -s $(which zsh)
 
