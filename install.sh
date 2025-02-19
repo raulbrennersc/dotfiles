@@ -5,6 +5,11 @@ set -f
 
 DOTFILES_USER=${USER}
 
+echo "## Remainder to install extras ##"
+echo "### Papirus Icon"
+echo "### Volantes Cursor"
+
+
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/
