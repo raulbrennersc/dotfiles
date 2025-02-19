@@ -1,6 +1,7 @@
 {
   //based on https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/amro.omp.json,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{if .Env.DEVCONTAINER}}\uea85{{end}} {{.UserName}} in {{.PWD}}",
   "blocks": [
     {
       "alignment": "left",
@@ -9,7 +10,7 @@
           "type": "os",
           "style": "plain",
           "foreground": "#45F1C2",
-          "template": "{{.Icon}} {{ .UserName }} on",
+          "template": "{{if .Env.DEVCONTAINER}}\uf0e7{{else}}{{.Icon}}{{end}}\u200A{{.UserName}} on",
           "properties": {
             "macos": "mac"
           }
@@ -28,11 +29,12 @@
           "foreground": "#14A5AE",
           "powerline_symbol": "\ue0b0",
           "properties": {
-            "fetch_stash_count": true,
-            "fetch_upstream_icon": true
+            "fetch_upstream_icon": true,
+	    "fetch_status": true
           },
           "style": "plain",
-          "template": "{{ .UpstreamIcon }} \u276f{{ .Ref }} ",
+          "template": "{{ .UpstreamIcon }} {{ .Ref }}{{ if and (eq .Ahead 0) (eq .Behind 0) }} \u2261{{end}}{{ if gt .Ahead 0 }} \u2191{{.Ahead}}{{end}}{{ if gt .Behind 0 }} \u2193{{.Behind}}{{end}}",
+	  "templatea": "",
           "type": "git"
         }
       ],
