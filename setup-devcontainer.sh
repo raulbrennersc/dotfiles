@@ -19,6 +19,10 @@ if ! [ -d "/home/linuxbrew/" ]; then
 fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+if [ -d "/workspaces" ]; then
+  ln -s /workspaces ${HOME}/workspaces
+fi
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 brew install fzf ripgrep neovim tmux jandedobbeleer/oh-my-posh/oh-my-posh
 rm -rf ${HOME}/.zshrc
