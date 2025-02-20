@@ -30,11 +30,12 @@
           "powerline_symbol": "\ue0b0",
           "properties": {
             "fetch_upstream_icon": true,
-	    "fetch_status": true
+	    "fetch_status": true,
+	    "branch_icon":""
           },
           "style": "plain",
-          "template": "{{ .UpstreamIcon }} {{ .Ref }}{{ if and (eq .Ahead 0) (eq .Behind 0) }} \u2261{{end}}{{ if gt .Ahead 0 }} \u2191{{.Ahead}}{{end}}{{ if gt .Behind 0 }} \u2193{{.Behind}}{{end}}",
-	  "templatea": "",
+          "type": "git",
+          "template": "({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}",
           "type": "git"
         }
       ],
