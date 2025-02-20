@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
 alias code="codium"
+alias vim="nvim"
 
 # The following lines were added by compinstall
 
