@@ -5,11 +5,6 @@ set -f
 
 DOTFILES_USER=${USER}
 
-echo "## Remainder to install extras ##"
-echo "### Papirus Icon"
-echo "### Volantes Cursor"
-
-
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.var/app/com.vscodium.codium/config/VSCodium/User/
@@ -25,24 +20,14 @@ ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
-if command -v dnf &> /dev/null;
-then
-  echo "Install Fedora packages"
-  sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-  printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
-  sudo dnf install flatpak solaar codium tmux zsh -y
-  sudo dnf install @development-tools -y
-elif command -v apt &> /dev/null;
-then
-  echo "Install Debian packages"
-  wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
-    | gpg --dearmor \
-    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
-  echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
-    | sudo tee /etc/apt/sources.list.d/vscodium.list
-  sudo apt update
-  sudo apt install build-essential flatpak solaar codium tmux zsh -y
-fi
+echo "Install DEB packages"
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+  | gpg --dearmor \
+  | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+  | sudo tee /etc/apt/sources.list.d/vscodium.list
+sudo apt update
+sudo apt install build-essential flatpak solaar codium tmux zsh curl -y
 
 echo "Enable Solaar"
 sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
@@ -50,19 +35,17 @@ sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Install Zen"
-flatpak install app.zen_browser.zen -y
+echo "Install Flatpaks"
+flatpak install app.zen_browser.zen io.github.alainm23.planify -y
 
-echo "Creating Zen Profile"
+echo "Create Zen Profile"
 flatpak run app.zen_browser.zen -CreateProfile $DOTFILES_USER
-
 local folder=$(sed -n "/Path=.*\.${DOTFILES_USER}$/ s/.*=//p" ~/.var/app/app.zen_browser.zen/.zen/profiles.ini)
 local zenpath="/home/${DOTFILES_USER}/.var/app/app.zen_browser.zen/.zen/$folder"
 
 ln -s ${HOME}/dotfiles/.config/zen/user.js ${zenpath}/user.js
 
-echo "Downloading Zen Addons"
-
+echo "Download Zen Addons"
 mozillaurl="https://addons.mozilla.org"
 addontmp=$(mktemp -d)
 mkdir -p "$zenpath/extensions/"
