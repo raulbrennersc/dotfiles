@@ -26,13 +26,13 @@
 ---
 - Test: thumb_wheel_up
 - KeyPress:
-  - XF86_AudioRaiseVolume
+  - [Shift_L, XF86_AudioRaiseVolume]
   - click
 ...
 ---
 - Test: thumb_wheel_down
 - KeyPress:
-  - XF86_AudioLowerVolume
+  - [Shift_L, XF86_AudioLowerVolume]
   - click
 ...
 ---
