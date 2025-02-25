@@ -2,6 +2,13 @@
   //based on https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/amro.omp.json,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "console_title_template": "{{if .Env.DEVCONTAINER}}\uea85{{end}} {{.UserName}} in {{.PWD}}",
+  "transient_prompt": {
+    "foreground": "#CD4277",
+    "style": "plain",
+    "template": "\u276f ",
+    "type": "text"
+
+  },
   "blocks": [
     {
       "alignment": "left",
