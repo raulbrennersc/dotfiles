@@ -27,6 +27,13 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
   | sudo tee /etc/apt/sources.list.d/vscodium.list
 sudo apt update
 sudo apt install build-essential flatpak solaar codium tmux zsh curl -y
+touch ~/.config/xdg-terminals.list
+echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+
+echo "Install Kitty"
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
 
 echo "Enable Solaar"
 sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
