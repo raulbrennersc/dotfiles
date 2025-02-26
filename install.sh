@@ -20,15 +20,15 @@ eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
 echo "Install DEB packages"
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
-  | gpg --dearmor \
-  | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
-echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
-  | sudo tee /etc/apt/sources.list.d/vscodium.list
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg |
+  gpg --dearmor |
+  sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' |
+  sudo tee /etc/apt/sources.list.d/vscodium.list
 sudo apt update
-sudo apt install build-essential flatpak solaar codium tmux zsh curl -y
+sudo apt install build-essential flatpak solaar codium tmux zsh curl openssh-server -y
 touch ~/.config/xdg-terminals.list
-echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+echo 'kitty.desktop' >~/.config/xdg-terminals.list
 
 echo "Install Kitty"
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
