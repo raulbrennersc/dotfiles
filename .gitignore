@@ -6,4 +6,5 @@
 .config/nvim/foo.*
 .config/nvim/*.log
 .config/nvim/data
+.config/nvim/lazy-lock.json
 
