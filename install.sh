@@ -8,10 +8,12 @@ DOTFILES_USER=${USER}
 echo "Create symlinks for dotfiles"
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.config/VSCodium/User/
+mkdir -p ${HOME}/.config/alacritty
 ln -s ${HOME}/dotfiles/.config/solaar ${HOME}/.config/solaar
 ln -s ${HOME}/dotfiles/.config/nvim ${HOME}/.config/nvim
 ln -s ${HOME}/dotfiles/.gitconfig ${HOME}/.gitconfig
 ln -s ${HOME}/dotfiles/.tmux.conf ${HOME}/.tmux.conf
+ln -s ${HOME}/dotfiles/.config/alacritty/alacritty.toml ${HOME}/.config/alacritty/alacritty.toml
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ${HOME}/.ssh/id_ed25519 -q -P ""
@@ -19,7 +21,7 @@ eval "$(ssh-agent -s)"
 ssh-add ${HOME}/.ssh/id_ed25519
 
 echo "Install packages"
-sudo pacman -S neovim flatpak solaar tmux zsh curl openssh alacritty docker docker-compose ripgrep -y
+sudo pacman -S neovim flatpak solaar tmux zsh curl openssh alacritty docker docker-compose ripgrep ddcutil -y
 
 echo "Enable Solaar"
 sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
