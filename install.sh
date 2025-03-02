@@ -23,6 +23,11 @@ ssh-add ${HOME}/.ssh/id_ed25519
 echo "Install packages"
 sudo pacman -S neovim flatpak solaar tmux zsh curl openssh alacritty docker docker-compose ripgrep ddcutil -y
 
+echo "Install yay"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
 echo "Enable Solaar"
 sudo setfacl -m u:${DOTFILES_USER}:rw /dev/uinput
 
