@@ -2,10 +2,12 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
-alias code="codium"
-alias vim="nvim"
 
-# The following lines were added by compinstall
+alias vim="nvim"
+alias tmux="tmux new-session -A -s"
+alias gac="git commit -a -m"
+alias gc="git commit -m"
+alias gs="git status"
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -13,14 +15,12 @@ zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
 plugins=(git gcloud nvm brew docker)
 
