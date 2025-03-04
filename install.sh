@@ -66,5 +66,6 @@ sudo usermod -aG docker $DOTFILES_USER
 newgrp docker
 sudo systemctl enable --now docker.socket
 sudo systemctl enable --now sshd
+systemctl --user enable --now gcr-ssh-agent.socket
 
 sudo reboot
