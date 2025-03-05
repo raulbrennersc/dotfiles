@@ -6,12 +6,13 @@ set -f
 echo "Install packages"
 sudo pacman -S git base-devel neovim flatpak tmux zsh curl openssh \
   alacritty docker docker-compose ddcutil xclip spotify-launcher \
-  fastfetch transmission-gtk vlc -y
+  fastfetch transmission-gtk vlc nerd-fonts ttf-font-awesome fuzzel --no-confirm
 
 if ! [ -d "~/dotfiles" ]; then
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
   cd ~/dotfiles
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+  cd
 fi
 
 echo "Create symlinks for dotfiles"
@@ -20,6 +21,8 @@ ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/.config/sway ~/.config/sway
+ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -36,17 +39,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 echo "Install flatpaks"
 flatpak install app.zen_browser.zen io.github.alainm23.planify io.dbeaver.DBeaverCommunity -y
-
-mkdir -p ~/.fonts
-echo "Install Meslo Nerd Font"
-wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
-unzip ~/.fonts/Meslo.zip -d ~/.fonts/Meslo
-rm -rf ~/.fonts/Meslo.zip
-
-echo "Install FiraCode Nerd Font"
-wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-unzip ~/.fonts/FiraCode.zip -d ~/.fonts/FiraCode
-rm -rf ~/.fonts/FiraCode.zip
 
 sudo chsh $USER -s $(which zsh)
 
