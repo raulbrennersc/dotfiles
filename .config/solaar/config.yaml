@@ -42,8 +42,8 @@
     adc_power_management]
   _battery: 4100
   _modelId: 4099C0950000
-  _sensitive: {dpi: false, hires-scroll-mode: ignore, hires-smooth-invert: false, hires-smooth-resolution: ignore, onboard_profiles: ignore, report_rate: ignore,
-    rgb_control: true, rgb_zone_1: true}
+  _sensitive: {dpi: false, hires-scroll-mode: ignore, hires-smooth-invert: false, hires-smooth-resolution: ignore, onboard_profiles: false, report_rate: ignore,
+    rgb_control: ignore, rgb_zone_1: ignore}
   _serial: 13C0A9A9
   _unitId: 13C0A9A9
   _wpid: '4099'
@@ -51,8 +51,8 @@
   hires-scroll-mode: false
   hires-smooth-invert: false
   hires-smooth-resolution: false
-  onboard_profiles: 3
+  onboard_profiles: 5
   per-key-lighting: {1: -1, 2: -1, 3: -1, 4: -1, 5: -1, 6: -1, 7: -1, 8: -1}
   report_rate: 1
-  rgb_control: 1
+  rgb_control: 0
   rgb_zone_1: !LEDEffectSetting {ID: 0, color: 16776960, intensity: 0, period: 100, ramp: 0, speed: 0}
