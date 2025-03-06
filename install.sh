@@ -6,7 +6,7 @@ set -f
 echo "Install packages"
 sudo pacman -S git base-devel neovim flatpak tmux zsh curl openssh \
   alacritty docker docker-compose ddcutil xclip spotify-launcher \
-  fastfetch transmission-gtk vlc nerd-fonts ttf-font-awesome fuzzel --no-confirm
+  fastfetch transmission-gtk vlc nerd-fonts ttf-font-awesome fuzzel --noconfirm
 
 if ! [ -d "~/dotfiles" ]; then
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
