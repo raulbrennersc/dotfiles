@@ -3,7 +3,7 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "console_title_template": "{{if .Env.DEVCONTAINER}}\uea85{{end}} {{.UserName}} in {{.PWD}}",
   "transient_prompt": {
-    "foreground": "#CD4277",
+    "foreground": "#f38ba8",
     "style": "plain",
     "template": "\u276f ",
     "type": "text"
@@ -16,14 +16,14 @@
         {
           "type": "os",
           "style": "plain",
-          "foreground": "#45F1C2",
-          "template": "{{if .Env.DEVCONTAINER}}\uf0e7{{else}}{{.Icon}}{{end}}\u200A{{.UserName}} on",
+          "foreground": "#8babe2",
+          "template": "{{if .Env.DEVCONTAINER}}\uf0e7{{else}}{{.Icon}}{{end}} {{.UserName}} on",
           "properties": {
             "macos": "mac"
           }
         },
         {
-          "foreground": "#0CA0D8",
+          "foreground": "#cba6f7",
           "properties": {
             "folder_separator_icon": "/",
             "style": "agnoster_short"
@@ -33,7 +33,7 @@
           "type": "path"
         },
         {
-          "foreground": "#14A5AE",
+          "foreground": "#b4befe",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "fetch_upstream_icon": true,
@@ -49,17 +49,43 @@
       "type": "prompt"
     },
     {
+      "alignment": "right",
+      "overflow": "hide",
+      "segments": [
+        {
+          "foreground": "#89b4fa",
+          "properties": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "diamond",
+          "template": " {{ .FormattedMs }}s <#cba6f7>|</>",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "#89b4fa",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "diamond",
+          "template": " {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "foreground": "#cd5e42",
+          "foreground": "#f38ba8",
           "style": "plain",
           "template": "\ue3bf ",
           "type": "root"
         },
         {
-          "foreground": "#CD4277",
+          "foreground": "#f38ba8",
           "style": "plain",
           "template": "\u276f ",
           "type": "text"
