@@ -1,11 +1,11 @@
 {
   //based on https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/amro.omp.json,
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "console_title_template": "{{if .Env.DEVCONTAINER}}\uea85{{end}} {{.UserName}} in {{.PWD}}",
+  "console_title_template": "{{if .Env.DEVCONTAINER }}\ueb3a {{end}}{{.PWD}}",
   "transient_prompt": {
     "foreground": "#f38ba8",
     "style": "plain",
-    "template": "\u276f ",
+    "template": " \u276f ",
     "type": "text"
 
   },
@@ -17,7 +17,7 @@
           "type": "os",
           "style": "plain",
           "foreground": "#8babe2",
-          "template": "{{if .Env.DEVCONTAINER}}\uf0e7{{else}}{{.Icon}}{{end}} {{.UserName}} on",
+          "template": " {{if .Env.DEVCONTAINER}}\ueb3a{{else}}{{.Icon}}{{end}} {{.UserName}} on",
           "properties": {
             "macos": "mac"
           }
@@ -81,13 +81,13 @@
         {
           "foreground": "#f38ba8",
           "style": "plain",
-          "template": "\ue3bf ",
+          "template": " \ue3bf ",
           "type": "root"
         },
         {
           "foreground": "#f38ba8",
           "style": "plain",
-          "template": "\u276f ",
+          "template": " \u276f ",
           "type": "text"
         }
       ],
