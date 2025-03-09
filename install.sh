@@ -51,17 +51,10 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 
-echo "Install DevPod"
-curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/devpod-linux-amd64" && sudo install -c -m 0755 devpod /usr/local/bin && rm -f devpod
-
 sudo usermod -aG docker $USER
 newgrp docker
 
 sudo systemctl enable --now docker.socket
 sudo systemctl enable --now sshd
-
-devpod provider add docker
-devpod provider use docker
-devpod ide use none
 
 sudo reboot
