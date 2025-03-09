@@ -56,8 +56,12 @@ curl -L -o devpod "https://github.com/loft-sh/devpod/releases/latest/download/de
 
 sudo usermod -aG docker $USER
 newgrp docker
+
 sudo systemctl enable --now docker.socket
-#sudo systemctl enable --now sshd
-#systemctl --user enable --now gcr-ssh-agent.socket
+sudo systemctl enable --now sshd
+
+devpod provider add docker
+devpod provider use docker
+devpod ide use none
 
 sudo reboot

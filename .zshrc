@@ -1,6 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
+export DEVCONTAINER_IMAGE=raulbrennersc/devcontainer:latest
 source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
@@ -8,6 +9,14 @@ alias tmux="tmux new-session -A -s"
 alias gca="git add -A && git commit -m"
 alias gc="git commit -m"
 alias gs="git status"
+
+devcontainerUp() {
+  docker run -d --privileged --name $1 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix --network=host --volume $SSH_AUTH_SOCK:/ssh-agent --env SSH_AUTH_SOCK=/ssh-agent $DEVCONTAINER_IMAGE
+}
+
+devcontainerExec() {
+  docker exec -it test ${SHELL-bash}
+}
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
