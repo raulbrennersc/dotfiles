@@ -4,30 +4,24 @@ set -e
 set -f
 
 echo "Install packages"
-sudo pacman -S git base-devel neovim flatpak tmux zsh curl openssh \
-  alacritty docker docker-compose ddcutil xclip spotify-launcher \
-  fastfetch transmission-gtk vlc nerd-fonts ttf-font-awesome fuzzel --noconfirm
-
-if ! [ -d "~/dotfiles" ]; then
-  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
-  cd ~/dotfiles
-  git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
-  cd
-fi
-
-echo "Create symlinks for dotfiles"
-mkdir -p ~/.config
-ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/.config/sway ~/.config/sway
-ln -s ~/dotfiles/.config/waybar ~/.config/waybar
+sudo pacman -S git base-devel neovim flatpak zsh curl openssh \
+  docker ddcutil xclip spotify-launcher fastfetch transmission-gtk \
+  wezterm vlc nerd-fonts ttf-font-awesome --noconfirm
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+
+if ! [ -d "~/dotfiles" ]; then
+  git clone git@github.com:raulbrennersc/dotfiles.git ~/dotfiles
+fi
+
+echo "Create symlinks to dotfiles"
+mkdir -p ~/.config
+ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 
 echo "Install yay"
 git clone https://aur.archlinux.org/yay.git

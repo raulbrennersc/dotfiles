@@ -17,7 +17,7 @@
           "type": "os",
           "style": "plain",
           "foreground": "#8babe2",
-          "template": " {{if .Env.DEVCONTAINER}}\ueb3a{{else}}{{.Icon}}{{end}} {{.UserName}} on",
+          "template": " {{if .Env.DEVCONTAINER}}\ueb3a{{else}}{{.Icon}}{{end}}",
           "properties": {
             "macos": "mac"
           }

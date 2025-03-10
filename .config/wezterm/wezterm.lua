@@ -12,7 +12,7 @@ config.font = wezterm.font({
 	family = "FiraCode Nerd Font",
 })
 config.font_size = 15
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -25,7 +25,7 @@ config.window_padding = {
 config.colors = {
 	background = "black",
 	tab_bar = {
-		background = "#181825",
+		background = "transparent",
 		active_tab = {
 			bg_color = "#89b4fa",
 			fg_color = "#181825",
