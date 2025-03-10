@@ -5,8 +5,8 @@ set -f
 
 echo "Install packages"
 sudo pacman -S git base-devel neovim flatpak zsh curl openssh \
-  docker ddcutil xclip spotify-launcher fastfetch transmission-gtk \
-  wezterm vlc nerd-fonts ttf-font-awesome --noconfirm
+  wezterm docker ddcutil xclip fastfetch transmission-gtk vlc \
+  curl wget nerd-fonts ttf-font-awesome --noconfirm
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
