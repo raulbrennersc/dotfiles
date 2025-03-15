@@ -50,5 +50,6 @@ newgrp docker
 
 sudo systemctl enable --now docker.socket
 sudo systemctl enable --now sshd
+sudo systemctl enable --now systemd-resolved.service
 
 sudo reboot

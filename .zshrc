@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export DEVCONTAINER_IMAGE=raulbrennersc/devcontainer:latest
 export DEVCONTAINER_SETUP_SCRIPT_URL=https://raw.githubusercontent.com/raulbrennersc/dotfiles/refs/heads/main/setup-devcontainer.sh
+export CONTAINER_ENGINE=docker
 source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
@@ -44,28 +45,26 @@ devcontainerUp() {
   x="cat ~/.ssh/id_ed25519.pub"
   KEY_TO_AUTHORIZE=$(eval "$x")
 
-  docker run -d --privileged --name $2 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix \
-    --network=host --volume $SSH_AUTH_SOCK:/ssh-agent --volume /var/run/docker.sock:/var/run/docker.sock \
-    --env SSH_AUTH_SOCK=/ssh-agent --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
-  docker exec -it $2 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
-  docker exec -it $2 bash start-container.sh
+  $CONTAINER_ENGINE run -d --privileged --name $2 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix \
+    --volume $SSH_AUTH_SOCK:/ssh-agent --volume /var/run/docker.sock:/var/run/docker.sock --dns=127.0.0.53 \
+    --network=host --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
+  $CONTAINER_ENGINE exec -it $2 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
 devcontainerStart(){
-  docker start $2
-  docker exec -it $2 bash start-container.sh
+  $CONTAINER_ENGINE start $2
 }
 
 devcontainerStop(){
-  docker stop $2
+  $CONTAINER_ENGINE stop $2
 }
 
 devcontainerRm(){
-  docker rm $2
+  $CONTAINER_ENGINE rm $2
 }
 
 devcontainerExec() {
-  docker exec -it $2 zsh
+  $CONTAINER_ENGINE exec -it $2 bash
 }
 
 zstyle ':completion:*' completer _complete _ignored
