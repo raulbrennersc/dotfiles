@@ -12,14 +12,60 @@ alias gca="git add -A && git commit -m"
 alias gc="git commit -m"
 alias gs="git status"
 
+devcontainer() {
+  case $1 in
+    "up")
+      devcontainerUp $@
+      ;;
+
+    "start")
+      devcontainerStart $@
+      ;;
+
+    "stop")
+      devcontainerStop $@
+      ;;
+
+    "rm")
+      devcontainerRm $@
+      ;;
+
+    "exec")
+      devcontainerExec $@
+      ;;
+
+    *)
+      echo "default"
+      ;;
+  esac
+}
+
 devcontainerUp() {
-  docker run -d --privileged --name $1 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix --network=host --volume $SSH_AUTH_SOCK:/ssh-agent --env SSH_AUTH_SOCK=/ssh-agent $DEVCONTAINER_IMAGE
-  docker exec -it $1 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
-  docker exec -it $1 zsh
+  x="cat ~/.ssh/id_ed25519.pub"
+  KEY_TO_AUTHORIZE=$(eval "$x")
+
+  docker run -d --privileged --name $2 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix \
+    --network=host --volume $SSH_AUTH_SOCK:/ssh-agent --volume /var/run/docker.sock:/var/run/docker.sock \
+    --env SSH_AUTH_SOCK=/ssh-agent --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
+  docker exec -it $2 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
+  docker exec -it $2 bash start-container.sh
+}
+
+devcontainerStart(){
+  docker start $2
+  docker exec -it $2 bash start-container.sh
+}
+
+devcontainerStop(){
+  docker stop $2
+}
+
+devcontainerRm(){
+  docker rm $2
 }
 
 devcontainerExec() {
-  docker exec -it $1 zsh
+  docker exec -it $2 zsh
 }
 
 zstyle ':completion:*' completer _complete _ignored
