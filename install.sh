@@ -8,6 +8,11 @@ sudo pacman -S git base-devel neovim flatpak zsh curl openssh \
   wezterm docker ddcutil xclip fastfetch transmission-gtk vlc \
   curl wget nerd-fonts ttf-font-awesome solaar --noconfirm
 
+echo "Install yay"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
@@ -28,11 +33,6 @@ ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 
 echo "Install tmux plugins"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-echo "Install yay"
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
