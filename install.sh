@@ -27,12 +27,8 @@ echo "Create symlinks to dotfiles"
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
-
-echo "Install tmux plugins"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

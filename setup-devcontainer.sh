@@ -12,12 +12,14 @@ if ! [ -d "~/dotfiles" ]; then
   cd
 fi
 
+wget https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Debian12.deb -O wezterm.deb
+sudo apt install wexterm.deb -y
+
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
 rm -rf ~/.zshrc
 rm -rf ~/.gitconfig
-rm -rf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
@@ -34,7 +36,7 @@ fi
 
 curl -L http://install.ohmyz.sh | sh
 curl -s https://ohmyposh.dev/install.sh | bash -s
-brew install fzf ripgrep neovim tmux
+brew install fzf ripgrep neovim
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 

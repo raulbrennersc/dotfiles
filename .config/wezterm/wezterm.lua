@@ -17,6 +17,7 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
 config.colors = {
+	background = "#11111b",
 	tab_bar = {
 		background = "transparent",
 		active_tab = {
@@ -29,8 +30,8 @@ config.colors = {
 
 config.window_padding = {
 	top = "0.4cell",
-	left = 0,
-	right = 0,
+	-- left = 0,
+	-- right = 0,
 	bottom = 0,
 }
 
@@ -56,6 +57,16 @@ config.keys = {
 		key = "c",
 		mods = "LEADER",
 		action = act.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "n",
+		mods = "LEADER|CTRL",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	{
+		key = "p",
+		mods = "LEADER|CTRL",
+		action = wezterm.action.ActivateTabRelative(-1),
 	},
 	{
 		key = "n",
