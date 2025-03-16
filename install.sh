@@ -6,7 +6,7 @@ set -f
 echo "Install packages"
 sudo pacman -S git base-devel neovim flatpak zsh curl openssh \
   wezterm docker ddcutil xclip fastfetch transmission-gtk vlc \
-  curl wget nerd-fonts ttf-font-awesome --noconfirm
+  curl wget nerd-fonts ttf-font-awesome solaar --noconfirm
 
 echo "Generate ssh keys"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -21,7 +21,12 @@ echo "Create symlinks to dotfiles"
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
+ln -s ~/dotfiles/.config/solaar ~/.config/solaar
+
+echo "Install tmux plugins"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Install yay"
 git clone https://aur.archlinux.org/yay.git
