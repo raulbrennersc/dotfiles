@@ -5,7 +5,7 @@
   "transient_prompt": {
     "foreground": "#f38ba8",
     "style": "plain",
-    "template": " \u276f ",
+    "template": "\u276f ",
     "type": "text"
 
   },
@@ -17,7 +17,7 @@
           "type": "os",
           "style": "plain",
           "foreground": "#8babe2",
-          "template": " {{if .Env.DEVCONTAINER}}\ueb3a{{else}}{{.Icon}}{{end}}",
+          "template": "{{if .Env.DEVCONTAINER}}\ueb3a{{else}}{{.Icon}}{{end}}",
           "properties": {
             "macos": "mac"
           }
@@ -87,7 +87,7 @@
         {
           "foreground": "#f38ba8",
           "style": "plain",
-          "template": " \u276f ",
+          "template": "\u276f ",
           "type": "text"
         }
       ],
