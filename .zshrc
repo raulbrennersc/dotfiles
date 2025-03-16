@@ -45,9 +45,9 @@ devcontainerUp() {
   x="cat ~/.ssh/id_ed25519.pub"
   KEY_TO_AUTHORIZE=$(eval "$x")
 
-  $CONTAINER_ENGINE run -d --privileged --name $2 --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix \
-    --volume $SSH_AUTH_SOCK:/ssh-agent --volume /var/run/docker.sock:/var/run/docker.sock --dns=127.0.0.53 \
-    --network=host --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
+  $CONTAINER_ENGINE run -d --privileged --name $2 --dns=127.0.0.53 \
+    --volume /var/run/docker.sock:/var/run/docker.sock --network=host \
+    --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
   $CONTAINER_ENGINE exec -it $2 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
