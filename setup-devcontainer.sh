@@ -32,8 +32,9 @@ if [ -d "/workspaces" ]; then
   ln -s /workspaces ~/workspaces
 fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-brew install fzf ripgrep neovim tmux jandedobbeleer/oh-my-posh/oh-my-posh
+curl -L http://install.ohmyz.sh | sh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+brew install fzf ripgrep neovim tmux
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 
