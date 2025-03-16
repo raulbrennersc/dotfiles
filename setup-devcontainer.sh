@@ -12,15 +12,16 @@ if ! [ -d "~/dotfiles" ]; then
   cd
 fi
 
-mkdir -p ${HOME}/.config
-ln -s ${HOME}/dotfiles/.config/nvim ${HOME}/.config/nvim
+mkdir -p ~/.config
+ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
-rm -rf ${HOME}/.zshrc
-rm -rf ${HOME}/.gitconfig
-rm -rf ${HOME}/.tmux.conf
+rm -rf ~/.zshrc
+rm -rf ~/.gitconfig
+rm -rf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-ln -s ${HOME}/dotfiles/.gitconfig ${HOME}/.gitconfig
-ln -s ${HOME}/dotfiles/.tmux.conf ${HOME}/.tmux.conf
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 if ! [ -d "/home/linuxbrew/" ]; then
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -28,12 +29,12 @@ fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 if [ -d "/workspaces" ]; then
-  ln -s /workspaces ${HOME}/workspaces
+  ln -s /workspaces ~/workspaces
 fi
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 brew install fzf ripgrep neovim tmux jandedobbeleer/oh-my-posh/oh-my-posh
-rm -rf ${HOME}/.zshrc
-ln -s ${HOME}/dotfiles/.zshrc ${HOME}/.zshrc
+rm -rf ~/.zshrc
+ln -s ~/dotfiles/.zshrc ~/.zshrc
 
 sudo chsh -s $(which zsh) $(whoami)
