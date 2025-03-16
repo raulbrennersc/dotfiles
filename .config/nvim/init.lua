@@ -5,3 +5,4 @@ local path = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
 -- vim.opt.titlestring = "\u{e7c5} " .. path
 vim.opt.titlestring = "\u{f36f} " .. path
 require("config.lazy")
+require("persistence").load()
