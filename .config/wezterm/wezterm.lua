@@ -2,12 +2,26 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 local config = {}
+local user = os.getenv("USER")
 
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.color_scheme = "Catppuccin Mocha"
+local catpuccin = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+catpuccin.background = "#11111b"
+catpuccin.tab_bar.background = "transparent"
+catpuccin.tab_bar.active_tab = {
+	bg_color = "#89b4fa",
+	fg_color = "#181825",
+	intensity = "Bold",
+}
+
+config.color_schemes = {
+	["customCatpuccin"] = catpuccin,
+}
+
+config.color_scheme = "customCatpuccin"
 config.font = wezterm.font({
 	family = "FiraCode Nerd Font",
 })
@@ -15,29 +29,67 @@ config.font_size = 15
 config.window_decorations = "RESIZE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+config.default_workspace = user
 
-config.colors = {
-	background = "#11111b",
-	tab_bar = {
-		background = "transparent",
-		active_tab = {
-			bg_color = "#89b4fa",
-			fg_color = "#181825",
-			intensity = "Bold",
-		},
+config.window_padding = {
+	top = "0.3cell",
+	bottom = 0,
+	left = 0,
+	right = 0,
+}
+
+config.unix_domains = {
+	{
+		name = user,
+		no_serve_automatically = false,
 	},
 }
 
-config.window_padding = {
-	top = "0.4cell",
-	-- left = 0,
-	-- right = 0,
-	bottom = 0,
-}
+config.default_gui_startup_args = { "connect", user }
 
 -- Uncomment for transparent background
 -- config.window_background_opacity = 0.8
 -- config.colors.background = "black"
+
+wezterm.on("update-right-status", function(window, _)
+	local cells = {
+		{
+			text = wezterm.strftime("%a %b %-d %H:%M"),
+			bg = catpuccin.tab_bar.new_tab.bg_color,
+			fg = catpuccin.tab_bar.active_tab.bg_color,
+		},
+		{
+			text = window:active_workspace(),
+			bg = catpuccin.tab_bar.active_tab.bg_color,
+			fg = catpuccin.tab_bar.active_tab.fg_color,
+		},
+	}
+
+	local LEFT_ARROW = utf8.char(0xe0b3)
+	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+
+	local elements = {}
+	function push(cell)
+		table.insert(elements, { Foreground = { Color = cell.bg } })
+		table.insert(elements, { Text = SOLID_LEFT_ARROW })
+		table.insert(elements, { Foreground = { Color = cell.fg } })
+		table.insert(elements, { Background = { Color = cell.bg } })
+
+		table.insert(elements, { Text = " " .. cell.text .. " " })
+		-- if not is_last then
+		-- end
+
+		-- table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
+		-- table.insert(elements, { Text = SOLID_LEFT_ARROW })
+	end
+
+	while #cells > 0 do
+		local cell = table.remove(cells, 1)
+		push(cell)
+	end
+
+	window:set_right_status(wezterm.format(elements))
+end)
 
 config.scrollback_lines = 5000
 
