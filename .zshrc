@@ -70,6 +70,7 @@ devcontainerStop(){
 }
 
 devcontainerRm(){
+  devcontainerStop $(getContainerName $2)
   $CONTAINER_ENGINE rm $(getContainerName $2)
 }
 
