@@ -32,10 +32,7 @@ config.tab_bar_at_bottom = true
 config.default_workspace = user
 
 config.window_padding = {
-	top = "0.3cell",
-	bottom = 0,
-	left = 0,
-	right = 0,
+	top = "0.8cell",
 }
 
 config.unix_domains = {
@@ -51,7 +48,7 @@ config.default_gui_startup_args = { "connect", user }
 -- config.window_background_opacity = 0.8
 -- config.colors.background = "black"
 
-wezterm.on("update-right-status", function(window, _)
+wezterm.on("update-right-status", function(window, pane)
 	local cells = {
 		{
 			text = wezterm.strftime("%a %b %-d %H:%M"),
@@ -59,7 +56,7 @@ wezterm.on("update-right-status", function(window, _)
 			fg = catpuccin.tab_bar.active_tab.bg_color,
 		},
 		{
-			text = window:active_workspace(),
+			text = pane:get_domain_name(),
 			bg = catpuccin.tab_bar.active_tab.bg_color,
 			fg = catpuccin.tab_bar.active_tab.fg_color,
 		},

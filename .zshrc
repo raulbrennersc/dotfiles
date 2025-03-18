@@ -35,36 +35,50 @@ devcontainer() {
       devcontainerExec $@
       ;;
 
+    "ssh")
+      devcontainerMux $@
+      ;;
+
     *)
-      echo "default"
+      echo "unrecognized option $1"
       ;;
   esac
+}
+
+getContainerName() {
+  echo "${1}.devcontainer"
 }
 
 devcontainerUp() {
   x="cat ~/.ssh/id_ed25519.pub"
   KEY_TO_AUTHORIZE=$(eval "$x")
+  containerName=$(getContainerName $2)
+  echo $containerName
 
-  $CONTAINER_ENGINE run -d --privileged --name $2 --dns=127.0.0.53 \
+  $CONTAINER_ENGINE run -d --privileged --name $containerName --dns=127.0.0.53 \
     --volume /var/run/docker.sock:/var/run/docker.sock --network=host \
     --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
-  $CONTAINER_ENGINE exec -it $2 bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
+  $CONTAINER_ENGINE exec -it $containerName bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
 devcontainerStart(){
-  $CONTAINER_ENGINE start $2
+  $CONTAINER_ENGINE start $(getContainerName $2)
 }
 
 devcontainerStop(){
-  $CONTAINER_ENGINE stop $2
+  $CONTAINER_ENGINE stop $(getContainerName $2)
 }
 
 devcontainerRm(){
-  $CONTAINER_ENGINE rm $2
+  $CONTAINER_ENGINE rm $(getContainerName $2)
+}
+
+devcontainerMux() {
+  wezterm ssh $(getContainerName $2) & disown
 }
 
 devcontainerExec() {
-  $CONTAINER_ENGINE exec -it $2 bash
+  $CONTAINER_ENGINE exec -it $(getContainerName $2) bash
 }
 
 zstyle ':completion:*' completer _complete _ignored
