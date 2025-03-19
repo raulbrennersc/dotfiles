@@ -16,27 +16,27 @@ alias gs="git status"
 devcontainer() {
   case $1 in
     "up")
-      devcontainerUp $@
+      devcontainerUp $2 $3
       ;;
 
     "start")
-      devcontainerStart $@
+      devcontainerStart $2
       ;;
 
     "stop")
-      devcontainerStop $@
+      devcontainerStop $2
       ;;
 
     "rm")
-      devcontainerRm $@
+      devcontainerRm $2
       ;;
 
     "exec")
-      devcontainerExec $@
+      devcontainerExec $2
       ;;
 
     "ssh")
-      devcontainerMux $@
+      devcontainerMux $2
       ;;
 
     *)
@@ -52,34 +52,35 @@ getContainerName() {
 devcontainerUp() {
   x="cat ~/.ssh/id_ed25519.pub"
   KEY_TO_AUTHORIZE=$(eval "$x")
-  containerName=$(getContainerName $2)
-  echo $containerName
+  containerName=$(getContainerName $1)
 
   $CONTAINER_ENGINE run -d --privileged --name $containerName --dns=127.0.0.53 \
     --volume /var/run/docker.sock:/var/run/docker.sock --network=host \
-    --env CUSTOM_SSH_PORT=$3 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
+    --env CUSTOM_SSH_PORT=$2 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE $DEVCONTAINER_IMAGE
   $CONTAINER_ENGINE exec -it $containerName bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
 devcontainerStart(){
-  $CONTAINER_ENGINE start $(getContainerName $2)
+  $CONTAINER_ENGINE start $(getContainerName $1)
 }
 
 devcontainerStop(){
-  $CONTAINER_ENGINE stop $(getContainerName $2)
+  $CONTAINER_ENGINE stop $(getContainerName $1)
 }
 
 devcontainerRm(){
-  devcontainerStop $(getContainerName $2)
-  $CONTAINER_ENGINE rm $(getContainerName $2)
+  devcontainerStop $1
+  $CONTAINER_ENGINE rm $(getContainerName $1)
 }
 
 devcontainerMux() {
-  wezterm ssh $(getContainerName $2) & disown
+  devcontainerStart $1
+  wezterm ssh $(getContainerName $1) & disown
 }
 
 devcontainerExec() {
-  $CONTAINER_ENGINE exec -it $(getContainerName $2) bash
+  devcontainerStart $1
+  $CONTAINER_ENGINE exec -it $(getContainerName $1) bash
 }
 
 zstyle ':completion:*' completer _complete _ignored

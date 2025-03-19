@@ -26,7 +26,7 @@ config.font = wezterm.font({
 	family = "FiraCode Nerd Font",
 })
 config.font_size = 15
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.default_workspace = user
@@ -73,11 +73,6 @@ wezterm.on("update-right-status", function(window, pane)
 		table.insert(elements, { Background = { Color = cell.bg } })
 
 		table.insert(elements, { Text = " " .. cell.text .. " " })
-		-- if not is_last then
-		-- end
-
-		-- table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
-		-- table.insert(elements, { Text = SOLID_LEFT_ARROW })
 	end
 
 	while #cells > 0 do
