@@ -75,7 +75,7 @@ devcontainerRm(){
 
 devcontainerMux() {
   devcontainerStart $1
-  wezterm ssh $(getContainerName $1) & disown
+  wezterm connect SSHMUX:$(getContainerName $1) & disown
 }
 
 devcontainerExec() {
