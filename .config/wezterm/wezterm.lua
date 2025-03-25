@@ -38,7 +38,6 @@ config.window_padding = {
 config.unix_domains = {
 	{
 		name = user,
-		no_serve_automatically = false,
 	},
 }
 
@@ -91,7 +90,47 @@ config.leader = {
 	timeout_milliseconds = 2000,
 }
 
+local muxDomains = {}
+local status, allDomains = pcall(wezterm.mux.all_domains)
+if not status then
+	allDomains = {}
+end
+print(wezterm.mux.all_domains)
+for index, value in ipairs(allDomains) do
+	print(value:name())
+	local isMux = string.find(value:name(), "SSHMUX")
+	local isDevcontainer = string.find(value:name(), ".devcontainer")
+	local isFromuser = value:name() == user
+	if (isMux and isDevcontainer) or isFromuser then
+		local muxDomain = {
+			label = value:name(),
+		}
+		table.insert(muxDomains, muxDomain)
+	end
+end
+
 config.keys = {
+	{
+		key = "E",
+		mods = "CTRL|SHIFT",
+		action = act.InputSelector({
+			action = wezterm.action_callback(function(window, pane, id, label)
+				window:perform_action(
+					wezterm.action({
+						SwitchToWorkspace = {
+							name = label,
+							spawn = {
+								domain = { DomainName = label },
+							},
+						},
+					}),
+					pane
+				)
+			end),
+			title = "Select domain",
+			choices = muxDomains,
+		}),
+	},
 	{
 		key = "f",
 		mods = "ALT",
@@ -194,7 +233,7 @@ config.keys = {
 		key = "$",
 		mods = "LEADER|SHIFT",
 		action = act.PromptInputLine({
-			description = "Enter new name for session",
+			description = "Enter new name for workspace",
 			action = wezterm.action_callback(function(window, _, line)
 				if line then
 					mux.rename_workspace(window:mux_window():get_workspace(), line)
@@ -206,6 +245,11 @@ config.keys = {
 		key = "s",
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+	},
+	{
+		key = "d",
+		mods = "LEADER",
+		action = act.ShowLauncherArgs({ flags = "DOMAINS" }),
 	},
 }
 
