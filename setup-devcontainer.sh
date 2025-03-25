@@ -12,7 +12,7 @@ if ! [ -d "~/dotfiles" ]; then
   cd
 fi
 
-wget https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Debian12.deb -O ./wezterm.deb
+wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
 sudo apt install ./wezterm.deb -y
 
 mkdir -p ~/.config
