@@ -1,7 +1,7 @@
 --copied from https://github.com/bluz71/vim-moonfly-colors/blob/master/lua/lualine/themes/moonfly.lua
 local colors = {
   -- StatusLine background color.
-  color0 = "transparent",
+  color0 = "#303030",
 
   -- Mode colors.
   color1 = "#80a0ff",
@@ -25,7 +25,7 @@ local theme = {
   normal = {
     a = { fg = colors.color6, bg = colors.color1 },
     b = { fg = colors.color1, bg = colors.color0 },
-    c = { fg = colors.color8, bg = colors.color0 },
+    c = { fg = colors.color8, bg = "transparent" },
   },
   insert = {
     a = { fg = colors.color6, bg = colors.color2 },
@@ -53,6 +53,7 @@ local theme = {
     c = { fg = colors.color7, bg = colors.color0 },
   },
 }
+
 return {
   {
     "nvim-lualine/lualine.nvim",

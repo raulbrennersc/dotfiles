@@ -3,16 +3,20 @@ local act = wezterm.action
 local mux = wezterm.mux
 local config = {}
 local user = os.getenv("USER")
+local transparent = false
 
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 local color_scheme_name = "Moonfly (Gogh)"
 local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
+-- color_scheme.background = "black"
+local background_color = color_scheme.background
 config.color_scheme = color_scheme_name
-
-config.window_background_opacity = 0.5
-color_scheme.background = "black"
+if transparent then
+	config.window_background_opacity = 0.9
+	background_color = "transparent"
+end
 
 color_scheme.tab_bar = {
 	active_tab = {
@@ -21,14 +25,14 @@ color_scheme.tab_bar = {
 		intensity = "Bold",
 	},
 	inactive_tab = {
-		bg_color = "transparent",
-		fg_color = "#808080",
+		bg_color = "#303030",
+		fg_color = "#80a0ff",
 	},
 	new_tab = {
-		bg_color = "transparent",
-		fg_color = "#808080",
+		bg_color = background_color,
+		fg_color = "#c6c6c6",
 	},
-	background = "transparent",
+	background = background_color,
 }
 
 config.color_schemes = {
@@ -36,17 +40,18 @@ config.color_schemes = {
 }
 
 config.font = wezterm.font({
-	family = "FiraCode Nerd Font",
+	family = "JetBrainsMono Nerd Font",
 })
 config.font_size = 15
 config.window_decorations = "NONE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
--- config.enable_tab_bar = false
 config.default_workspace = user
 
 config.window_padding = {
-	top = "0.9cell",
+	top = "0.2cell",
+	bottom = "0.3cell",
+	right = 0,
 }
 
 config.unix_domains = {
@@ -57,12 +62,72 @@ config.unix_domains = {
 
 config.default_gui_startup_args = { "connect", user }
 
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	if title and #title > 0 then
+		return title
+	end
+	return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, tabs)
+	local background = color_scheme.tab_bar.inactive_tab.bg_color
+	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
+	local edge_background = background
+	local is_last_tab = tab.tab_index == (#tabs - 1)
+	local is_first_tab = tab.tab_index == 0
+	local is_active = tab.is_active
+	local is_previous_active = not is_first_tab and tabs[tab.tab_index].is_active
+
+	if is_active then
+		edge_background = color_scheme.tab_bar.inactive_tab.bg_color
+		background = color_scheme.tab_bar.active_tab.bg_color
+		foreground = color_scheme.tab_bar.active_tab.fg_color
+	end
+
+	local edge_foreground = background
+	local title = tab_title(tab)
+
+	local tab_content = {}
+
+	if not is_first_tab and is_active then
+		table.insert(tab_content, { Background = { Color = edge_foreground } })
+		table.insert(tab_content, { Foreground = { Color = edge_background } })
+		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW .. " " })
+	else
+		table.insert(tab_content, { Background = { Color = background } })
+		table.insert(tab_content, { Foreground = { Color = foreground } })
+		if is_first_tab or is_previous_active then
+			table.insert(tab_content, { Text = " " })
+		else
+			table.insert(tab_content, { Text = " " })
+		end
+	end
+
+	table.insert(tab_content, { Background = { Color = background } })
+	table.insert(tab_content, { Foreground = { Color = foreground } })
+	table.insert(tab_content, { Text = title })
+
+	if is_last_tab then
+		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+	else
+		table.insert(tab_content, { Background = { Color = edge_background } })
+	end
+	table.insert(tab_content, { Foreground = { Color = edge_foreground } })
+	table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
+
+	return tab_content
+end)
+
 wezterm.on("update-right-status", function(window, pane)
 	local cells = {
 		{
-			text = wezterm.strftime("%a %b %-d %H:%M"),
-			bg = color_scheme.tab_bar.new_tab.bg_color,
-			fg = color_scheme.tab_bar.active_tab.bg_color,
+			text = wezterm.strftime("%a %b %-d %H:%M") .. " ",
+			bg = color_scheme.tab_bar.inactive_tab.bg_color,
+			fg = color_scheme.tab_bar.inactive_tab.fg_color,
 		},
 		{
 			text = pane:get_domain_name(),
@@ -71,17 +136,13 @@ wezterm.on("update-right-status", function(window, pane)
 		},
 	}
 
-	local LEFT_ARROW = utf8.char(0xe0b3)
-	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-
 	local elements = {}
-	function push(cell)
+	local function push(cell)
 		table.insert(elements, { Foreground = { Color = cell.bg } })
 		table.insert(elements, { Text = SOLID_LEFT_ARROW })
 		table.insert(elements, { Foreground = { Color = cell.fg } })
 		table.insert(elements, { Background = { Color = cell.bg } })
-
-		table.insert(elements, { Text = " " .. cell.text .. " " })
+		table.insert(elements, { Text = " " .. cell.text })
 	end
 
 	while #cells > 0 do
