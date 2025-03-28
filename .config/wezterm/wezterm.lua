@@ -7,21 +7,34 @@ local user = os.getenv("USER")
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
+local color_scheme_name = "Moonfly (Gogh)"
+local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
+config.color_scheme = color_scheme_name
 
-local catpuccin = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
-catpuccin.background = "#11111b"
-catpuccin.tab_bar.background = "transparent"
-catpuccin.tab_bar.active_tab = {
-	bg_color = "#89b4fa",
-	fg_color = "#181825",
-	intensity = "Bold",
+config.window_background_opacity = 0.5
+color_scheme.background = "black"
+
+color_scheme.tab_bar = {
+	active_tab = {
+		bg_color = "#80a0ff",
+		fg_color = "#181825",
+		intensity = "Bold",
+	},
+	inactive_tab = {
+		bg_color = "transparent",
+		fg_color = "#808080",
+	},
+	new_tab = {
+		bg_color = "transparent",
+		fg_color = "#808080",
+	},
+	background = "transparent",
 }
 
 config.color_schemes = {
-	["customCatpuccin"] = catpuccin,
+	[color_scheme_name] = color_scheme,
 }
 
-config.color_scheme = "customCatpuccin"
 config.font = wezterm.font({
 	family = "FiraCode Nerd Font",
 })
@@ -29,10 +42,11 @@ config.font_size = 15
 config.window_decorations = "NONE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+-- config.enable_tab_bar = false
 config.default_workspace = user
 
 config.window_padding = {
-	top = "0.8cell",
+	top = "0.9cell",
 }
 
 config.unix_domains = {
@@ -43,21 +57,17 @@ config.unix_domains = {
 
 config.default_gui_startup_args = { "connect", user }
 
--- Uncomment for transparent background
--- config.window_background_opacity = 0.8
--- config.colors.background = "black"
-
 wezterm.on("update-right-status", function(window, pane)
 	local cells = {
 		{
 			text = wezterm.strftime("%a %b %-d %H:%M"),
-			bg = catpuccin.tab_bar.new_tab.bg_color,
-			fg = catpuccin.tab_bar.active_tab.bg_color,
+			bg = color_scheme.tab_bar.new_tab.bg_color,
+			fg = color_scheme.tab_bar.active_tab.bg_color,
 		},
 		{
 			text = pane:get_domain_name(),
-			bg = catpuccin.tab_bar.active_tab.bg_color,
-			fg = catpuccin.tab_bar.active_tab.fg_color,
+			bg = color_scheme.tab_bar.active_tab.bg_color,
+			fg = color_scheme.tab_bar.active_tab.fg_color,
 		},
 	}
 
@@ -82,7 +92,7 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(wezterm.format(elements))
 end)
 
-config.scrollback_lines = 5000
+config.scrollback_lines = 90000
 
 config.leader = {
 	key = "a",
