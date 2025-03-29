@@ -18,6 +18,15 @@ if transparent then
 	background_color = "transparent"
 end
 
+color_scheme.cursor_border = "#80a0ff"
+color_scheme.cursor_bg = "#80a0ff"
+config.cursor_blink_ease_in = "Linear"
+config.cursor_blink_ease_out = "Linear"
+config.animation_fps = 60
+
+config.default_cursor_style = "BlinkingUnderline"
+config.cursor_blink_rate = 400
+
 color_scheme.tab_bar = {
 	active_tab = {
 		bg_color = "#80a0ff",
