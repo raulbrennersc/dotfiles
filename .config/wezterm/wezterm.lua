@@ -21,7 +21,7 @@ end
 color_scheme.tab_bar = {
 	active_tab = {
 		bg_color = "#80a0ff",
-		fg_color = "#181825",
+		fg_color = color_scheme.background,
 		intensity = "Bold",
 	},
 	inactive_tab = {
@@ -30,7 +30,7 @@ color_scheme.tab_bar = {
 	},
 	new_tab = {
 		bg_color = background_color,
-		fg_color = "#c6c6c6",
+		fg_color = "#80a0ff",
 	},
 	background = background_color,
 }
@@ -43,15 +43,16 @@ config.font = wezterm.font({
 	family = "JetBrainsMono Nerd Font",
 })
 config.font_size = 15
-config.window_decorations = "NONE"
+config.window_decorations = "TITLE | RESIZE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.default_workspace = user
 
 config.window_padding = {
-	top = "0.2cell",
-	bottom = "0.3cell",
-	right = 0,
+	top = "0.3cell",
+	bottom = "0.2cell",
+	left = "0.9cell",
+	right = "0.2cell",
 }
 
 config.unix_domains = {

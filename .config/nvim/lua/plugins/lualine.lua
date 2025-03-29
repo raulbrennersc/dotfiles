@@ -1,31 +1,20 @@
---copied from https://github.com/bluz71/vim-moonfly-colors/blob/master/lua/lualine/themes/moonfly.lua
+--inspired from https://github.com/bluz71/vim-moonfly-colors/blob/master/lua/lualine/themes/moonfly.lua
 local colors = {
-  -- StatusLine background color.
   color0 = "#303030",
-
-  -- Mode colors.
   color1 = "#80a0ff",
   color2 = "#36c692",
   color3 = "#ae81ff",
   color4 = "#e3c78a",
   color5 = "#ff5189",
-
-  -- Mode text color.
-  color6 = "#1c1c1c",
-
-  -- StatusLineNC foreground.
+  color6 = "#080808",
   color7 = "#9e9e9e",
-
-  -- Normal text color.
-  color8 = "#c6c6c6",
 }
 
--- LuaFormatter on
 local theme = {
   normal = {
     a = { fg = colors.color6, bg = colors.color1 },
     b = { fg = colors.color1, bg = colors.color0 },
-    c = { fg = colors.color8, bg = "transparent" },
+    c = { fg = colors.color1, bg = "transparent" },
   },
   insert = {
     a = { fg = colors.color6, bg = colors.color2 },

@@ -105,7 +105,7 @@ if [ -d "/home/linuxbrew/" ]; then
 fi
 
 if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config ~/dotfiles/.config/oh-my-posh/theme.omp.json)"
+  eval "$(oh-my-posh init zsh --config ~/dotfiles/.config/oh-my-posh/custom-moonfly.omp.toml)"
 fi
 
 if [ -d "$HOME/.nvm/" ]; then
