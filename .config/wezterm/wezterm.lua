@@ -26,7 +26,7 @@ config.animation_fps = 60
 
 config.default_cursor_style = "BlinkingUnderline"
 config.cursor_blink_rate = 400
-
+config.tab_max_width = 20
 color_scheme.tab_bar = {
 	active_tab = {
 		bg_color = "#80a0ff",
@@ -83,7 +83,7 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs)
+wezterm.on("format-tab-title", function(tab, tabs, _, _, _, max_width)
 	local background = color_scheme.tab_bar.inactive_tab.bg_color
 	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
 	local edge_background = background
@@ -117,6 +117,7 @@ wezterm.on("format-tab-title", function(tab, tabs)
 		end
 	end
 
+	title = wezterm.truncate_right(title, max_width - 2)
 	table.insert(tab_content, { Background = { Color = background } })
 	table.insert(tab_content, { Foreground = { Color = foreground } })
 	table.insert(tab_content, { Text = title })
