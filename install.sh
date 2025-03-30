@@ -64,6 +64,7 @@ ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/sway ~/.config/sway
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
+ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
 
 echo "Enable flathub"

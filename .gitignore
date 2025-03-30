@@ -7,4 +7,5 @@
 .config/nvim/*.log
 .config/nvim/data
 .config/nvim/lazy-lock.json
+.config/cava/shaders
 
