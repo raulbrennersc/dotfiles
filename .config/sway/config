@@ -66,7 +66,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -200,21 +200,25 @@ bindsym $mod+r mode "resize"
 #
     # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked shift+XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -1%
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked shift+XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +1%
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioPrev exec playerctl previous
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+    # Special keys to adjust brightness via ddcutil
+    bindsym --locked XF86MonBrightnessDown exec ddcutil setvcp 10 - 20
+    bindsym --locked XF86MonBrightnessUp exec ddcutil setvcp 10 + 20
+    # Special key to take a screenshot with grim
+    bindsym $mod+shift+s exec slurp | grim -g - - | wl-copy
+
 bar {
   swaybar_command waybar
 }
+
+default_border none 
 
 include /etc/sway/config.d/*

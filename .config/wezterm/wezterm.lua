@@ -52,7 +52,7 @@ config.font = wezterm.font({
 	family = "JetBrainsMono Nerd Font",
 })
 config.font_size = 15
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "NONE"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.default_workspace = user
