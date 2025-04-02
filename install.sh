@@ -7,7 +7,7 @@ if command -v apt 2>&1 >/dev/null; then
   echo "Install Debian packages"
   sudo apt install -y git build-essential ddcutil wl-clipboard cava \
     solaar zsh curl openssh fastfetch transmission vlc wget \
-    fonts-font-awesome cmatrix
+    fonts-font-awesome cmatrix fd-find
 
   wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
   sudo apt install ./wezterm.deb -y
@@ -30,10 +30,9 @@ if command -v apt 2>&1 >/dev/null; then
 
 elif command -v pacman 2>&1 >/dev/null; then
   echo "Install ArchLinux packages"
-  sudo pacman -S git base-devel flatpak zsh curl openssh \
+  sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
     docker ddcutil xclip fastfetch transmission-gtk vlc \
-    cmatrix \
-    curl wget nerd-fonts ttf-font-awesome solaar --noconfirm
+    cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar
 
   echo "Install yay"
   git clone https://aur.archlinux.org/yay.git
@@ -45,6 +44,7 @@ fi
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+rm -rf nvim-linux-x86_64.tar.gz
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""

@@ -1,4 +1,4 @@
---inspired from https://github.com/bluz71/vim-moonfly-colors/blob/master/lua/lualine/themes/moonfly.lua
+-- copied from https://github.com/bluz71/vim-moonfly-colors/blob/master/lua/lualine/themes/moonfly.lua
 local colors = {
   color0 = "#303030",
   color1 = "#80a0ff",

@@ -83,7 +83,7 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, _, _, _, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, _, config_from_event)
 	local background = color_scheme.tab_bar.inactive_tab.bg_color
 	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
 	local edge_background = background
@@ -117,7 +117,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, max_width)
 		end
 	end
 
-	title = wezterm.truncate_right(title, max_width - 2)
+	title = wezterm.truncate_right(title, config_from_event.tab_max_width - 3)
 	table.insert(tab_content, { Background = { Color = background } })
 	table.insert(tab_content, { Foreground = { Color = foreground } })
 	table.insert(tab_content, { Text = title })
@@ -193,8 +193,8 @@ end
 
 config.keys = {
 	{
-		key = "E",
-		mods = "CTRL|SHIFT",
+		key = "d",
+		mods = "LEADER",
 		action = act.InputSelector({
 			action = wezterm.action_callback(function(window, pane, id, label)
 				window:perform_action(
@@ -327,11 +327,6 @@ config.keys = {
 		key = "s",
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
-	},
-	{
-		key = "d",
-		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "DOMAINS" }),
 	},
 }
 
