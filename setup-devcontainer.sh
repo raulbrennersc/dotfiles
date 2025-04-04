@@ -18,12 +18,12 @@ sudo apt install ./wezterm.deb -y
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
-rm -rf ~/.zshrc
 rm -rf ~/.gitconfig
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 
 if ! [ -d "/home/linuxbrew/" ]; then
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

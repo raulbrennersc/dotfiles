@@ -58,6 +58,7 @@ fi
 
 echo "Create symlinks to dotfiles"
 mkdir -p ~/.config/
+mkdir -p ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
@@ -66,6 +67,7 @@ ln -s ~/dotfiles/.config/sway ~/.config/sway
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
+cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
