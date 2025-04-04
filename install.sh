@@ -5,10 +5,24 @@ set -f
 
 if command -v apt 2>&1 >/dev/null; then
   echo "Install Debian packages"
-  sudo apt install -y git build-essential ddcutil wl-clipboard cava \
-    solaar zsh curl openssh fastfetch transmission vlc wget \
-    fonts-font-awesome cmatrix fd-find
+  sudo apt-get update
+  sudo apt-get install -y git build-essential ddcutil wl-clipboard cava \
+    solaar zsh curl openssh fastfetch transmission vlc ca-certificates \
+    wget fonts-font-awesome cmatrix fd-find
 
+  echo "Install docker"
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+  sudo apt-get update
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  echo "Install Wezterm"
   wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
   sudo apt install ./wezterm.deb -y
   rm -rf ./weztern.deb
