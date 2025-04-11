@@ -7,7 +7,7 @@ if command -v apt 2>&1 >/dev/null; then
   echo "Install Debian packages"
   sudo apt-get update
   sudo apt-get install -y git build-essential ddcutil wl-clipboard cava \
-    solaar zsh curl openssh fastfetch transmission vlc ca-certificates \
+    solaar zsh curl openssh-server fastfetch transmission vlc ca-certificates \
     wget fonts-font-awesome cmatrix fd-find
 
   echo "Install docker"
