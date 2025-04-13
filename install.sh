@@ -48,10 +48,12 @@ elif command -v pacman 2>&1 >/dev/null; then
     docker ddcutil xclip fastfetch transmission-gtk vlc \
     cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo
 
-  echo "Install yay"
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepkg -si
+  if ! command -v yay 2>&1 >/dev/null; then
+    echo "Install yay"
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+  fi
 fi
 
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
