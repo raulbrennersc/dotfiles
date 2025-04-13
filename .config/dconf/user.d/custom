@@ -4,7 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['tilingshell@ferrarodomenico.com', 'color-picker@tuberry', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'switcher@landau.fi', 'tactile@lundal.io', 'appindicatorsupport@rgcjonas.gmail.com', 'rounded-window-corners@fxgn', 'space-bar@luchrioh', 'Vitals@CoreCoding.com', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet']
 disable-user-extensions=false
-facorite-apps=['org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'google-chrome.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'steam.desktop', 'spotify-launcher.desktop', 'org.gnome.Settings.desktop', 'Postman.desktop']
+favorite-apps=['org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'google-chrome.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'steam.desktop', 'spotify-launcher.desktop', 'org.gnome.Settings.desktop', 'Postman.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -58,6 +58,17 @@ gtk-theme='Adwaita-dark'
 
 [org/gnome/desktop/file-chooser]
 clock-format='24h'
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/gnome/blobs-l.svg'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/blobs-d.svg'
+primary-color='#241f31'
+secondary-color='#000000'
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/backgrounds/gnome/blobs-d.svg'
+primary-color='#241f31'
+secondary-color='#000000'
 
 [org/gnome/system/location]
 enabled=false
