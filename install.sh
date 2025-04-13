@@ -46,13 +46,12 @@ elif command -v pacman 2>&1 >/dev/null; then
   echo "Install ArchLinux packages"
   sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
     docker ddcutil xclip fastfetch transmission-gtk vlc \
-    cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar
+    cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo
 
   echo "Install yay"
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si
-  yay -S wezterm-git cava
 fi
 
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
