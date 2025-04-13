@@ -8,7 +8,7 @@ if command -v apt 2>&1 >/dev/null; then
   sudo apt-get update
   sudo apt-get install -y git build-essential ddcutil wl-clipboard cava \
     solaar zsh curl openssh-server fastfetch transmission vlc ca-certificates \
-    wget fonts-font-awesome cmatrix fd-find
+    wget fonts-font-awesome cmatrix fd-find unzip
 
   echo "Install docker"
   sudo install -m 0755 -d /etc/apt/keyrings
@@ -45,7 +45,7 @@ if command -v apt 2>&1 >/dev/null; then
 elif command -v pacman 2>&1 >/dev/null; then
   echo "Install ArchLinux packages"
   sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
-    docker ddcutil xclip fastfetch transmission-gtk vlc \
+    docker ddcutil xclip fastfetch transmission-gtk vlc unzip \
     cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo
 
   if ! command -v yay 2>&1 >/dev/null; then
@@ -67,7 +67,8 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
 if ! [ -d "~/dotfiles" ]; then
-  git clone git@github.com:raulbrennersc/dotfiles.git ~/dotfiles
+  echo "Clone dotfiles"
+  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
 fi
 
 echo "Create symlinks to dotfiles"
