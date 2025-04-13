@@ -65,7 +65,6 @@ echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
-cp ~/dotfiles/.ssh/config ~/.ssh/config
 
 if ! [ -d "~/dotfiles" ]; then
   git clone git@github.com:raulbrennersc/dotfiles.git ~/dotfiles
@@ -83,6 +82,7 @@ ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
+cp ~/dotfiles/.ssh/config ~/.ssh/config
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
