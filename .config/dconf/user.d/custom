@@ -1,0 +1,66 @@
+[org/gnome/mutter]
+dynamic-workspaces=false
+
+[org/gnome/shell]
+enabled-extensions=['tilingshell@ferrarodomenico.com', 'color-picker@tuberry', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'switcher@landau.fi', 'tactile@lundal.io', 'appindicatorsupport@rgcjonas.gmail.com', 'rounded-window-corners@fxgn', 'space-bar@luchrioh', 'Vitals@CoreCoding.com', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet']
+disable-user-extensions=false
+
+[org/gnome/shell/keybindings]
+focus-active-notification=@as []
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+toggle-message-tray=@as []
+
+
+[org/gnome/desktop/wm/preferences]
+num-workspaces=5
+
+[org/gnome/desktop/wm/keybindings]
+activate-window-menu=@as []
+close=['<Super>q']
+maximize=['<Super>Up']
+move-to-workspace-1=['<Shift><Super>1']
+move-to-workspace-2=['<Shift><Super>2']
+move-to-workspace-3=['<Shift><Super>3']
+move-to-workspace-4=['<Shift><Super>4']
+show-desktop=['<Super>d']
+switch-applications=@as []
+switch-applications-backward=@as []
+switch-input-source=@as []
+switch-input-source-backward=@as []
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-left=['<Super>j']
+switch-to-workspace-right=['<Super>k']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+unmaximize=['<Super>Down', '<Alt>F5']
+
+[org/gnome/desktop/peripherals/mouse]
+accel-profile='flat'
+
+[org/gnome/desktop/input-sources]
+xkb-options=['terminate:ctrl_alt_bksp', 'lv3:menu_switch', 'compose:ralt']
+
+[org/gnome/desktop/interface]
+clock-format='24h'
+clock-show-seconds=true
+color-scheme='prefer-dark'
+accent-color='blue'
+enable-hot-corners=false
+icon-theme='Papirus-Dark'
+gtk-theme='Adwaita-dark'
+
+[org/gnome/desktop/file-chooser]
+clock-format='24h'
+
+[org/gnome/system/location]
+enabled=false
+
+[org/gnome/desktop/search-providers]
+disabled=['org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Epiphany.desktop']
+sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Software.desktop', 'org.gnome.Epiphany.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Weather.desktop']

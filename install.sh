@@ -3,63 +3,16 @@
 set -e
 set -f
 
-if command -v apt 2>&1 >/dev/null; then
-  echo "Install Debian packages"
-  sudo apt-get update
-  sudo apt-get install -y git build-essential ddcutil wl-clipboard cava \
-    solaar zsh curl openssh-server fastfetch transmission vlc ca-certificates \
-    wget fonts-font-awesome cmatrix fd-find unzip
+echo "Install ArchLinux packages"
+sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
+  docker ddcutil xclip fastfetch transmission-gtk vlc unzip neovim \
+  cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo \
+  spotify-launcher steam
 
-  echo "Install docker"
-  sudo install -m 0755 -d /etc/apt/keyrings
-  sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-  sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-  echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
-    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-  sudo apt-get update
-  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-  echo "Install Wezterm"
-  wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
-  sudo apt install ./wezterm.deb -y
-  rm -rf ./weztern.deb
-
-  echo "Install Meslo Nerd Font"
-  wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
-  unzip ~/.fonts/Meslo.zip -d ~/.fonts/Meslo
-  rm -rf ~/.fonts/Meslo.zip
-
-  echo "Install FiraCode Nerd Font"
-  wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-  unzip ~/.fonts/FiraCode.zip -d ~/.fonts/FiraCode
-  rm -rf ~/.fonts/FiraCode.zip
-
-  echo "Install JetBrainsMono Nerd Font"
-  wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-  unzip ~/.fonts/JetBrainsMono.zip -d ~/.fonts/JetBrainsMono
-  rm -rf ~/.fonts/JetBrainsMono.zip
-
-elif command -v pacman 2>&1 >/dev/null; then
-  echo "Install ArchLinux packages"
-  sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
-    docker ddcutil xclip fastfetch transmission-gtk vlc unzip \
-    cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo
-
-  if ! command -v yay 2>&1 >/dev/null; then
-    echo "Install yay"
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-  fi
-fi
-
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-rm -rf nvim-linux-x86_64.tar.gz
+echo "Install yay"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -72,7 +25,7 @@ if ! [ -d "~/dotfiles" ]; then
 fi
 
 echo "Create symlinks to dotfiles"
-mkdir -p ~/.config/
+mkdir -p ~/.config/dconf
 mkdir -p ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
@@ -82,6 +35,7 @@ ln -s ~/dotfiles/.config/sway ~/.config/sway
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
+ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 
@@ -89,7 +43,12 @@ echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install app.zen_browser.zen io.github.alainm23.planify io.dbeaver.DBeaverCommunity -y
+flatpak install -y app.zen_browser.zen io.github.alainm23.planify io.dbeaver.DBeaverCommunity \
+  com.discordapp.Discord
+
+echo "Apply GNOME customization"
+dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
+sudo dconf update
 
 sudo chsh $USER -s $(which zsh)
 

@@ -4,7 +4,6 @@ version = 3
 
 [transient_prompt]
   foreground = "#80a0ff"
-  background = "#060606"
   style = "plain"
   type = "text"
     template = " "
