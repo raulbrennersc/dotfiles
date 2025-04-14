@@ -4,7 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['tilingshell@ferrarodomenico.com', 'color-picker@tuberry', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'switcher@landau.fi', 'tactile@lundal.io', 'appindicatorsupport@rgcjonas.gmail.com', 'rounded-window-corners@fxgn', 'space-bar@luchrioh', 'Vitals@CoreCoding.com', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet']
 disable-user-extensions=false
-favorite-apps=['org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'google-chrome.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'steam.desktop', 'spotify-launcher.desktop', 'org.gnome.Settings.desktop', 'Postman.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'spotify-launcher.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
