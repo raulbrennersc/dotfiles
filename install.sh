@@ -8,7 +8,7 @@ sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
   docker ddcutil xclip fastfetch transmission-gtk vlc unzip neovim \
   cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo \
   spotify-launcher steam papirus-icon-theme gnome-themes-extra \
-  pacman-contrib
+  pacman-contrib networkmanager-openvpn
 
 echo "Install yay"
 git clone https://aur.archlinux.org/yay.git

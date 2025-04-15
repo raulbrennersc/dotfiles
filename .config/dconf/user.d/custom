@@ -17,7 +17,7 @@ toggle-message-tray=@as []
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'
-num-workspaces=5
+num-workspaces=4
 
 [org/gnome/desktop/wm/keybindings]
 activate-window-menu=@as []
