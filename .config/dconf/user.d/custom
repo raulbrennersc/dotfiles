@@ -2,7 +2,7 @@
 dynamic-workspaces=false
 
 [org/gnome/shell]
-enabled-extensions=['tilingshell@ferrarodomenico.com', 'color-picker@tuberry', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'switcher@landau.fi', 'tactile@lundal.io', 'appindicatorsupport@rgcjonas.gmail.com', 'rounded-window-corners@fxgn', 'space-bar@luchrioh', 'Vitals@CoreCoding.com', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet']
+enabled-extensions=['tilingshell@ferrarodomenico.com', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'tactile@lundal.io', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com']
 disable-user-extensions=false
 favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'spotify-launcher.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
 

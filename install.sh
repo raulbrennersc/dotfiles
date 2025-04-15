@@ -42,7 +42,7 @@ ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
 cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
-cp ~/dotfiles/autostart/solaar.desktop ~/.config/solaar.desktop
+cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/solaar.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 
 echo "Enable flathub"
