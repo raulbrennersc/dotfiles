@@ -15,6 +15,8 @@ fi
 wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
 sudo apt install ./wezterm.deb -y
 
+echo "sudo chown -R ${USER}:${USER} /var/run/docker.sock" >>.zprofile
+
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
@@ -23,6 +25,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+mkdir -p ~/.docker
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 
 if ! [ -d "/home/linuxbrew/" ]; then
