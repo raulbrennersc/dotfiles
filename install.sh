@@ -8,7 +8,7 @@ sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
   docker ddcutil xclip fastfetch transmission-gtk vlc unzip neovim \
   cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo \
   spotify-launcher steam papirus-icon-theme gnome-themes-extra \
-  pacman-contrib networkmanager-openvpn
+  pacman-contrib networkmanager-openvpn xorg-xhost libnma
 
 echo "Install yay"
 git clone https://aur.archlinux.org/yay.git
@@ -81,5 +81,6 @@ sudo systemctl enable systemd-resolved.service
 sudo systemctl enable sshd
 sudo systemctl enable docker.socket
 sudo systemctl enable docker.service
+systemctl --user enable gcr-ssh-agent.socket
 
 sudo reboot
