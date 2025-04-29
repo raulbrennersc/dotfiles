@@ -261,8 +261,8 @@ config.keys = {
 		action = act.ShowTabNavigator,
 	},
 	{
-		key = "&",
-		mods = "LEADER|SHIFT",
+		key = "q",
+		mods = "LEADER",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
 	{

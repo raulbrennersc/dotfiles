@@ -30,7 +30,6 @@ echo "Create symlinks to dotfiles"
 mkdir -p ~/.config/dconf
 mkdir -p ~/.config/autostart
 mkdir -p ~/.config/environment.d
-mkdir -p ~/.local/share/applications
 mkdir -p ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
@@ -44,6 +43,7 @@ cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangoh
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/solaar.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
+sudo cp ~/dotfiles/.config/applications/org.wezfurlong.wezterm.desktop /usr/share/applications/org.wezfurlong.wezterm.desktop
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -57,7 +57,7 @@ curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
 mkdir ~/Applications/
 tar xzvf postman.tar.gz -C Applications/
 sudo ln -s ~/Applications/Postman/Postman /usr/bin/postman
-cp ~/dotfiles/.config/applications/postman.desktop ~/.local/share/applications/postman.desktop
+sudo cp ~/dotfiles/.config/applications/postman.desktop /usr/share/applications/postman.desktop
 
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
@@ -73,6 +73,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.zprofile ~/.zprofile
 
 sudo usermod -aG docker $USER
 newgrp docker
