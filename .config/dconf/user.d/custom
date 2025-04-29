@@ -4,7 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['tilingshell@ferrarodomenico.com', 'display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'tactile@lundal.io', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'arch-update@RaphaelRochet', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'spotify-launcher.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'spotify.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -14,6 +14,8 @@ switch-to-application-3=@as []
 switch-to-application-4=@as []
 toggle-message-tray=@as []
 
+[org/gnome/desktop/default-applications/terminal]
+exec=wezterm
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'
