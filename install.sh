@@ -10,6 +10,8 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
   network-manager-openvpn libnma-dev ca-certificates vim
 
+sudo systemctl restart systemd-resolved.service
+
 # TODO: change manual usage of additional repositories to use extrepo
 # sudo extrepo enable librewolf google-chrome spotify steam docker
 # sudo apt-get install librewolf google-chrome spotify-client steam \
@@ -23,7 +25,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian trixie stable" |
   sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 echo "Install Google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
