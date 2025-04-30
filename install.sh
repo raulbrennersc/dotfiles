@@ -7,8 +7,13 @@ echo "Install Debian packages"
 sudo apt-get update
 sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
-  solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava \
-  network-manager-openvpn xorg-xhost libnma-dev ca-certificates vim
+  solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
+  network-manager-openvpn libnma-dev ca-certificates vim
+
+# TODO: change manual usage of additional repositories to use extrepo
+# sudo extrepo enable librewolf google-chrome spotify steam docker
+# sudo apt-get install librewolf google-chrome spotify-client steam \
+#   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Install docker"
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -19,11 +24,6 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.d
   sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-echo "Install Wezterm"
-wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
-sudo apt-get install ./wezterm.deb -y
-rm -rf ./wezterm.deb
 
 echo "Install Google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
@@ -39,6 +39,11 @@ echo "Install Steam"
 wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
 sudo apt-get install ./steam.deb -y
 rm -rf ./steam.deb
+
+echo "Install Wezterm"
+wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
+sudo apt-get install ./wezterm.deb -y
+rm -rf ./wezterm.deb
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -80,6 +85,7 @@ mkdir ~/Applications/
 tar xzvf postman.tar.gz -C Applications/
 sudo ln -s ~/Applications/Postman/Postman /usr/bin/postman
 sudo cp ~/dotfiles/.config/applications/postman.desktop /usr/share/applications/postman.desktop
+rm -rf postman.tar.gz
 
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
