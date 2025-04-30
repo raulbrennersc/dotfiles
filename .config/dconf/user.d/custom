@@ -15,7 +15,7 @@ switch-to-application-4=@as []
 toggle-message-tray=@as []
 
 [org/gnome/desktop/default-applications/terminal]
-exec=wezterm
+exec='wezterm'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'

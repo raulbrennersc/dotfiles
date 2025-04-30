@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
-  network-manager-openvpn libnma-dev ca-certificates vim
+  network-manager-openvpn libnma-dev ca-certificates vim ripgrep
 
 sudo systemctl restart systemd-resolved.service
 
@@ -16,6 +16,12 @@ sudo systemctl restart systemd-resolved.service
 # sudo extrepo enable librewolf google-chrome spotify steam docker
 # sudo apt-get install librewolf google-chrome spotify-client steam \
 #   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+echo "Install Neovim"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+rm -rf nvim-linux-x86_64.tar.gz
 
 echo "Install docker"
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -55,6 +61,9 @@ ssh-add ~/.ssh/id_ed25519
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
   git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+  cd ~/dotfiles
+  git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+  cd
 fi
 
 echo "Create symlinks to dotfiles"
@@ -87,6 +96,11 @@ tar xzvf postman.tar.gz -C Applications/
 sudo ln -s ~/Applications/Postman/Postman /usr/bin/postman
 sudo cp ~/dotfiles/.config/applications/postman.desktop /usr/share/applications/postman.desktop
 rm -rf postman.tar.gz
+
+echo "Install JetBrainsMono NF"
+wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip ~/.fonts/JetBrainsMono.zip -d ~/.fonts/JetBrainsMono
+rm -rf ~/.fonts/JetBrainsMono.zip
 
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d

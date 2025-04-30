@@ -3,7 +3,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt update
-sudo apt install zsh git -y
+sudo apt install zsh git ripgrep fd-find -y
 
 if ! [ -d "~/dotfiles" ]; then
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
@@ -38,9 +38,13 @@ if [ -d "/workspaces" ]; then
   ln -s /workspaces ~/workspaces
 fi
 
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+rm -rf nvim-linux-x86_64.tar.gz
+
 curl -L http://install.ohmyz.sh | sh
 curl -s https://ohmyposh.dev/install.sh | bash -s
-brew install fzf ripgrep neovim
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 
