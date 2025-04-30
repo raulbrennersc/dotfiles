@@ -54,7 +54,7 @@ ssh-add ~/.ssh/id_ed25519
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
-  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+  git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
 fi
 
 echo "Create symlinks to dotfiles"
@@ -78,8 +78,7 @@ echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y app.zen_browser.zen io.github.alainm23.planify io.dbeaver.DBeaverCommunity \
-  com.discordapp.Discord com.mattjakeman.ExtensionManager
+flatpak install -y app.zen_browser.zen io.github.alainm23.planify io.dbeaver.DBeaverCommunity com.mattjakeman.ExtensionManager
 
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
