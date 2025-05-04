@@ -3,35 +3,19 @@
 set -e
 set -f
 
+if command -v apt 2>&1 >/dev/null; then
+  wget -O- raulbrennersc/dotfiles/install-debian.sh | bash -s
+elif command -v pacman 2>&1 >/dev/null; then
+  wget -O- raulbrennersc/dotfiles/install-arch.sh | bash -s
+fi
+
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
-  wget https://github.com/raulbrennersc/dotfiles/archive/debian.zip
-  unzip debian.zip
-  mv dotfiles-debian dotfiles
-fi
-
-if command -v apt 2>&1 >/dev/null; then
-  ~/dotfiles/scripts/install-debian.sh
-elif command -v pacman 2>&1 >/dev/null; then
-  ~/dotfiles/scripts/install-arch.sh
-fi
-
-if ! [ -d "~/dotfiles/.git" ]; then
+  git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
   cd ~/dotfiles
-  git init
-  git remote add origin https://github.com/raulbrennersc/dotfiles.git
-  git clean -fd
-  git pull origin main
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+  cd
 fi
-
-# if ! [ -d "~/dotfiles" ]; then
-#   echo "Clone dotfiles"
-#   git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
-#   cd ~/dotfiles
-#   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
-#   cd
-# fi
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -53,7 +37,6 @@ cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangoh
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/solaar.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
-sudo cp ~/dotfiles/.config/applications/org.wezfurlong.wezterm.desktop /usr/share/applications/org.wezfurlong.wezterm.desktop
 sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
 
 echo "Enable flathub"
