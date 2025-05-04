@@ -82,6 +82,7 @@ cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/solaar.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 sudo cp ~/dotfiles/.config/applications/org.wezfurlong.wezterm.desktop /usr/share/applications/org.wezfurlong.wezterm.desktop
+sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
 
 echo "Enable flathub"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
