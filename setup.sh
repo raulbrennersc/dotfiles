@@ -3,7 +3,7 @@
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
   wget https://github.com/raulbrennersc/dotfiles/archive/debian.zip
-  unzip main.zip
+  unzip debian.zip
   mv dotfiles-debian dotfiles
 fi
 ~/dotfiles/scripts/install-packages.sh
