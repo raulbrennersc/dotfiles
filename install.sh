@@ -11,7 +11,7 @@ fi
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
-  git https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
   cd ~/dotfiles
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
   cd
@@ -40,7 +40,7 @@ cp ~/dotfiles/.ssh/config ~/.ssh/config
 sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
 
 echo "Enable flathub"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
 flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity com.mattjakeman.ExtensionManager
