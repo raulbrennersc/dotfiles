@@ -4,14 +4,14 @@ set -e
 set -f
 
 if command -v apt 2>&1 >/dev/null; then
-  wget -O- raulbrennersc/dotfiles/install-debian.sh | bash -s
+  wget -O- raulbrennersc.dev/dotfiles/install-debian.sh | bash -s
 elif command -v pacman 2>&1 >/dev/null; then
-  wget -O- raulbrennersc/dotfiles/install-arch.sh | bash -s
+  wget -O- raulbrennersc.dev/dotfiles/install-arch.sh | bash -s
 fi
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
-  git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+  git https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
   cd ~/dotfiles
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
   cd
