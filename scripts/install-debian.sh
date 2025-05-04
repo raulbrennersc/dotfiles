@@ -9,12 +9,12 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
 
 sudo systemctl restart systemd-resolved.service
 
-# TODO: Add remaining extrepo repositories: google-chrome spotify steam
-echo "Add extrepo repositories"
-sudo extrepo enable librewolf docker
-echo "Install packages from extrepo"
-# TODO: Add remaining extrepo packages google-chrome spotify-client steam
-sudo apt-get install librewolf docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# TODO: Replace manual install for extrepo packages:
+# echo "Add extrepo repositories"
+# sudo extrepo enable librewolf docker google-chrome spotify steam
+# echo "Install packages from extrepo"
+# sudo apt-get install -y google-chrome spotify-client steam librewolf \
+#   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -22,15 +22,15 @@ sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 rm -rf nvim-linux-x86_64.tar.gz
 
-# echo "Install docker"
-# sudo install -m 0755 -d /etc/apt/keyrings
-# sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-# sudo chmod a+r /etc/apt/keyrings/docker.asc
-#
-# echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian trixie stable" |
-#   sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-# sudo apt-get update
-# sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+echo "Install docker"
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian trixie stable" |
+  sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 echo "Install Google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
