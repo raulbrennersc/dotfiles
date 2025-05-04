@@ -10,7 +10,9 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
 sudo systemctl restart systemd-resolved.service
 
 # TODO: change manual usage of additional repositories to use extrepo
+# echo "Add extrepo repositories"
 # sudo extrepo enable librewolf google-chrome spotify steam docker
+# echo "Install packages from extrepo"
 # sudo apt-get install librewolf google-chrome spotify-client steam \
 #   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 

@@ -1,12 +1,37 @@
-#!/bin/bash
+!#/bin/bash
+
 set -e
 set -f
+
+if ! [ -d "~/dotfiles" ]; then
+  echo "Clone dotfiles"
+  wget https://github.com/raulbrennersc/dotfiles/archive/debian.zip
+  unzip debian.zip
+  mv dotfiles-debian dotfiles
+fi
 
 if command -v apt 2>&1 >/dev/null; then
   ~/dotfiles/scripts/install-debian.sh
 elif command -v pacman 2>&1 >/dev/null; then
   ~/dotfiles/scripts/install-arch.sh
 fi
+
+if ! [ -d "~/dotfiles/.git" ]; then
+  cd ~/dotfiles
+  git init
+  git remote add origin https://github.com/raulbrennersc/dotfiles.git
+  git clean -fd
+  git pull origin main
+  git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+fi
+
+# if ! [ -d "~/dotfiles" ]; then
+#   echo "Clone dotfiles"
+#   git clone -b debian https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+#   cd ~/dotfiles
+#   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+#   cd
+# fi
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
@@ -73,3 +98,5 @@ sudo systemctl enable systemd-resolved.service
 sudo systemctl enable docker.socket
 sudo systemctl enable docker.service
 systemctl --user enable gcr-ssh-agent.socket
+
+sudo reboot
