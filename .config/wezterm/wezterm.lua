@@ -53,6 +53,7 @@ config.font = wezterm.font({
 })
 config.font_size = 15
 config.window_decorations = "NONE"
+config.enable_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.default_workspace = user
@@ -166,11 +167,11 @@ end)
 
 config.scrollback_lines = 90000
 
-config.leader = {
-	key = "a",
-	mods = "CTRL",
-	timeout_milliseconds = 2000,
-}
+-- config.leader = {
+-- 	key = "a",
+-- 	mods = "CTRL",
+-- 	timeout_milliseconds = 2000,
+-- }
 
 local muxDomains = {}
 local status, allDomains = pcall(wezterm.mux.all_domains)

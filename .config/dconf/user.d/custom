@@ -4,7 +4,8 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'Move_Clock@rmy.pobox.com', 'blur-my-shell@aunetx', 'tactile@lundal.io', 'color-picker@tuberry', 'dash-to-dock@micxgx.gmail.com']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'spotify.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
+favorite-apps= ['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'librewolf.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'spotify.desktop', 'postman.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
+
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -74,9 +75,13 @@ picture-uri='file:///usr/share/backgrounds/gnome/blobs-d.svg'
 primary-color='#241f31'
 secondary-color='#000000'
 
-[org/gnome/system/location]
-enabled=false
-
 [org/gnome/desktop/search-providers]
 disabled=['org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Epiphany.desktop']
 sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Software.desktop', 'org.gnome.Epiphany.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Weather.desktop']
+
+[org/gnome/system/location]
+enabled=false
+
+[org/gnome/Console]
+custom-font='JetBrainsMono Nerd Font 12'
+

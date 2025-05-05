@@ -17,7 +17,7 @@ type = "prompt"
   style = "diamond"
   background = "#80a0ff"
   foreground = "#060606"
-  template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}}"
+  template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
     [blocks.segments.properties]
     macos = "mac"

@@ -16,6 +16,11 @@ sudo systemctl restart systemd-resolved.service
 # sudo apt-get install -y google-chrome spotify-client steam librewolf \
 #   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+echo "Add extrepo repositories"
+sudo extrepo enable librewolf
+echo "Install packages from extrepo"
+sudo apt-get install -y librewolf
+
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
