@@ -5,7 +5,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
 alias vi="nvim"
-alias tmux="tmux new-session -A -s"
+alias tmux="tmux new-session -A -s $USER"
 alias gca="git add -A && git commit -m"
 alias gc="git commit -m"
 alias gs="git status"
