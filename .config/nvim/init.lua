@@ -1,9 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 vim.opt.title = true
 local path = vim.fn.fnamemodify(vim.fn.getcwd(), ":~:t")
--- vim.opt.titlestring = "\u{e62b} " .. path
--- vim.opt.titlestring = "\u{e7c5} " .. path
-vim.opt.titlestring = "\u{f36f} " .. path
+vim.opt.titlestring = "  " .. path
 require("config.lazy")
 
 local stats = vim.uv.fs_stat(vim.fn.argv(0))

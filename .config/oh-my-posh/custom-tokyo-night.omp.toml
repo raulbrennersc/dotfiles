@@ -3,7 +3,7 @@ console_title_template = "{{if .Env.DEVCONTAINER }} {{end}}{{regexReplaceAll 
 version = 3
 
 [transient_prompt]
-  foreground = "#80a0ff"
+  foreground = "#82aaff"
   style = "plain"
   type = "text"
     template = " "
@@ -15,16 +15,16 @@ type = "prompt"
   [[blocks.segments]]
   type = "os"
   style = "diamond"
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "#82aaff"
+  foreground = "#060606"
   template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
     [blocks.segments.properties]
     macos = "mac"
 
   [[blocks.segments]]
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "#82aaff"
+  foreground = "#060606"
   powerline_symbol = ""
   style = "powerline"
   template = "   {{ .Path }}"
@@ -35,8 +35,8 @@ type = "prompt"
     style = "agnoster_short"
 
   [[blocks.segments]]
-  background = "#303030"
-  foreground = "#80a0ff"
+  background = "#3b4261"
+  foreground = "#82aaff"
   powerline_symbol = ""
   style = "powerline"
   type = "git"
@@ -53,8 +53,8 @@ overflow = "hide"
 type = "prompt"
 
   [[blocks.segments]]
-  background = "#303030"
-  foreground = "#80a0ff"
+  background = "#3b4261"
+  foreground = "#82aaff"
   powerline_symbol = ""
   style = "powerline"
   template = " {{ .FormattedMs }}s "
@@ -67,8 +67,8 @@ type = "prompt"
   [[blocks.segments]]
   powerline_symbol = ""
   trailing_powerline_symbol = ""
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "#82aaff"
+  foreground = "#060606"
   style = "powerline"
   template = " {{ .CurrentDate | date .Format }} "
   type = "time"
@@ -77,8 +77,8 @@ type = "prompt"
     time_format = "15:04:05"
 
   [[blocks.segments]]
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "#82aaff"
+  foreground = "#060606"
   style = "diamond"
   type = "status"
   background_templates = [ "{{ if .Error }}#e91e63{{else}}#36c692{{ end }}" ]
@@ -101,6 +101,6 @@ type = "prompt"
   [[blocks.segments]]
     type = "text"
     style = "plain"
-    foreground = "#80a0ff"
+    foreground = "#82aaff"
     template = " "
 
