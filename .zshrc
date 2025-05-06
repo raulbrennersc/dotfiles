@@ -3,6 +3,12 @@ export PATH=$PATH:$HOME/.local/bin:/opt/nvim-linux-x86_64/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
 
+if [ -n "$DEVCONTAINER" ]; then
+  export CUSTOM_HOST=$DEVCONTAINER_NAME
+else
+  export CUSTOM_HOST=$HOST
+fi
+
 alias vim="nvim"
 alias vi="nvim"
 alias tmux="tmux new-session -A -s $USER"
