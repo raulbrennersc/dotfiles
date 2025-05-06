@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
-  network-manager-openvpn libnma-dev ca-certificates vim ripgrep
+  network-manager-openvpn libnma-dev ca-certificates vim ripgrep tmux
 
 sudo systemctl restart systemd-resolved.service
 

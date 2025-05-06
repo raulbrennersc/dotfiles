@@ -3,7 +3,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt update
-sudo apt install zsh git ripgrep fd-find -y
+sudo apt install zsh git ripgrep fd-find tmux -y
 
 if ! [ -d "~/dotfiles" ]; then
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
@@ -20,9 +20,6 @@ echo "sudo chown -R ${USER}:${USER} /var/run/docker.sock" >>.zprofile
 
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-
-rm -rf ~/.gitconfig
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf

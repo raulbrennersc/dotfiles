@@ -9,7 +9,6 @@ else
   export CUSTOM_HOST=$HOST
 fi
 
-alias vim="nvim"
 alias vi="nvim"
 alias tmux="tmux new-session -A -s $USER"
 alias gca="git add -A && git commit -m"
