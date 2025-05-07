@@ -55,7 +55,7 @@ devcontainerUp() {
   $CONTAINER_ENGINE run -d --privileged --name $containerName \
     --volume /home/$USER/workspaces/$1:/workspaces --volume /var/run/docker.sock:/var/run/docker.sock \
     --network=host --restart=always --dns=127.0.0.53 \
-    --env CUSTOM_SSH_PORT=$2 --env KEY_TO_AUTHORIZE=$KEY_TO_AUTHORIZE --env DEVCONTAINER_NAME=$1 \
+    --env CUSTOM_SSH_PORT=$2 --env KEY_TO_AUTHORIZE="$KEY_TO_AUTHORIZE" --env DEVCONTAINER_NAME=$1 \
     $DEVCONTAINER_IMAGE
   $CONTAINER_ENGINE exec -it $containerName bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }

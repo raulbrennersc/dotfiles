@@ -1,4 +1,5 @@
 !#/bin/bash
+export DEBIAN_FRONTEND=noninteractive
 
 echo "Install Debian packages"
 sudo apt-get update
