@@ -57,24 +57,12 @@ type = "prompt"
   foreground = "#80a0ff"
   powerline_symbol = ""
   style = "powerline"
-  template = " {{ .FormattedMs }}s "
+  template = "  {{ .FormattedMs }}s "
   type = "executiontime"
 
     [blocks.segments.properties]
     style = "dallas"
     threshold = 0
-
-  [[blocks.segments]]
-  powerline_symbol = ""
-  trailing_powerline_symbol = ""
-  background = "#80a0ff"
-  foreground = "#080808"
-  style = "powerline"
-  template = " {{ .CurrentDate | date .Format }} "
-  type = "time"
-
-    [blocks.segments.properties]
-    time_format = "15:04:05"
 
   [[blocks.segments]]
   background = "#80a0ff"
