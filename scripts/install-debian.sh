@@ -6,7 +6,8 @@ sudo apt-get update
 sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
-  network-manager-openvpn libnma-dev ca-certificates vim ripgrep tmux
+  network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
+  gnome-console libnma-dev vim ripgrep tmux mangohud
 
 sudo systemctl restart systemd-resolved.service
 
@@ -20,6 +21,7 @@ sudo systemctl restart systemd-resolved.service
 echo "Add extrepo repositories"
 sudo extrepo enable librewolf
 echo "Install packages from extrepo"
+sudo apt-get update
 sudo apt-get install -y librewolf
 
 echo "Install Neovim"

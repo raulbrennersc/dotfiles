@@ -1,6 +1,6 @@
 local config_moonfly = function()
   -- vim.g.moonflyTransparent = true
-  -- vim.g.moonflyNormalFloat = true
+  vim.g.moonflyNormalFloat = true
   local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
   vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()

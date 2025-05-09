@@ -36,7 +36,7 @@ ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
 cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
-cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/solaar.desktop
+cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/autostart/solaar.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
 
@@ -54,10 +54,10 @@ sudo ln -s ~/Applications/Postman/Postman /usr/bin/postman
 sudo cp ~/dotfiles/.config/applications/postman.desktop /usr/share/applications/postman.desktop
 rm -rf postman.tar.gz
 
-echo "Install JetBrainsMono NF"
-wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-unzip ~/.fonts/JetBrainsMono.zip -d ~/.fonts/JetBrainsMono
-rm -rf ~/.fonts/JetBrainsMono.zip
+echo "Install Hack Nerd Font"
+wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+unzip ~/.fonts/Hack.zip -d ~/.fonts/Hack
+rm -rf ~/.fonts/Hack.zip
 
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d

@@ -83,5 +83,5 @@ sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gno
 enabled=false
 
 [org/gnome/Console]
-custom-font='JetBrainsMono Nerd Font 12'
+custom-font='Hack Nerd Font 12'
 

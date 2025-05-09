@@ -11,7 +11,7 @@ Comment[sv]=Kringutrustningshanterare för Logitech Unifying-mottagare
 Comment[zh_CN]=罗技优联设备管理器
 Comment[zh_TW]=羅技Unifying 裝置管理器
 Comment[zh_HK]=羅技Unifying 裝置管理器
-Exec=solaar --window=hide
+Exec=solaar --window=hide --battery-icons=solaar
 Icon=solaar
 StartupNotify=true
 Terminal=false

@@ -122,3 +122,8 @@ sigma=30
 [org/gnome/shell/extensions/blur-my-shell/screenshot]
 pipeline='pipeline_default'
 
+[/org/gnome/shell/extensions/color-picker]
+enable-shortcut=true
+color-picker-shortcut=['<Super>b']
+enable-systray=false
+
