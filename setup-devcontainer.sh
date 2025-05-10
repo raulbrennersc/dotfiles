@@ -12,12 +12,6 @@ if ! [ -d "~/dotfiles" ]; then
   cd
 fi
 
-wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
-sudo apt install ./wezterm.deb -y
-rm -rf ./wezterm.deb
-
-echo "sudo chown -R ${USER}:${USER} /var/run/docker.sock" >>.zprofile
-
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 

@@ -58,26 +58,26 @@ check_and_setup() {
   fi
 
   if ! [ -f $DEVCONTAINERS_DB_FILE_PATH ]; then
-    echo "create table devcontainers (name text not null primary key, port int unique);" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
+    echo "create table devcontainers (name text not null, port int unique not null, engine text not null, UNIQUE (name, engine));" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
   fi
 
   if ! [ -f ~/.ssh/config ]; then
     touch ~/.ssh/config
   fi
 
-  content=$(cat ~/.ssh/config | grep 'Host \*.devcontainer')
+  local content=$(cat ~/.ssh/config | grep 'Host \*.devcontainer')
   if [ "$content" = "" ]; then
     echo -e "\nHost *.devcontainer\n  User dev\n  ProxyCommand devcontainer proxy %h\n" >>~/.ssh/config
   fi
 }
 
-get_container_name() {
+build_container_name() {
   echo "${1}.devcontainer"
 }
 
 get_avilable_port() {
   IN=$(echo "select port from devcontainers;" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  ports=(${IN// /})
+  local ports=(${IN// /})
   declare -i port=2222
   while [[ true ]]; do
     if [[ " ${ports[*]} " =~ [[:space:]]${port}[[:space:]] ]]; then
@@ -90,8 +90,8 @@ get_avilable_port() {
 }
 
 check_name_exists() {
-  IN=$(echo "select name from devcontainers;" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  names=(${IN// /})
+  IN=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  local names=(${IN// /})
   if [[ " ${names[*]} " =~ [[:space:]]$1[[:space:]] ]]; then
     echo "error: a devcontiner with name $1 already exists"
     exit 1
@@ -99,10 +99,10 @@ check_name_exists() {
 }
 
 devcontainer_up() {
-  available_port=$(get_avilable_port)
+  local available_port=$(get_avilable_port)
   check_name_exists $1
-  key_to_authorize="$(cat ~/.ssh/id_ed25519.pub)"
-  container_name=$(get_container_name $1)
+  local key_to_authorize="$(cat ~/.ssh/id_ed25519.pub)"
+  local container_name=$(build_container_name $1)
 
   mkdir -p ~/workspaces/$1
   echo "Creating devcontainer $container_name"
@@ -113,49 +113,54 @@ devcontainer_up() {
     $DEVCONTAINER_IMAGE
 
   echo "Updating devcontainers db entries"
-  echo "insert into devcontainers (name, port) VALUES ('$container_name', '$available_port');" | sqlite4 $DEVCONTAINERS_DB_FILE_PATH
+  echo "insert into devcontainers (name, port, engine) VALUES ('$container_name', '$available_port', '$CONTAINER_ENGINE');" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
 
   echo "Running setup script"
-  # $CONTAINER_ENGINE exec -it $containerName bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
+  $CONTAINER_ENGINE exec -it $container_name bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
 devcontainer_start() {
-  $CONTAINER_ENGINE start $(get_container_name $1)
+  $CONTAINER_ENGINE start $(build_container_name $1)
 }
 
 devcontainer_stop() {
-  $CONTAINER_ENGINE stop $(get_container_name $1)
+  $CONTAINER_ENGINE stop $(build_container_name $1)
 }
 
 devcontainer_rm() {
-  name=$(echo "select name from devcontainers d where d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  echo $name
+  local container_name=$(build_container_name $1)
+  local name=$(echo "select name from devcontainers d where d.name='$container_name' and d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
   if [[ "$name" = "" ]]; then
     echo "Devcontainer $1 not found. If you created it directly through $CONTAINER_ENGINE use the command '$CONTAINER_ENGINE rm $1' to remove it."
     exit 1
   fi
   devcontainer_stop $1
-  $CONTAINER_ENGINE rm $(get_container_name $1)
-  echo "delete from devcontainer where name=$1;" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
+  $CONTAINER_ENGINE rm $(build_container_name $1)
+  echo "delete from devcontainers where name='$container_name' and engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
 }
 
 devcontainer_exec() {
   devcontainer_start $1
-  $CONTAINER_ENGINE exec -it $(get_container_name $1) bash
+  $CONTAINER_ENGINE exec -it $(build_container_name $1) bash
+}
+
+devcontainer_port() {
+  local port=$(echo "select port from devcontainers d where d.name='$1' and d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  echo $port
 }
 
 devcontainer_proxy() {
-  local port=$(echo "select port from devcontainers d where d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  local port=$(devcontainer_port $1)
   ssh -YA -W localhost:$port dev@localhost -p "$port"
 }
 
 devcontainer_ssh() {
-  local port=$(echo "select port from devcontainers d where d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  local port=$(devcontainer_port $1)
   ssh -YA -o User=$DEVCONTAINER_USER dev@localhost -p "$port"
 }
 
 devcontainer_connect() {
-  local names=$(echo "select name from devcontainers;" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  local names=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
   PS3="Select the devcontainer to connect: "
   names=(${names// /})
   select devcontainer in "${names[@]}" Quit; do
@@ -168,7 +173,6 @@ devcontainer_connect() {
       exit 0
     fi
 
-    echo $devcontainer
     devcontainer_ssh $devcontainer
     exit 0
   done

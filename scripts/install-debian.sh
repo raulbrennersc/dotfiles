@@ -54,8 +54,3 @@ echo "Install Steam"
 wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
 sudo apt-get install ./steam.deb -y
 rm -rf ./steam.deb
-
-echo "Install Wezterm"
-wget https://github.com/wezterm/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb -O wezterm.deb
-sudo apt-get install ./wezterm.deb -y
-rm -rf ./wezterm.deb

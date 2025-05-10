@@ -3,6 +3,8 @@
 set -e
 set -f
 
+export DEBIAN_FRONTEND=noninteractive
+
 if command -v apt 2>&1 >/dev/null; then
   wget -O- raulbrennersc.dev/dotfiles/install-debian.sh | bash -s
 elif command -v pacman 2>&1 >/dev/null; then
@@ -64,8 +66,6 @@ echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
 sudo dconf update
 
-sudo chsh $USER -s /usr/bin/zsh
-
 echo "Install oh-my-zsh"
 curl -L http://install.ohmyz.sh | sh
 
@@ -75,6 +75,8 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.zprofile ~/.zprofile
+
+sudo chsh -s $(which zsh) $(whoami)
 
 sudo usermod -aG docker $USER
 newgrp docker
