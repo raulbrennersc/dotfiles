@@ -37,6 +37,7 @@ ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
 cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/autostart/solaar.desktop
+cp ~/dotfiles/.config/autostart/startup.desktop ~/.config/autostart/startup.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
 

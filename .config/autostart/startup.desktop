@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Startup
+GenericName=Startup script
+Comment=Startup script to set configurations on login
+Exec=sh -c "~/dotfiles/scripts/startup.sh"
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true

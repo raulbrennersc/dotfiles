@@ -146,12 +146,12 @@ devcontainer_exec() {
 
 devcontainer_proxy() {
   local port=$(echo "select port from devcontainers d where d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  ssh -o ForwardAgent=yes -W localhost:$port dev@localhost -p "$port"
+  ssh -YA -W localhost:$port dev@localhost -p "$port"
 }
 
 devcontainer_ssh() {
   local port=$(echo "select port from devcontainers d where d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  ssh -o ForwardAgent=yes -o User=$DEVCONTAINER_USER dev@localhost -p "$port"
+  ssh -YA -o User=$DEVCONTAINER_USER dev@localhost -p "$port"
 }
 
 devcontainer_connect() {
