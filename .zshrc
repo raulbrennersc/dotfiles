@@ -14,6 +14,7 @@ alias tmux="tmux new-session -A -s $USER"
 alias gca="git add -A && git commit -m"
 alias gc="git commit -m"
 alias gs="git status"
+alias sqlite=sqlite3
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -44,4 +45,9 @@ if [ -d "$HOME/.nvm/" ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+
+if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+  tmux
 fi
