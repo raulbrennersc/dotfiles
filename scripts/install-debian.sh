@@ -7,7 +7,12 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
-  gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3
+  gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
+  gnome-shell-extension-appindicator gnome-shell-extension-dashtodock \
+  gnome-shell-extension-caffeine gnome-shell-extension-system-monitor \
+  gnome-shell-extension-blur-my-shell gnome-shell-extension-gsconnect \
+  gnome-shell-extension-manager gnome-shell-extension-tiling-assistant \
+  qbittorrent
 
 sudo systemctl restart systemd-resolved.service
 

@@ -2,9 +2,9 @@
 dynamic-workspaces=false
 
 [org/gnome/shell]
-enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'Move_Clock@rmy.pobox.com', 'blur-my-shell@aunetx', 'tactile@lundal.io', 'color-picker@tuberry', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'Move_Clock@rmy.pobox.com', 'blur-my-shell@aunetx', 'color-picker@tuberry', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'ubuntu-appindicators@ubuntu.com', 'tiling-assistant@leleat-on-github', 'gsconnect@andyholmes.github.io']
 disable-user-extensions=false
-favorite-apps= ['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'librewolf.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'spotify.desktop', 'postman.desktop', 'steam.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
+favorite-apps= ['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'steam.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'google-chrome.desktop', org.gnome.Settings.desktop']
 
 
 [org/gnome/shell/keybindings]
@@ -20,7 +20,7 @@ exec='wezterm'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'
-num-workspaces=4
+num-workspaces=2
 
 [org/gnome/desktop/wm/keybindings]
 activate-window-menu=@as []
@@ -82,5 +82,5 @@ sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gno
 enabled=false
 
 [org/gnome/Console]
-custom-font='Hack Nerd Font 12'
+custom-font='Hack Nerd Font 18'
 

@@ -35,7 +35,7 @@ devcontainer() {
     ;;
 
   "connect")
-    devcontainer_connect
+    devcontainer_connect $2
     ;;
 
   "test")
@@ -109,7 +109,7 @@ devcontainer_up() {
   $CONTAINER_ENGINE run -d --privileged --name $container_name \
     --volume /home/$USER/workspaces/$1:/workspaces --volume /var/run/docker.sock:/var/run/docker.sock \
     --network=host --restart=always --dns=127.0.0.53 \
-    --env CUSTOM_SSH_PORT=$available_port --env KEY_TO_AUTHORIZE="$key_to_authorize" --env DEVCONTAINER_NAME=$1 \
+    --env CUSTOM_SSH_PORT=$available_port --env KEY_TO_AUTHORIZE="$key_to_authorize" --env DEVCONTAINER_NAME="$1" \
     $DEVCONTAINER_IMAGE
 
   echo "Updating devcontainers db entries"
@@ -160,6 +160,10 @@ devcontainer_ssh() {
 }
 
 devcontainer_connect() {
+  if ! [[ "$1" = "" ]]; then
+    devcontainer_ssh $(build_container_name $1)
+    exit 0
+  fi
   local names=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
   PS3="Select the devcontainer to connect: "
   names=(${names// /})
