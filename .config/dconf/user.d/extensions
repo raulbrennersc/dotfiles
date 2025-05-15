@@ -48,7 +48,7 @@ show-show-apps-button=true
 show-trash=false
 transparency-mode='FIXED'
 
-[/org/gnome/shell/extensions/color-picker]
+[org/gnome/shell/extensions/color-picker]
 enable-shortcut=true
 color-picker-shortcut=['<Super>b']
 enable-systray=false
@@ -56,10 +56,10 @@ enable-systray=false
 [org/gnome/shell/extensions/blur-my-shell/applications]
 blur=false
 
-[/org/gnome/shell/extensions/blur-my-shell/dash-to-dock]
+[org/gnome/shell/extensions/blur-my-shell/dash-to-dock]
 blur=false
 
-[/org/gnome/shell/extensions/system-monitor]
+[org/gnome/shell/extensions/system-monitor]
 show-memory=true
 show-cpu=true
 show-download=false
@@ -67,7 +67,7 @@ show-upload=false
 show-swap=false
 
 
-[/org/gnome/shell/extensions/system-monitor/tiling-assistant]
+[org/gnome/shell/extensions/system-monitor/tiling-assistant]
 activate-layout0=@as []
 activate-layout1=['<Super>e']
 activate-layout2=['<Super>w']
