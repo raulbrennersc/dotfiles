@@ -2,10 +2,9 @@
 dynamic-workspaces=false
 
 [org/gnome/shell]
-enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'caffeine@patapon.info', 'rounded-window-corners@fxgn', 'clipboard-indicator@tudmotu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'Move_Clock@rmy.pobox.com', 'blur-my-shell@aunetx', 'color-picker@tuberry', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'ubuntu-appindicators@ubuntu.com', 'tiling-assistant@leleat-on-github', 'gsconnect@andyholmes.github.io']
+enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'rounded-window-corners@fxgn', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'color-picker@tuberry', 'ubuntu-appindicators@ubuntu.com', 'tiling-assistant@leleat-on-github']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'steam.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'google-chrome.desktop', 'org.gnome.Settings.desktop']
-
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'chromium.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -49,7 +48,7 @@ unmaximize=['<Super>Down', '<Alt>F5']
 accel-profile='flat'
 
 [org/gnome/desktop/input-sources]
-xkb-options=['terminate:ctrl_alt_bksp', 'lv3:menu_switch', 'compose:ralt']
+xkb-options=['terminate:ctrl_alt_bksp', 'lv3:menu_switch', 'compose:ralt', 'caps:escape']
 
 [org/gnome/desktop/interface]
 clock-format='24h'

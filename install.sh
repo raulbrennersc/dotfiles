@@ -47,7 +47,7 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity
+flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity re.sonny.Junction
 
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64

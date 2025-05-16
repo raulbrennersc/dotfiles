@@ -8,19 +8,17 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   solaar cargo papirus-icon-theme gnome-themes-extra fastfetch cava extrepo \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
-  gnome-shell-extension-appindicator gnome-shell-extension-dashtodock \
-  gnome-shell-extension-caffeine gnome-shell-extension-system-monitor \
-  gnome-shell-extension-blur-my-shell gnome-shell-extension-gsconnect \
+  gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
   gnome-shell-extension-manager gnome-shell-extension-tiling-assistant \
-  qbittorrent
+  qbittorrent chromium
 
 sudo systemctl restart systemd-resolved.service
 
 # TODO: Replace manual install for extrepo packages:
 # echo "Add extrepo repositories"
-# sudo extrepo enable librewolf docker google-chrome spotify steam
+# sudo extrepo enable librewolf docker spotify
 # echo "Install packages from extrepo"
-# sudo apt-get install -y google-chrome spotify-client steam librewolf \
+# sudo apt-get install -y spotify-client librewolf \
 #   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Add extrepo repositories"
@@ -45,17 +43,7 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.d
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-echo "Install Google Chrome"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
-sudo apt-get install ./chrome.deb -y
-rm -rf ./chrome.deb
-
 echo "Install Spotify"
 curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client
-
-echo "Install Steam"
-wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
-sudo apt-get install ./steam.deb -y
-rm -rf ./steam.deb
