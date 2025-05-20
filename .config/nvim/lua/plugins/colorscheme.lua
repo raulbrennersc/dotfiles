@@ -23,10 +23,14 @@ return {
     priority = 1000,
     config = config_moonfly,
   },
-  {
+    {
     "LazyVim/LazyVim",
+        event = "VeryLazy",
+
     opts = {
       colorscheme = "moonfly",
     },
   },
+
 }
+
