@@ -10,7 +10,7 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
   gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
   gnome-shell-extension-manager gnome-shell-extension-tiling-assistant \
-  qbittorrent chromium
+  gnome-authenticator qbittorrent chromium
 
 sudo systemctl restart systemd-resolved.service
 

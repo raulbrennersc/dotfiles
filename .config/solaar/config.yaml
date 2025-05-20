@@ -42,7 +42,7 @@
   report_rate: 1
   rgb_control: 1
   rgb_zone_1: !LEDEffectSetting {ID: 1, color: 10494192, intensity: 0, period: 100, ramp: 0, speed: 0}
-- _NAME: MX Mechanical Mini
+- _NAME: MX MCHNCL M
   _absent: [hi-res-scroll, lowres-scroll-mode, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, scroll-ratchet, smart-shift, thumb-scroll-invert,
     thumb-scroll-mode, onboard_profiles, report_rate, report_rate_extended, pointer_speed, dpi, dpi_extended, speed-change, backlight_level, backlight_duration_hands_out,
     backlight_duration_hands_in, backlight_duration_powered, backlight-timed, led_control, led_zone_, rgb_control, rgb_zone_, brightness_control, per-key-lighting,
@@ -50,6 +50,7 @@
     gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B36700000000
+  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
   _serial: 4D181A0D
   _unitId: 4D181A0D
   _wpid: B367

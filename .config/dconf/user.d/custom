@@ -14,9 +14,6 @@ switch-to-application-3=@as []
 switch-to-application-4=@as []
 toggle-message-tray=@as []
 
-[org/gnome/desktop/default-applications/terminal]
-exec='wezterm'
-
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'
 num-workspaces=2
@@ -81,5 +78,7 @@ sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gno
 enabled=false
 
 [org/gnome/Console]
-custom-font='Hack Nerd Font 18'
+custom-font='Hack Nerd Font 14'
 
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-type='nothing'
