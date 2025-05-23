@@ -5,6 +5,7 @@ dynamic-workspaces=false
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'rounded-window-corners@fxgn', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'color-picker@tuberry', 'ubuntu-appindicators@ubuntu.com', 'tiling-assistant@leleat-on-github']
 disable-user-extensions=false
 favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'chromium.desktop']
+last-selected-profile='performance'
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -48,6 +49,7 @@ accel-profile='flat'
 xkb-options=['terminate:ctrl_alt_bksp', 'lv3:menu_switch', 'compose:ralt', 'caps:escape']
 
 [org/gnome/desktop/interface]
+show-battery-percentage=true
 clock-format='24h'
 clock-show-seconds=true
 color-scheme='prefer-dark'
@@ -78,7 +80,13 @@ sort-order=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'org.gno
 enabled=false
 
 [org/gnome/Console]
+use-system-font=false
 custom-font='Hack Nerd Font 14'
 
 [org/gnome/settings-daemon/plugins/power]
+sleep-inactive-battery-type='nothing'
 sleep-inactive-ac-type='nothing'
+power-button-action='nothing'
+
+[org/gnome/desktop/session]
+idle-delay=uint32 0
