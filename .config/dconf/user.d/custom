@@ -4,9 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'rounded-window-corners@fxgn', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'color-picker@tuberry', 'ubuntu-appindicators@ubuntu.com', 'tiling-assistant@leleat-on-github']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'chromium.desktop']
-last-selected-profile='performance'
-
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'chromium.desktop']
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
 switch-to-application-1=@as []
@@ -14,6 +12,7 @@ switch-to-application-2=@as []
 switch-to-application-3=@as []
 switch-to-application-4=@as []
 toggle-message-tray=@as []
+show-screenshot-ui=['<Shift><Super>s']
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close:appmenu'

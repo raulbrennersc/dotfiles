@@ -10,12 +10,21 @@ if wezterm.config_builder then
 end
 local color_scheme_name = "Moonfly (Gogh)"
 local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
--- color_scheme.background = "black"
 local background_color = color_scheme.background
 config.color_scheme = color_scheme_name
 if transparent then
 	config.window_background_opacity = 0.9
 	background_color = "transparent"
+end
+
+-- WTF why lua doesn't have built in string.split?!?!?!? I DON'T KNOW
+-- split hack
+local function split(input, separator)
+	local t = {}
+	for str in string.gmatch(input, "([^" .. separator .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
 end
 
 color_scheme.cursor_border = "#80a0ff"
@@ -49,11 +58,11 @@ config.color_schemes = {
 }
 
 config.font = wezterm.font({
-	family = "JetBrainsMono Nerd Font",
+	family = "Hack Nerd Font",
 })
 config.font_size = 15
 config.window_decorations = "NONE"
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.default_workspace = user
@@ -65,11 +74,28 @@ config.window_padding = {
 	right = "0.2cell",
 }
 
+config.ssh_domains = {}
 config.unix_domains = {
 	{
 		name = user,
 	},
 }
+
+local handle = io.popen("devcontainer list")
+local devcontainers = split(string.gsub(handle:read("*a"), "\n", ""), " ")
+handle:close()
+
+for _, devcontainer in pairs(devcontainers) do
+	local name = split(devcontainer, "|")[1]
+	local port = split(devcontainer, "|")[2]
+	local domain = {
+		name = name,
+		remote_address = "localhost:" .. port,
+		username = "dev",
+	}
+
+	table.insert(config.ssh_domains, domain)
+end
 
 config.default_gui_startup_args = { "connect", user }
 
@@ -167,24 +193,23 @@ end)
 
 config.scrollback_lines = 90000
 
--- config.leader = {
--- 	key = "a",
--- 	mods = "CTRL",
--- 	timeout_milliseconds = 2000,
--- }
+config.leader = {
+	key = "a",
+	mods = "CTRL",
+	timeout_milliseconds = 2000,
+}
 
 local muxDomains = {}
 local status, allDomains = pcall(wezterm.mux.all_domains)
 if not status then
 	allDomains = {}
 end
-print(wezterm.mux.all_domains)
-for index, value in ipairs(allDomains) do
-	print(value:name())
-	local isMux = string.find(value:name(), "SSHMUX")
+
+for _, value in ipairs(allDomains) do
+	-- local isMux = string.find(value:name(), "SSHMUX")
 	local isDevcontainer = string.find(value:name(), ".devcontainer")
 	local isFromuser = value:name() == user
-	if (isMux and isDevcontainer) or isFromuser then
+	if isDevcontainer or isFromuser then
 		local muxDomain = {
 			label = value:name(),
 		}
@@ -197,7 +222,7 @@ config.keys = {
 		key = "d",
 		mods = "LEADER",
 		action = act.InputSelector({
-			action = wezterm.action_callback(function(window, pane, id, label)
+			action = wezterm.action_callback(function(window, pane, _, label)
 				window:perform_action(
 					wezterm.action({
 						SwitchToWorkspace = {

@@ -34,6 +34,10 @@ devcontainer() {
     devcontainer_proxy $2
     ;;
 
+  "list")
+    devcontainer_list $2
+    ;;
+
   "connect")
     devcontainer_connect $2
     ;;
@@ -75,7 +79,7 @@ build_container_name() {
   echo "${1}.devcontainer"
 }
 
-get_avilable_port() {
+get_next_available_port() {
   IN=$(echo "select port from devcontainers;" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
   local ports=(${IN// /})
   declare -i port=2222
@@ -90,16 +94,15 @@ get_avilable_port() {
 }
 
 check_name_exists() {
-  IN=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  local names=(${IN// /})
-  if [[ " ${names[*]} " =~ [[:space:]]$1[[:space:]] ]]; then
+  IN=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE' and d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  if ! [ -n "$IN" ]; then
     echo "error: a devcontiner with name $1 already exists"
     exit 1
   fi
 }
 
 devcontainer_up() {
-  local available_port=$(get_avilable_port)
+  local available_port=$(get_next_available_port)
   check_name_exists $1
   local key_to_authorize="$(cat ~/.ssh/id_ed25519.pub)"
   local container_name=$(build_container_name $1)
@@ -157,6 +160,11 @@ devcontainer_proxy() {
 devcontainer_ssh() {
   local port=$(devcontainer_port $1)
   ssh -YA -o User=$DEVCONTAINER_USER dev@localhost -p "$port"
+}
+
+devcontainer_list() {
+  local names=$(echo "select name,port from devcontainers d where d.engine='$CONTAINER_ENGINE';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  echo $names
 }
 
 devcontainer_connect() {

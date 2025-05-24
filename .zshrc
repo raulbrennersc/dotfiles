@@ -48,6 +48,6 @@ if [ -d "$HOME/.nvm/" ]; then
 fi
 
 
-if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
-  tmux
-fi
+# if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then
+#   tmux
+# fi
