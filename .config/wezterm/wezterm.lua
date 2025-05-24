@@ -104,8 +104,14 @@ for _, devcontainer in pairs(devcontainers) do
 	local port = split(devcontainer, "|")[2]
 	local domain = {
 		name = name,
-		remote_address = "localhost:" .. port,
-		username = "dev",
+		remote_address = "localhost",
+		ssh_option = {
+			hostname = "localhost",
+			user = "dev",
+			forwardx11 = "yes",
+			forwardagent = "yes",
+			port = port,
+		},
 	}
 
 	table.insert(config.ssh_domains, domain)
@@ -115,7 +121,6 @@ config.default_gui_startup_args = { "connect", hostname }
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
-local SOLID_RIGHT_ARROW_INVERSE = wezterm.nerdfonts.ple_left_hard_divider_inverse
 
 local function tab_title(tab_info)
 	local title = tab_info.tab_title
@@ -178,7 +183,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, event_config)
 	end
 
 	-- tab title
-	title = wezterm.truncate_right(title, event_config.tab_max_width - 3)
+	title = wezterm.truncate_right(title, event_config.tab_max_width - 4)
 	table.insert(tab_content, { Background = { Color = background } })
 	table.insert(tab_content, { Foreground = { Color = foreground } })
 	table.insert(tab_content, { Text = " " .. title .. " " })
