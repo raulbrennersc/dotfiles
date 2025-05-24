@@ -4,6 +4,7 @@ local mux = wezterm.mux
 local config = {}
 local user = os.getenv("USER")
 local transparent = false
+local hostname = wezterm.hostname()
 
 if wezterm.config_builder then
 	config = wezterm.config_builder()
@@ -40,7 +41,11 @@ color_scheme.tab_bar = {
 	active_tab = {
 		bg_color = "#80a0ff",
 		fg_color = color_scheme.background,
-		intensity = "Bold",
+	},
+	inactive_tab_hover = {
+		italic = false,
+		bg_color = "#303030",
+		fg_color = "#80a0ff",
 	},
 	inactive_tab = {
 		bg_color = "#303030",
@@ -50,7 +55,16 @@ color_scheme.tab_bar = {
 		bg_color = background_color,
 		fg_color = "#80a0ff",
 	},
+	new_tab_hover = {
+		bg_color = "#303030",
+		fg_color = "#80a0ff",
+	},
 	background = background_color,
+}
+
+config.inactive_pane_hsb = {
+	saturation = 1,
+	brightness = 1,
 }
 
 config.color_schemes = {
@@ -77,7 +91,7 @@ config.window_padding = {
 config.ssh_domains = {}
 config.unix_domains = {
 	{
-		name = user,
+		name = hostname,
 	},
 }
 
@@ -97,10 +111,11 @@ for _, devcontainer in pairs(devcontainers) do
 	table.insert(config.ssh_domains, domain)
 end
 
-config.default_gui_startup_args = { "connect", user }
+config.default_gui_startup_args = { "connect", hostname }
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+local SOLID_RIGHT_ARROW_INVERSE = wezterm.nerdfonts.ple_left_hard_divider_inverse
 
 local function tab_title(tab_info)
 	local title = tab_info.tab_title
@@ -110,7 +125,11 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, _, config_from_event)
+handle = io.popen("cat /etc/os-release")
+local os_release = string.gsub(handle:read("*a"), "\n", "")
+handle:close()
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, event_config)
 	local background = color_scheme.tab_bar.inactive_tab.bg_color
 	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
 	local edge_background = background
@@ -118,6 +137,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, config_from_event)
 	local is_first_tab = tab.tab_index == 0
 	local is_active = tab.is_active
 	local is_previous_active = not is_first_tab and tabs[tab.tab_index].is_active
+	local is_next_active = not is_last_tab and tabs[tab.tab_index + 1].is_active
 
 	if is_active then
 		edge_background = color_scheme.tab_bar.inactive_tab.bg_color
@@ -129,32 +149,47 @@ wezterm.on("format-tab-title", function(tab, tabs, _, config_from_event)
 	local title = tab_title(tab)
 
 	local tab_content = {}
-
-	if not is_first_tab and is_active then
-		table.insert(tab_content, { Background = { Color = edge_foreground } })
-		table.insert(tab_content, { Foreground = { Color = edge_background } })
-		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW .. " " })
-	else
-		table.insert(tab_content, { Background = { Color = background } })
-		table.insert(tab_content, { Foreground = { Color = foreground } })
-		if is_first_tab or is_previous_active then
-			table.insert(tab_content, { Text = " " })
-		else
-			table.insert(tab_content, { Text = " " })
-		end
+	local os_icon = ""
+	if string.find(panes[1].domain_name, ".devcontainer") then
+		os_icon = ""
+	elseif string.find(os_release, "arch") then
+		os_icon = ""
+	elseif string.find(os_release, "debian") then
+		os_icon = ""
 	end
 
-	title = wezterm.truncate_right(title, config_from_event.tab_max_width - 3)
+	-- show OS icon
+	if is_first_tab then
+		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.inactive_tab.bg_color } })
+		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.inactive_tab.fg_color } })
+		table.insert(tab_content, { Text = " " .. os_icon .. " " })
+		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.inactive_tab.bg_color } })
+		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
+		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.background } })
+		table.insert(tab_content, { Background = { Color = background } })
+		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
+
+	-- left tab separator
+	else
+		table.insert(tab_content, { Background = { Color = edge_foreground } })
+		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.background } })
+		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
+	end
+
+	-- tab title
+	title = wezterm.truncate_right(title, event_config.tab_max_width - 3)
 	table.insert(tab_content, { Background = { Color = background } })
 	table.insert(tab_content, { Foreground = { Color = foreground } })
-	table.insert(tab_content, { Text = title })
+	table.insert(tab_content, { Text = " " .. title .. " " })
 
-	if is_last_tab then
-		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+	-- right tab separator
+	table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+	if is_active then
+		table.insert(tab_content, { Foreground = { Color = edge_foreground } })
 	else
-		table.insert(tab_content, { Background = { Color = edge_background } })
+		table.insert(tab_content, { Foreground = { Color = edge_background } })
 	end
-	table.insert(tab_content, { Foreground = { Color = edge_foreground } })
 	table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
 
 	return tab_content
@@ -163,12 +198,17 @@ end)
 wezterm.on("update-right-status", function(window, pane)
 	local cells = {
 		{
-			text = wezterm.strftime("%a %b %-d %H:%M") .. " ",
+			text = " " .. user .. " ",
+			bg = color_scheme.background,
+			fg = color_scheme.tab_bar.inactive_tab.fg_color,
+		},
+		{
+			text = "󱩛 " .. pane:get_domain_name() .. " ",
 			bg = color_scheme.tab_bar.inactive_tab.bg_color,
 			fg = color_scheme.tab_bar.inactive_tab.fg_color,
 		},
 		{
-			text = pane:get_domain_name(),
+			text = " " .. wezterm.strftime("%b %-d  %H:%M") .. " ",
 			bg = color_scheme.tab_bar.active_tab.bg_color,
 			fg = color_scheme.tab_bar.active_tab.fg_color,
 		},
@@ -199,22 +239,23 @@ config.leader = {
 	timeout_milliseconds = 2000,
 }
 
-local muxDomains = {}
-local status, allDomains = pcall(wezterm.mux.all_domains)
-if not status then
-	allDomains = {}
-end
-
-for _, value in ipairs(allDomains) do
-	-- local isMux = string.find(value:name(), "SSHMUX")
-	local isDevcontainer = string.find(value:name(), ".devcontainer")
-	local isFromuser = value:name() == user
-	if isDevcontainer or isFromuser then
-		local muxDomain = {
-			label = value:name(),
-		}
-		table.insert(muxDomains, muxDomain)
+local function get_mux_domains()
+	local mux_domains = {}
+	local status, all_domains = pcall(wezterm.mux.all_domains)
+	if not status then
+		all_domains = {}
 	end
+
+	for _, value in ipairs(all_domains) do
+		local is_devcontainer = string.find(value:name(), ".devcontainer")
+		local is_host = value:name() == hostname
+		if is_devcontainer or is_host then
+			table.insert(mux_domains, {
+				label = value:name(),
+			})
+		end
+	end
+	return mux_domains
 end
 
 config.keys = {
@@ -235,8 +276,9 @@ config.keys = {
 					pane
 				)
 			end),
+			description = "Select domain",
 			title = "Select domain",
-			choices = muxDomains,
+			choices = get_mux_domains(),
 		}),
 	},
 	{

@@ -53,7 +53,7 @@ devcontainer() {
 }
 
 devcontainer_test() {
-  echo "test"
+  echo $@
 }
 
 check_and_setup() {
@@ -93,19 +93,20 @@ get_next_available_port() {
   echo $port
 }
 
-check_name_exists() {
-  IN=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE' and d.name='$1';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
-  if ! [ -n "$IN" ]; then
+validate_container_name() {
+  local container_name=$(build_container_name $1)
+  IN=$(echo "select name from devcontainers d where d.engine='$CONTAINER_ENGINE' and d.name='$container_name';" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH)
+  if [ -n "$IN" ]; then
     echo "error: a devcontiner with name $1 already exists"
     exit 1
   fi
 }
 
 devcontainer_up() {
-  local available_port=$(get_next_available_port)
-  check_name_exists $1
-  local key_to_authorize="$(cat ~/.ssh/id_ed25519.pub)"
+  validate_container_name $1
   local container_name=$(build_container_name $1)
+  local available_port=$(get_next_available_port)
+  local key_to_authorize="$(cat ~/.ssh/id_ed25519.pub)"
 
   mkdir -p ~/workspaces/$1
   echo "Creating devcontainer $container_name"
