@@ -3,18 +3,18 @@ local act = wezterm.action
 local mux = wezterm.mux
 local config = {}
 local user = os.getenv("USER")
-local transparent = false
 local hostname = wezterm.hostname()
+local transparent = false
 
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 local color_scheme_name = "Moonfly (Gogh)"
 local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
-local background_color = color_scheme.background
 config.color_scheme = color_scheme_name
+local background_color = color_scheme.background
 if transparent then
-	config.window_background_opacity = 0.9
+	config.window_background_opacity = 0.85
 	background_color = "transparent"
 end
 
@@ -36,11 +36,11 @@ config.animation_fps = 60
 
 config.default_cursor_style = "BlinkingUnderline"
 config.cursor_blink_rate = 400
-config.tab_max_width = 20
+config.tab_max_width = 25
 color_scheme.tab_bar = {
 	active_tab = {
 		bg_color = "#80a0ff",
-		fg_color = color_scheme.background,
+		fg_color = background_color,
 	},
 	inactive_tab_hover = {
 		italic = false,
@@ -121,6 +121,7 @@ config.default_gui_startup_args = { "connect", hostname }
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+local SOLID_INVERSE_RIGHT_ARROW = wezterm.nerdfonts.ple_left_hard_divider_inverse
 
 local function tab_title(tab_info)
 	local title = tab_info.tab_title
@@ -134,106 +135,104 @@ handle = io.popen("cat /etc/os-release")
 local os_release = string.gsub(handle:read("*a"), "\n", "")
 handle:close()
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, event_config)
-	local background = color_scheme.tab_bar.inactive_tab.bg_color
-	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
-	local edge_background = background
-	local is_last_tab = tab.tab_index == (#tabs - 1)
-	local is_first_tab = tab.tab_index == 0
+wezterm.on("format-tab-title", function(tab, _, _, event_config)
+	local background = color_scheme.tab_bar.active_tab.bg_color
+	local foreground = color_scheme.tab_bar.active_tab.fg_color
 	local is_active = tab.is_active
-	local is_previous_active = not is_first_tab and tabs[tab.tab_index].is_active
-	local is_next_active = not is_last_tab and tabs[tab.tab_index + 1].is_active
 
-	if is_active then
-		edge_background = color_scheme.tab_bar.inactive_tab.bg_color
-		background = color_scheme.tab_bar.active_tab.bg_color
-		foreground = color_scheme.tab_bar.active_tab.fg_color
+	if not is_active then
+		background = color_scheme.tab_bar.inactive_tab.bg_color
+		foreground = color_scheme.tab_bar.inactive_tab.fg_color
 	end
 
-	local edge_foreground = background
 	local title = tab_title(tab)
 
 	local tab_content = {}
-	local os_icon = ""
-	if string.find(panes[1].domain_name, ".devcontainer") then
-		os_icon = ""
-	elseif string.find(os_release, "arch") then
-		os_icon = ""
-	elseif string.find(os_release, "debian") then
-		os_icon = ""
-	end
-
-	-- show OS icon
-	if is_first_tab then
-		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.inactive_tab.bg_color } })
-		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.inactive_tab.fg_color } })
-		table.insert(tab_content, { Text = " " .. os_icon .. " " })
-		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.inactive_tab.bg_color } })
-		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
-		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
-		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.background } })
-		table.insert(tab_content, { Background = { Color = background } })
-		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
-
 	-- left tab separator
-	else
-		table.insert(tab_content, { Background = { Color = edge_foreground } })
-		table.insert(tab_content, { Foreground = { Color = color_scheme.tab_bar.background } })
-		table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
-	end
+	table.insert(tab_content, { Foreground = { Color = background } })
+	table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+	table.insert(tab_content, { Text = SOLID_INVERSE_RIGHT_ARROW })
 
 	-- tab title
-	title = wezterm.truncate_right(title, event_config.tab_max_width - 4)
+	title = wezterm.truncate_right(title, event_config.tab_max_width - 1)
 	table.insert(tab_content, { Background = { Color = background } })
 	table.insert(tab_content, { Foreground = { Color = foreground } })
 	table.insert(tab_content, { Text = " " .. title .. " " })
 
 	-- right tab separator
 	table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
-	if is_active then
-		table.insert(tab_content, { Foreground = { Color = edge_foreground } })
-	else
-		table.insert(tab_content, { Foreground = { Color = edge_background } })
-	end
+	table.insert(tab_content, { Foreground = { Color = background } })
 	table.insert(tab_content, { Text = SOLID_RIGHT_ARROW })
 
 	return tab_content
 end)
 
-wezterm.on("update-right-status", function(window, pane)
-	local cells = {
+wezterm.on("update-status", function(window, pane)
+	local os_icon = ""
+	if string.find(pane:get_domain_name(), ".devcontainer") then
+		os_icon = ""
+	elseif string.find(os_release, "arch") then
+		os_icon = ""
+	elseif string.find(os_release, "debian") then
+		os_icon = ""
+	end
+	local left_status = {
+		{ Background = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
+		{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.fg_color } },
+		{ Text = " " .. os_icon .. " " },
+		{ Background = { Color = color_scheme.tab_bar.background } },
+		{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
+		{ Text = SOLID_RIGHT_ARROW },
+	}
+
+	local right_status_cells = {
+		-- {
+		-- 	text = " " .. user .. " ",
+		-- bg = background_color,
+		-- fg = color_scheme.tab_bar.inactive_tab.fg_color,
+		-- },
 		{
-			text = " " .. user .. " ",
-			bg = color_scheme.background,
+			first = true,
+			text = "󱩛 " .. pane:get_domain_name() .. " ",
+			bg = color_scheme.tab_bar.background,
 			fg = color_scheme.tab_bar.inactive_tab.fg_color,
 		},
 		{
-			text = "󱩛 " .. pane:get_domain_name() .. " ",
+			text = " " .. wezterm.strftime("%-d/%b") .. " ",
 			bg = color_scheme.tab_bar.inactive_tab.bg_color,
 			fg = color_scheme.tab_bar.inactive_tab.fg_color,
 		},
 		{
-			text = " " .. wezterm.strftime("%b %-d  %H:%M") .. " ",
+			text = wezterm.strftime(" %H:%M") .. " ",
 			bg = color_scheme.tab_bar.active_tab.bg_color,
 			fg = color_scheme.tab_bar.active_tab.fg_color,
 		},
 	}
 
-	local elements = {}
+	local right_status = {}
 	local function push(cell)
-		table.insert(elements, { Foreground = { Color = cell.bg } })
-		table.insert(elements, { Text = SOLID_LEFT_ARROW })
-		table.insert(elements, { Foreground = { Color = cell.fg } })
-		table.insert(elements, { Background = { Color = cell.bg } })
-		table.insert(elements, { Text = " " .. cell.text })
+		if not cell.first then
+			table.insert(right_status, { Foreground = { Color = cell.bg } })
+			table.insert(right_status, { Text = SOLID_LEFT_ARROW })
+		end
+		table.insert(right_status, { Foreground = { Color = cell.fg } })
+		table.insert(right_status, { Background = { Color = cell.bg } })
+		table.insert(right_status, { Text = " " .. cell.text })
+
+		-- table.insert(right_status, { Foreground = { Color = cell.bg } })
+		-- table.insert(right_status, { Text = SOLID_LEFT_ARROW })
+		-- table.insert(right_status, { Foreground = { Color = cell.fg } })
+		-- table.insert(right_status, { Background = { Color = cell.bg } })
+		-- table.insert(right_status, { Text = " " .. cell.text })
 	end
 
-	while #cells > 0 do
-		local cell = table.remove(cells, 1)
+	while #right_status_cells > 0 do
+		local cell = table.remove(right_status_cells, 1)
 		push(cell)
 	end
 
-	window:set_right_status(wezterm.format(elements))
+	window:set_left_status(wezterm.format(left_status))
+	window:set_right_status(wezterm.format(right_status))
 end)
 
 config.scrollback_lines = 90000

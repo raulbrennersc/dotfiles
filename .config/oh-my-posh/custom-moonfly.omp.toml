@@ -1,5 +1,7 @@
 "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
-console_title_template = "{{regexReplaceAll \"(.)(/.*/)\" .PWD \"${1}/../\"}}"
+# console_title_template = "{{regexReplaceAll \"(.)(/.*/)\" .PWD \"${1}/../\"}}"
+# console_title_template = " {{.PWD}}"
+console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
 
 [transient_prompt]
@@ -15,24 +17,24 @@ type = "prompt"
   [[blocks.segments]]
   type = "os"
   style = "diamond"
-  background = "#80a0ff"
-  foreground = "#080808"
-  template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}}"
+  background = "#303030"
+  foreground = "#80a0ff"
+  template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
     [blocks.segments.properties]
-    macos = "mac"
+    macos = ""
 
   [[blocks.segments]]
   background = "#80a0ff"
   foreground = "#080808"
   powerline_symbol = ""
   style = "powerline"
-  template = "   {{ .Path }}"
+  template = " {{ .Path }} "
   type = "path"
 
     [blocks.segments.properties]
-    folder_separator_icon = "/"
-    style = "agnoster_short"
+    display_root=true
+    style = "letter"
 
   [[blocks.segments]]
   background = "#303030"
@@ -40,7 +42,7 @@ type = "prompt"
   powerline_symbol = ""
   style = "powerline"
   type = "git"
-  template = "({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}"
+  template = "({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
 
     [blocks.segments.properties]
     fetch_upstream_icon = true
@@ -55,22 +57,22 @@ type = "prompt"
   [[blocks.segments]]
   background = "#303030"
   foreground = "#80a0ff"
-  powerline_symbol = ""
-  style = "powerline"
-  template = "  {{ .FormattedMs }}s "
+  leading_diamond = ""
+  style = "diamond"
+  template = " 󰔛 {{ .FormattedMs }} "
   type = "executiontime"
 
     [blocks.segments.properties]
-    style = "dallas"
     threshold = 0
 
   [[blocks.segments]]
   background = "#80a0ff"
   foreground = "#080808"
+  leading_diamond = ""
   style = "diamond"
   type = "status"
   background_templates = [ "{{ if .Error }}#e91e63{{else}}#36c692{{ end }}" ]
-  template = "  "
+  template =  "{{ if .Error }} {{else}} {{ end }}" 
 
     [blocks.segments.properties]
     always_enabled = true
