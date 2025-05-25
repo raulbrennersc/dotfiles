@@ -9,8 +9,7 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
   gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
-  gnome-shell-extension-manager gnome-shell-extension-tiling-assistant \
-  gnome-authenticator qbittorrent chromium
+  gnome-shell-extension-manager gnome-authenticator qbittorrent chromium
 
 sudo systemctl restart systemd-resolved.service
 
