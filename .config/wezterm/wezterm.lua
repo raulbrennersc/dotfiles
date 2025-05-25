@@ -79,7 +79,6 @@ config.window_decorations = "NONE"
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.default_workspace = user
 
 config.window_padding = {
 	top = "0.3cell",
@@ -87,37 +86,6 @@ config.window_padding = {
 	left = "0.9cell",
 	right = "0.2cell",
 }
-
-config.ssh_domains = {}
-config.unix_domains = {
-	{
-		name = hostname,
-	},
-}
-
-local handle = io.popen("devcontainer list")
-local devcontainers = split(string.gsub(handle:read("*a"), "\n", ""), " ")
-handle:close()
-
-for _, devcontainer in pairs(devcontainers) do
-	local name = split(devcontainer, "|")[1]
-	local port = split(devcontainer, "|")[2]
-	local domain = {
-		name = name,
-		remote_address = "localhost",
-		ssh_option = {
-			hostname = "localhost",
-			user = "dev",
-			forwardx11 = "yes",
-			forwardagent = "yes",
-			port = port,
-		},
-	}
-
-	table.insert(config.ssh_domains, domain)
-end
-
-config.default_gui_startup_args = { "connect", hostname }
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
@@ -218,12 +186,6 @@ wezterm.on("update-status", function(window, pane)
 		table.insert(right_status, { Foreground = { Color = cell.fg } })
 		table.insert(right_status, { Background = { Color = cell.bg } })
 		table.insert(right_status, { Text = " " .. cell.text })
-
-		-- table.insert(right_status, { Foreground = { Color = cell.bg } })
-		-- table.insert(right_status, { Text = SOLID_LEFT_ARROW })
-		-- table.insert(right_status, { Foreground = { Color = cell.fg } })
-		-- table.insert(right_status, { Background = { Color = cell.bg } })
-		-- table.insert(right_status, { Text = " " .. cell.text })
 	end
 
 	while #right_status_cells > 0 do
@@ -242,6 +204,38 @@ config.leader = {
 	mods = "CTRL",
 	timeout_milliseconds = 2000,
 }
+
+config.ssh_domains = {}
+config.unix_domains = {
+	{
+		name = hostname,
+	},
+}
+
+local handle = io.popen("devcontainer list")
+local devcontainers = split(string.gsub(handle:read("*a"), "\n", ""), " ")
+handle:close()
+
+for _, devcontainer in pairs(devcontainers) do
+	local name = split(devcontainer, "|")[1]
+	local port = split(devcontainer, "|")[2]
+	local domain = {
+		name = name,
+		remote_address = "localhost",
+		ssh_option = {
+			hostname = "localhost",
+			user = "dev",
+			forwardx11 = "yes",
+			forwardagent = "yes",
+			port = port,
+		},
+	}
+
+	table.insert(config.ssh_domains, domain)
+end
+
+config.default_gui_startup_args = { "connect", hostname }
+config.default_workspace = hostname
 
 local function get_mux_domains()
 	local mux_domains = {}
