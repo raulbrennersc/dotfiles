@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 local config = {}
-local user = os.getenv("USER")
 local hostname = wezterm.hostname()
 local transparent = false
 

@@ -6,9 +6,16 @@ export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOST}}
 
 alias vi="nvim"
 alias tmux="tmux new-session -A -s $USER"
+
+alias gb="git branch"
 alias gca="git add -A && git commit -m"
 alias gc="git commit -m"
 alias gs="git status"
+alias gd="git diff"
+alias gp="git push"
+alias gu="git pull"
+alias gl="git log"
+
 alias sqlite=sqlite3
 
 zstyle ':completion:*' completer _complete _ignored

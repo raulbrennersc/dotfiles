@@ -25,13 +25,14 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
 echo "Create symlinks to dotfiles"
-mkdir -p ~/.config/dconf
 mkdir -p ~/.config/autostart
+mkdir -p ~/.config/dconf
 mkdir -p ~/.config/environment.d
+mkdir -p ~/.config/git
 mkdir -p ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.config/git/config ~/.config/git/config
+ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava

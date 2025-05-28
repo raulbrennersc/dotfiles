@@ -18,8 +18,8 @@ fi
 mkdir -p ~/.config
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.config/git/config ~/.config/git/config
+ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 mkdir -p ~/.docker
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 

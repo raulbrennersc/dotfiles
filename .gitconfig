@@ -1,7 +1,0 @@
-[push]
-	autoSetupRemote = true
-[user]
-	name = Raul Costa
-	email = raulbrennersc@gmail.com
-[init]
-	defaultBranch = main
