@@ -4,7 +4,8 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'ubuntu-appindicators@ubuntu.com', 'color-picker@tuberry']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'chromium.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'discord.desktop', 'com.rtosta.zapzap.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'google-chrome.desktop']
+
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
 switch-to-application-1=@as []
@@ -21,7 +22,7 @@ num-workspaces=2
 [org/gnome/desktop/wm/keybindings]
 activate-window-menu=@as []
 close=['<Super>q']
-maximize=['<Super>Up']
+maximize=['<Super>m']
 move-to-workspace-1=['<Shift><Super>1']
 move-to-workspace-2=['<Shift><Super>2']
 move-to-workspace-3=['<Shift><Super>3']

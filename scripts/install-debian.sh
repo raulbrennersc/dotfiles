@@ -9,7 +9,8 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
   gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
-  gnome-shell-extension-manager gnome-authenticator qbittorrent chromium
+  gnome-shell-extension-manager gnome-authenticator qbittorrent chromium \
+  alacritty
 
 sudo systemctl restart systemd-resolved.service
 
@@ -49,6 +50,16 @@ sudo apt-get install -y \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   spotify-client \
   wezterm-nightly
+
+echo "Install Google Chrome"
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
+sudo apt-get install ./chrome.deb -y
+rm -rf ./chrome.deb
+
+echo "Install Discord"
+wget https://discord.com/api/download?platform=linux -O discord.deb
+sudo apt-get install ./discord.deb -y
+rm -rf ./discord.deb
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz

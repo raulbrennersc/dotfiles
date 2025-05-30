@@ -32,6 +32,7 @@ mkdir -p ~/.config/git
 mkdir -p ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.config/git/config ~/.config/git/config
+ln -s ~/dotfiles/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
@@ -48,7 +49,7 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity re.sonny.Junction
+flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity re.sonny.Junction com.rtosta.zapzap
 
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
