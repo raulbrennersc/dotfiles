@@ -20,7 +20,7 @@ return {
 
     vim.o.laststatus = vim.g.lualine_laststatus
 
-    local opts = {
+    return {
       options = {
         theme = "auto",
         globalstatus = vim.o.laststatus == 3,
@@ -98,46 +98,5 @@ return {
       },
       extensions = { "neo-tree", "lazy", "fzf" },
     }
-
-    -- do not add trouble symbols if aerial is enabled
-    -- And allow it to be overriden for some buffer types (see autocmds)
-    if vim.g.trouble_lualine and LazyVim.has("trouble.nvim") then
-      local trouble = require("trouble")
-      local symbols = trouble.statusline({
-        mode = "symbols",
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = "{kind_icon}{symbol.name:Normal}",
-        hl_group = "lualine_c_normal",
-      })
-      function dump(o)
-        if type(o) == "table" then
-          local s = "{ "
-          for k, v in pairs(o) do
-            if type(k) ~= "number" then
-              k = '"' .. k .. '"'
-            end
-            s = s .. "[" .. k .. "] = " .. dump(v) .. ","
-          end
-          return s .. "} "
-        else
-          return tostring(o)
-        end
-      end
-      function get_symbol()
-        -- for some reason this character causes a weird color block in lualine, I have no idea why
-        return string.gsub(symbols.get(), "%* ", "a ")
-      end
-
-      table.insert(opts.sections.lualine_c, {
-        symbols and get_symbol,
-        cond = function()
-          return vim.b.trouble_lualine ~= false and symbols.has()
-        end,
-      })
-    end
-
-    return opts
   end,
 }
