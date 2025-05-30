@@ -44,17 +44,17 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
 
+echo "-- MoreWaita"
+curl -s https://julianfairfax.codeberg.page/package-repo/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/julians-package-repo.gpg
+echo 'deb [ signed-by=/usr/share/keyrings/julians-package-repo.gpg ] https://julianfairfax.codeberg.page/package-repo/debs packages main' | sudo tee /etc/apt/sources.list.d/julians-package-repo.list
+
 echo "Install packages from additional repositories"
 sudo apt-get update
 sudo apt-get install -y \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   spotify-client \
-  wezterm-nightly
-
-echo "Install Google Chrome"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
-sudo apt-get install ./chrome.deb -y
-rm -rf ./chrome.deb
+  wezterm-nightly \
+  morewaita
 
 echo "Install Discord"
 wget https://discord.com/api/download?platform=linux -O discord.deb

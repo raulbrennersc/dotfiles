@@ -4,7 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'ubuntu-appindicators@ubuntu.com', 'color-picker@tuberry']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'discord.desktop', 'com.rtosta.zapzap.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop', 'google-chrome.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'discord.desktop', 'com.rtosta.zapzap.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'postman.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
@@ -55,7 +55,7 @@ clock-show-seconds=true
 color-scheme='prefer-dark'
 accent-color='blue'
 enable-hot-corners=false
-icon-theme='Papirus-Dark'
+icon-theme='MoreWaita'
 gtk-theme='Adwaita-dark'
 
 [org/gnome/desktop/file-chooser]
