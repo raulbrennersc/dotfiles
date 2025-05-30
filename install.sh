@@ -25,11 +25,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
 echo "Create symlinks to dotfiles"
-mkdir -p ~/.config/autostart
-mkdir -p ~/.config/dconf
-mkdir -p ~/.config/environment.d
-mkdir -p ~/.config/git
-mkdir -p ~/.docker/
+mkdir -p ~/.config/autostart ~/.config/dconf ~/.config/environment.d ~/.config/git ~/.config/tmux ~/.config/fastfetch ~/.docker/
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.config/git/config ~/.config/git/config
 ln -s ~/dotfiles/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
@@ -50,6 +46,9 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 echo "Install flatpaks"
 flatpak install -y app.zen_browser.zen io.dbeaver.DBeaverCommunity re.sonny.Junction com.rtosta.zapzap
+
+echo "Set default browser"
+xdg-settings set default-web-browser re.sonny.Junction.desktop
 
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64

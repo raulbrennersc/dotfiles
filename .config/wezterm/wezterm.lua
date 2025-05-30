@@ -31,7 +31,7 @@ color_scheme.cursor_border = "#80a0ff"
 color_scheme.cursor_bg = "#80a0ff"
 config.cursor_blink_ease_in = "Linear"
 config.cursor_blink_ease_out = "Linear"
-config.animation_fps = 60
+config.animation_fps = 144
 
 config.default_cursor_style = "BlinkingUnderline"
 config.cursor_blink_rate = 400
