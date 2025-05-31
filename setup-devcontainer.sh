@@ -15,7 +15,7 @@ if ! [ -d "~/dotfiles" ]; then
   cd
 fi
 
-mkdir -p ~/.config
+mkdir -p ~/.config/git ~/.config/tmux
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 
 ln -s ~/dotfiles/.config/git/config ~/.config/git/config

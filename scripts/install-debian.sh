@@ -9,8 +9,8 @@ sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
   gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
-  gnome-shell-extension-manager gnome-authenticator qbittorrent chromium \
-  alacritty
+  gnome-shell-extension-manager gnome-software-plugin-flatpak \
+  gnome-authenticator qbittorrent chromium alacritty
 
 sudo systemctl restart systemd-resolved.service
 
@@ -56,10 +56,16 @@ sudo apt-get install -y \
   wezterm-nightly \
   morewaita
 
-echo "Install Discord"
+echo "Download .deb files"
+echo "-- DBeaver"
+wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O dbeaver.deb
+
+echo "-- Discord"
 wget https://discord.com/api/download?platform=linux -O discord.deb
-sudo apt-get install ./discord.deb -y
-rm -rf ./discord.deb
+
+echo "Install packages from .deb files"
+sudo apt-get install -y ./discord.deb ./dbeaver.deb
+rm -rf ./discord.deb ./dbeaver.deb
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
