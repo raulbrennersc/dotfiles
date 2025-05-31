@@ -8,7 +8,7 @@ version = 3
   foreground = "#80a0ff"
   style = "plain"
   type = "text"
-    template = " "
+    template = "󰇁 "
 
 [[blocks]]
 alignment = "left"
@@ -27,9 +27,9 @@ type = "prompt"
   [[blocks.segments]]
   background = "#80a0ff"
   foreground = "#080808"
-  powerline_symbol = ""
+  powerline_symbol = ""
   style = "powerline"
-  template = " {{ .Path }} "
+  template = " {{ .Path }}"
   type = "path"
 
     [blocks.segments.properties]
@@ -39,10 +39,10 @@ type = "prompt"
   [[blocks.segments]]
   background = "#303030"
   foreground = "#80a0ff"
-  powerline_symbol = ""
+  powerline_symbol = ""
   style = "powerline"
   type = "git"
-  template = " ({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} "
+  template = " ({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
 
     [blocks.segments.properties]
     fetch_upstream_icon = true
@@ -57,9 +57,9 @@ type = "prompt"
   [[blocks.segments]]
   background = "#303030"
   foreground = "#80a0ff"
-  leading_diamond = ""
+  leading_diamond = ""
   style = "diamond"
-  template = " 󰔛 {{ .FormattedMs }} "
+  template = "󰔛 {{ .FormattedMs }} "
   type = "executiontime"
 
     [blocks.segments.properties]
@@ -68,11 +68,11 @@ type = "prompt"
   [[blocks.segments]]
   background = "#80a0ff"
   foreground = "#080808"
-  leading_diamond = ""
+  leading_diamond = ""
   style = "diamond"
   type = "status"
   background_templates = [ "{{ if .Error }}#e91e63{{else}}#36c692{{ end }}" ]
-  template =  "{{ if .Error }}  {{else}}  {{ end }}" 
+  template =  "{{ if .Error }} {{else}} {{ end }}" 
 
     [blocks.segments.properties]
     always_enabled = true
@@ -92,5 +92,5 @@ type = "prompt"
     type = "text"
     style = "plain"
     foreground = "#80a0ff"
-    template = " "
+    template = "󰇁 "
 

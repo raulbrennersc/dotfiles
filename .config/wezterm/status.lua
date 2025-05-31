@@ -1,38 +1,24 @@
 local wezterm = require("wezterm")
 local theme = require("theme")
-local color_scheme = theme.colors.color_scheme
-local function setup()
-	local handle = io.popen("cat /etc/os-release")
-	local os_release = string.gsub(handle:read("*a"), "\n", "")
-	handle:close()
+local utils = require("utils")
+local user = os.getenv("USER")
 
+local function setup()
+	local color_scheme = theme.colors.color_scheme
 	wezterm.on("update-status", function(window, pane)
-		local os_icon = ""
-		if string.find(pane:get_domain_name(), ".devcontainer") then
-			os_icon = ""
-		elseif string.find(os_release, "arch") then
-			os_icon = ""
-		elseif string.find(os_release, "debian") then
-			os_icon = ""
-		end
 		local left_status = {
 			{ Background = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
 			{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.fg_color } },
-			{ Text = " " .. os_icon .. " " },
+			{ Text = " " .. utils.get_os_icon(pane) .. " " },
 			{ Background = { Color = color_scheme.tab_bar.background } },
 			{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
-			{ Text = theme.dividers.to_right },
+			{ Text = theme.dividers.right .. " " },
 		}
 
 		local right_status_cells = {
-			-- {
-			-- 	text = " " .. user .. " ",
-			-- bg = background_color,
-			-- fg = color_scheme.tab_bar.inactive_tab.fg_color,
-			-- },
 			{
 				first = true,
-				text = "󱩛 " .. pane:get_domain_name() .. " ",
+				text = " " .. user .. "@" .. pane:get_domain_name() .. " ",
 				bg = color_scheme.tab_bar.background,
 				fg = color_scheme.tab_bar.inactive_tab.fg_color,
 			},
@@ -52,7 +38,7 @@ local function setup()
 		local function push(cell)
 			if not cell.first then
 				table.insert(right_status, { Foreground = { Color = cell.bg } })
-				table.insert(right_status, { Text = theme.dividers.to_left })
+				table.insert(right_status, { Text = theme.dividers.left })
 			end
 			table.insert(right_status, { Foreground = { Color = cell.fg } })
 			table.insert(right_status, { Background = { Color = cell.bg } })

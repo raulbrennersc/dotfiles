@@ -3,9 +3,6 @@ local color_scheme = wezterm.color.get_builtin_schemes()["Moonfly (Gogh)"]
 local accent_color = "#80a0ff"
 local inactive_color = "#303030"
 local background_color = color_scheme.background
-if IS_TRANSPARENT then
-	background_color = "transparent"
-end
 
 return {
 	accent_color = accent_color,

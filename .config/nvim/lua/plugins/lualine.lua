@@ -18,6 +18,8 @@ return {
 
     return {
       options = {
+        component_separators = { right = "|", left = "|" },
+        section_separators = { right = "", left = "" },
         theme = "auto",
         globalstatus = vim.o.laststatus == 3,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },

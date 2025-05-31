@@ -1,9 +1,7 @@
 local wezterm = require("wezterm")
-IS_TRANSPARENT = false
 local main_theme = require("moonfly")
 
 local function setup(config, is_transparent)
-	IS_TRANSPARENT = is_transparent
 	config.inactive_pane_hsb = {
 		saturation = 1,
 		brightness = 1,
@@ -33,8 +31,9 @@ local function setup(config, is_transparent)
 
 	config.color_scheme = main_theme.builtin_color_scheme_name
 
-	if IS_TRANSPARENT then
+	if is_transparent then
 		config.window_background_opacity = 0.85
+		main_theme.background_color = "transparent"
 	end
 
 	main_theme.color_scheme.cursor_border = main_theme.accent_color
@@ -64,16 +63,15 @@ local function setup(config, is_transparent)
 		},
 		background = main_theme.background_color,
 	}
+
 	config.color_schemes = {
 		[main_theme.builtin_color_scheme_name] = main_theme.color_scheme,
 	}
 end
 
 local dividers = {
-	to_left = wezterm.nerdfonts.pl_right_hard_divider,
-	to_left_inverse = wezterm.nerdfonts.ple_right_hard_divider_inverse,
-	to_right = wezterm.nerdfonts.pl_left_hard_divider,
-	to_right_inverse = wezterm.nerdfonts.ple_left_hard_divider_inverse,
+	left = wezterm.nerdfonts.ple_left_half_circle_thick,
+	right = wezterm.nerdfonts.ple_right_half_circle_thick,
 }
 
 return {

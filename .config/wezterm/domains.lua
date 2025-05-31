@@ -1,15 +1,6 @@
 local wezterm = require("wezterm")
 local hostname = wezterm.hostname()
-
--- WTF why lua doesn't have built in string.split?!?!?!? I DON'T KNOW
--- split hack
-local function split(input, separator)
-	local t = {}
-	for str in string.gmatch(input, "([^" .. separator .. "]+)") do
-		table.insert(t, str)
-	end
-	return t
-end
+local utils = require("utils")
 
 local function setup(config)
 	config.ssh_domains = {}
@@ -19,13 +10,10 @@ local function setup(config)
 		},
 	}
 
-	local handle = io.popen("devcontainer list")
-	local devcontainers = split(string.gsub(handle:read("*a"), "\n", ""), " ")
-	handle:close()
-
+	local devcontainers = utils.get_devcontainers()
 	for _, devcontainer in pairs(devcontainers) do
-		local name = split(devcontainer, "|")[1]
-		local port = split(devcontainer, "|")[2]
+		local name = utils.split(devcontainer, "|")[1]
+		local port = utils.split(devcontainer, "|")[2]
 		local domain = {
 			name = name,
 			remote_address = "localhost",
@@ -39,9 +27,9 @@ local function setup(config)
 		}
 
 		table.insert(config.ssh_domains, domain)
+		config.default_domain = hostname
 	end
 
-	config.default_gui_startup_args = { "connect", hostname }
 	config.default_workspace = hostname
 end
 
@@ -52,12 +40,12 @@ local function get_mux_domains()
 		all_domains = {}
 	end
 
-	for _, value in ipairs(all_domains) do
-		local is_devcontainer = string.find(value:name(), ".devcontainer")
-		local is_host = value:name() == hostname
+	for _, domain in ipairs(all_domains) do
+		local is_devcontainer = string.find(domain:name(), ".devcontainer")
+		local is_host = domain:name() == hostname
 		if is_devcontainer or is_host then
 			table.insert(mux_domains, {
-				label = value:name(),
+				label = domain:name(),
 			})
 		end
 	end

@@ -31,6 +31,7 @@ ln -s ~/dotfiles/.config/git/config ~/.config/git/config
 ln -s ~/dotfiles/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
+ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
