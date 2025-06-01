@@ -46,7 +46,7 @@ fi
 
 #load oh-my-posh
 if command -v oh-my-posh &>/dev/null; then
-  eval "$(oh-my-posh init bash --config ~/dotfiles/.config/oh-my-posh/custom-moonfly.omp.toml)"
+  eval "$(oh-my-posh init bash --config ~/dotfiles/.config/oh-my-posh/custom.omp.toml)"
 fi
 
 #load nvm completion
