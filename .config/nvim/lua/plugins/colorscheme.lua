@@ -17,6 +17,14 @@ end
 
 return {
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+  },
+  {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
     lazy = false,
@@ -26,7 +34,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "moonfly",
+      colorscheme = "tokyonight",
     },
   },
 }

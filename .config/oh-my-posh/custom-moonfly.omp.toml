@@ -3,9 +3,26 @@
 # console_title_template = " {{.PWD}}"
 console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
+# moonfly
+# [palette]
+# accent = "#80a0ff"
+# secondary = "#303030"
+# error = "#e91e63"
+# success = "#36c692"
+# background = "#080808"
+# root = "#f38ba8"
+
+# tokyonight
+[palette]
+accent = "#82aaff"
+secondary = "#3b4261"
+error = "#f7768e"
+success = "#9ece6a"
+background = "#1a1b26"
+root = "#f38ba8"
 
 [transient_prompt]
-  foreground = "#80a0ff"
+  foreground = "p:accent"
   style = "plain"
   type = "text"
     template = "󰇁 "
@@ -17,16 +34,16 @@ type = "prompt"
   [[blocks.segments]]
   type = "os"
   style = "diamond"
-  background = "#303030"
-  foreground = "#80a0ff"
+  background = "p:secondary"
+  foreground = "p:accent"
   template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
     [blocks.segments.properties]
     macos = ""
 
   [[blocks.segments]]
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "p:accent"
+  foreground = "p:background"
   powerline_symbol = ""
   style = "powerline"
   template = " {{ .Path }}"
@@ -37,8 +54,8 @@ type = "prompt"
     style = "letter"
 
   [[blocks.segments]]
-  background = "#303030"
-  foreground = "#80a0ff"
+  background = "p:secondary"
+  foreground = "p:accent"
   powerline_symbol = ""
   style = "powerline"
   type = "git"
@@ -55,8 +72,8 @@ overflow = "hide"
 type = "prompt"
 
   [[blocks.segments]]
-  background = "#303030"
-  foreground = "#80a0ff"
+  background = "p:secondary"
+  foreground = "p:accent"
   leading_diamond = ""
   style = "diamond"
   template = "󰔛 {{ .FormattedMs }} "
@@ -66,12 +83,12 @@ type = "prompt"
     threshold = 0
 
   [[blocks.segments]]
-  background = "#80a0ff"
-  foreground = "#080808"
+  background = "p:accent"
+  foreground = "p:background"
   leading_diamond = ""
   style = "diamond"
   type = "status"
-  background_templates = [ "{{ if .Error }}#e91e63{{else}}#36c692{{ end }}" ]
+  background_templates = [ "{{ if .Error }}p:error{{else}}p:success{{ end }}" ]
   template =  "{{ if .Error }} {{else}} {{ end }}" 
 
     [blocks.segments.properties]
@@ -83,7 +100,7 @@ newline = true
 type = "prompt"
 
   [[blocks.segments]]
-  foreground = "#f38ba8"
+  foreground = "p:root"
   style = "plain"
   template = "  "
   type = "root"
@@ -91,6 +108,6 @@ type = "prompt"
   [[blocks.segments]]
     type = "text"
     style = "plain"
-    foreground = "#80a0ff"
+    foreground = "p:accent"
     template = "󰇁 "
 
