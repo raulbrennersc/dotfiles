@@ -31,10 +31,4 @@ return {
     priority = 1000,
     config = config_moonfly,
   },
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "tokyonight",
-  --   },
-  -- },
 }

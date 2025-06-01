@@ -1,9 +1,21 @@
 local opt = vim.opt
 local g = vim.g
-local cmd = vim.cmd
 g.mapleader = " "
 g.maplocalleader = "\\"
-cmd.colorscheme "moonfly"
+vim.cmd.colorscheme "moonfly"
+
+g.autoformat = true
+
+-- Snacks animations
+-- Set to `false` to globally disable all snacks animations
+g.snacks_animate = true
+
+-- LazyVim root dir detection
+-- Each entry can be:
+-- * the name of a detector function like `lsp` or `cwd`
+-- * a pattern or array of patterns like `.git` or `lua`.
+-- * a function with signature `function(buf) -> string|string[]`
+g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 -- Hide deprecation warnings
 g.deprecation_warnings = false
@@ -12,18 +24,15 @@ g.deprecation_warnings = false
 -- You can disable this for a buffer by setting `vim.b.trouble_lualine = false`
 g.trouble_lualine = true
 
-
 opt.autowrite = true -- Enable auto write
+-- only set clipboard if not in ssh, to make sure the OSC 52
+-- integration works automatically. Requires Neovim >= 0.10.0
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
-opt.expandtab = true -- Use spaces instead of tabs
-opt.autoindent = true -- auto indentation
-opt.swapfile = false
-g.autoformat = true
 opt.fillchars = {
   foldopen = "",
   foldclose = "",
@@ -33,17 +42,17 @@ opt.fillchars = {
   eob = " ",
 }
 opt.foldlevel = 99
--- opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
--- opt.formatoptions = "jcroqlnt" -- tcqj
+opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
+opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.jumpoptions = "view"
 opt.laststatus = 3 -- global statusline
--- opt.linebreak = true -- Wrap lines at convenient points
+opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
--- opt.mouse = "a" -- Enable mouse mode
+opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
@@ -59,14 +68,14 @@ opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
 opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en", "pt" }
+opt.spelllang = { "en" }
 opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
--- opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
--- opt.timeoutlen = g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+opt.timeoutlen = g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -75,21 +84,15 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = true -- Disable line wrap
 
-opt.smoothscroll = true
-opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-opt.foldmethod = "expr"
-opt.foldtext = ""
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
+  opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  opt.foldmethod = "expr"
+  opt.foldtext = ""
+else
+  opt.foldmethod = "indent"
+  opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+end
 
 -- Fix markdown indentation settings
 g.markdown_recommended_style = 0
-
-vim.diagnostic.config {
-    -- Use the default configuration
-    -- virtual_lines = true,
-
-    -- Alternatively, customize specific options
-    virtual_lines = {
-        -- Only show virtual line diagnostics for the current cursor line
-        current_line = true,
-    },
-}

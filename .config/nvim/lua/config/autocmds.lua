@@ -1,8 +1,18 @@
--- This file is automatically loaded by lazyvim.config.init.
 local autocmd = vim.api.nvim_create_autocmd
+
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
+
+-- Check if we need to reload the file when it changed
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime"),
+  callback = function()
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
+  end,
+})
 
 -- Highlight on yank
 autocmd("TextYankPost", {
@@ -20,12 +30,6 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext " .. current_tab)
   end,
-})
-
--- Remove whitespace on save
-autocmd("BufWritePre", {
-    pattern = "",
-    command = ":%s/\\s\\+$//e",
 })
 
 -- go to last loc when opening a buffer
@@ -81,11 +85,21 @@ autocmd("FileType", {
   end,
 })
 
--- check for spell in text filetypes
+-- make it easier to close man-files when opened inline
 autocmd("FileType", {
-  group = augroup("check_spell"),
+  group = augroup("man_unlisted"),
+  pattern = { "man" },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+  end,
+})
+
+-- wrap and check for spell in text filetypes
+autocmd("FileType", {
+  group = augroup("wrap_spell"),
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
   callback = function()
+    vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
 })
@@ -110,4 +124,3 @@ autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
-
