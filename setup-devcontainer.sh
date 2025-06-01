@@ -6,7 +6,7 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
 sudo apt update
-sudo apt install zsh git ripgrep fd-find tmux wezterm-nightly -y
+sudo apt install git ripgrep fd-find tmux wezterm-nightly -y
 
 if ! [ -d "~/dotfiles" ]; then
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
@@ -37,9 +37,6 @@ sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 rm -rf nvim-linux-x86_64.tar.gz
 
-curl -L http://install.ohmyz.sh | sh
 curl -s https://ohmyposh.dev/install.sh | bash -s
-rm -rf ~/.zshrc
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-
-sudo chsh -s $(which zsh) $(whoami)
+rm -rf ~/.bashrc
+ln -s ~/dotfiles/.bashrc ~/.bashrc

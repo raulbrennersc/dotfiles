@@ -3,14 +3,14 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "Install Debian packages"
 sudo apt-get update
-sudo apt-get install -y git build-essential flatpak zsh curl openssh-server \
+sudo apt-get install -y git build-essential flatpak curl openssh-server \
   ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
-  solaar cargo gnome-themes-extra fastfetch cava extrepo \
+  solaar cargo gnome-themes-extra fastfetch cava extrepo bash-completion \
   network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
   gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
+  gnome-authenticator qbittorrent chromium alacritty \
   gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
-  gnome-shell-extension-manager gnome-software-plugin-flatpak \
-  gnome-authenticator qbittorrent chromium alacritty
+  gnome-shell-extension-manager gnome-software-plugin-flatpak
 
 sudo systemctl restart systemd-resolved.service
 

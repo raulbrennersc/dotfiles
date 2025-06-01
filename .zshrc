@@ -35,10 +35,6 @@ plugins=(git gcloud nvm brew docker)
 
 bindkey '^H' backward-kill-word
 
-if [ -d "/home/linuxbrew/" ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
 if command -v oh-my-posh &> /dev/null; then
   eval "$(oh-my-posh init zsh --config ~/dotfiles/.config/oh-my-posh/custom-moonfly.omp.toml)"
 fi
