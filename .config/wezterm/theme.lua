@@ -33,6 +33,7 @@ local function setup(config, is_transparent)
 
 	if is_transparent then
 		config.window_background_opacity = 0.85
+		main_theme.color_scheme.background = "black"
 		main_theme.background_color = "transparent"
 	end
 

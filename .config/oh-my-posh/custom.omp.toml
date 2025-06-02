@@ -22,92 +22,98 @@ background = "#1a1b26"
 root = "#f38ba8"
 
 [transient_prompt]
-  foreground = "p:accent"
-  style = "plain"
-  type = "text"
-    template = "󰇁 "
+foreground = "p:accent"
+style = "plain"
+type = "text"
+template = "󰇁 "
 
 [[blocks]]
 alignment = "left"
 type = "prompt"
 
-  [[blocks.segments]]
-  type = "os"
-  style = "diamond"
-  background = "p:secondary"
-  foreground = "p:accent"
-  template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
+[[blocks.segments]]
+type = "os"
+style = "diamond"
+background = "p:secondary"
+foreground = "p:accent"
+template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
-    [blocks.segments.properties]
-    macos = ""
+[blocks.segments.properties]
+macos = ""
 
-  [[blocks.segments]]
-  background = "p:accent"
-  foreground = "p:background"
-  powerline_symbol = ""
-  style = "powerline"
-  template = " {{ .Path }}"
-  type = "path"
+[[blocks.segments]]
+background = "p:accent"
+foreground = "p:background"
+powerline_symbol = ""
+style = "powerline"
+template = " {{ .Path }}"
+type = "path"
 
-    [blocks.segments.properties]
-    display_root=true
-    style = "letter"
+[blocks.segments.properties]
+display_root=true
+style = "letter"
 
-  [[blocks.segments]]
-  background = "p:secondary"
-  foreground = "p:accent"
-  powerline_symbol = ""
-  style = "powerline"
-  type = "git"
-  template = " ({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+[[blocks.segments]]
+background = "p:secondary"
+foreground = "p:accent"
+powerline_symbol = ""
+style = "powerline"
+type = "git"
+template = " ({{ .UpstreamIcon }} {{ .HEAD }}) {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
 
-    [blocks.segments.properties]
-    fetch_upstream_icon = true
-    fetch_status = true
-    branch_icon = ""
+[blocks.segments.properties]
+fetch_upstream_icon = true
+fetch_status = true
+branch_icon = ""
+[blocks.segments.properties.upstream_icons]
+"me"=""
+"gh"=""
+"ghs"=""
+"gl"=""
+"gls"=""
 
 [[blocks]]
 alignment = "right"
 overflow = "hide"
 type = "prompt"
 
-  [[blocks.segments]]
-  background = "p:secondary"
-  foreground = "p:accent"
-  leading_diamond = ""
-  style = "diamond"
-  template = "󰔛 {{ .FormattedMs }} "
-  type = "executiontime"
+[[blocks.segments]]
+background = "p:secondary"
+foreground = "p:accent"
+leading_diamond = ""
+style = "diamond"
+template = "󰔛 {{ .FormattedMs }} "
+type = "executiontime"
 
-    [blocks.segments.properties]
-    threshold = 0
+[blocks.segments.properties]
+threshold = 0
 
-  [[blocks.segments]]
-  background = "p:accent"
-  foreground = "p:background"
-  leading_diamond = ""
-  style = "diamond"
-  type = "status"
-  background_templates = [ "{{ if .Error }}p:error{{else}}p:success{{ end }}" ]
-  template =  "{{ if .Error }} {{else}} {{ end }}" 
+[[blocks.segments]]
+background = "p:accent"
+foreground = "p:background"
+leading_diamond = ""
+style = "diamond"
+type = "status"
+background_templates = [ "{{ if .Error }}p:error{{else}}p:success{{ end }}" ]
+template =  "{{ if .Error }} {{else}} {{ end }}" 
 
-    [blocks.segments.properties]
-    always_enabled = true
+[blocks.segments.properties]
+always_enabled = true
 
 [[blocks]]
 alignment = "left"
 newline = true
 type = "prompt"
 
-  [[blocks.segments]]
-  foreground = "p:root"
-  style = "plain"
-  template = "  "
-  type = "root"
+[[blocks.segments]]
+foreground = "p:root"
+style = "plain"
+template = "  "
+type = "root"
 
-  [[blocks.segments]]
-    type = "text"
-    style = "plain"
-    foreground = "p:accent"
-    template = "󰇁 "
+[[blocks.segments]]
+type = "text"
+style = "plain"
+foreground = "p:accent"
+template = "󰇁 "
 
