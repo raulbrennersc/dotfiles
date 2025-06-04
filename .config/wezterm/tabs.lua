@@ -33,7 +33,8 @@ local function setup()
 		title = wezterm.truncate_right(title, event_config.tab_max_width - 1)
 		table.insert(tab_content, { Background = { Color = background } })
 		table.insert(tab_content, { Foreground = { Color = foreground } })
-		table.insert(tab_content, { Text = title })
+		table.insert(tab_content, { Text = (tab.tab_index + 1) .. ":" })
+		table.insert(tab_content, { Text = " " .. title })
 
 		-- right tab divider
 		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })

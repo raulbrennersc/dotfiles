@@ -4,6 +4,7 @@ local config_moonfly = function()
 end
 
 return {
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = { transparent_mode = true } },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -16,6 +17,9 @@ return {
       },
     },
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000, config = {
+    transparent_background = true,
+  } },
   {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
@@ -26,7 +30,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "moonfly",
     },
   },
 }

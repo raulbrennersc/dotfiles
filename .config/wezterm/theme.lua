@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local main_theme = require("themes.tokyonight")
+local main_theme = require("themes.moonfly")
 
 local function setup(config, is_transparent)
 	config.inactive_pane_hsb = {
@@ -37,30 +37,30 @@ local function setup(config, is_transparent)
 		main_theme.background_color = "transparent"
 	end
 
-	main_theme.color_scheme.cursor_border = main_theme.accent_color
-	main_theme.color_scheme.cursor_bg = main_theme.accent_color
+	main_theme.color_scheme.cursor_border = main_theme.primary_color
+	main_theme.color_scheme.cursor_bg = main_theme.primary_color
 
 	main_theme.color_scheme.tab_bar = {
 		active_tab = {
-			bg_color = main_theme.accent_color,
+			bg_color = main_theme.primary_color,
 			fg_color = main_theme.background_color,
 		},
 		inactive_tab_hover = {
 			italic = false,
 			bg_color = main_theme.inactive_color,
-			fg_color = main_theme.accent_color,
+			fg_color = main_theme.primary_color,
 		},
 		inactive_tab = {
 			bg_color = main_theme.inactive_color,
-			fg_color = main_theme.accent_color,
+			fg_color = main_theme.primary_color,
 		},
 		new_tab = {
 			bg_color = main_theme.background_color,
-			fg_color = main_theme.accent_color,
+			fg_color = main_theme.primary_color,
 		},
 		new_tab_hover = {
 			bg_color = main_theme.inactive_color,
-			fg_color = main_theme.accent_color,
+			fg_color = main_theme.primary_color,
 		},
 		background = main_theme.background_color,
 	}
