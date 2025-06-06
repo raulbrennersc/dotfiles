@@ -4,13 +4,13 @@ export DEBIAN_FRONTEND=noninteractive
 echo "Install Debian packages"
 sudo apt-get update
 sudo apt-get install -y git build-essential flatpak curl openssh-server \
-  ddcutil xclip transmission vlc unzip cmatrix fd-find curl systemd-resolved \
-  solaar cargo gnome-themes-extra fastfetch cava extrepo bash-completion \
-  network-manager-openvpn network-manager-openvpn-gnome ca-certificates \
-  gnome-console libnma-dev vim ripgrep tmux mangohud sqlite3 libfuse2t64 \
-  gnome-authenticator qbittorrent chromium alacritty \
-  gnome-shell-extension-appindicator gnome-shell-extension-system-monitor \
-  gnome-shell-extension-manager gnome-software-plugin-flatpak
+  ddcutil xclip vlc unzip cmatrix fd-find curl systemd-resolved solaar \
+  fastfetch cava extrepo bash-completion network-manager-openvpn vim \
+  qbittorrent chromium alacritty libnma-dev ripgrep tmux mangohud \
+  sqlite3 libfuse2t64 papirus-icon-theme \
+  network-manager-openvpn-gnome gnome-themes-extra gnome-console \
+  gnome-software-plugin-flatpak gnome-shell-extension-system-monitor \
+  gnome-shell-extension-appindicator
 
 sudo systemctl restart systemd-resolved.service
 
@@ -44,17 +44,12 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
 
-echo "-- MoreWaita"
-curl -s https://julianfairfax.codeberg.page/package-repo/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/julians-package-repo.gpg
-echo 'deb [ signed-by=/usr/share/keyrings/julians-package-repo.gpg ] https://julianfairfax.codeberg.page/package-repo/debs packages main' | sudo tee /etc/apt/sources.list.d/julians-package-repo.list
-
 echo "Install packages from additional repositories"
 sudo apt-get update
 sudo apt-get install -y \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   spotify-client \
-  wezterm-nightly \
-  morewaita
+  wezterm-nightly
 
 echo "Download .deb files"
 echo "-- DBeaver"

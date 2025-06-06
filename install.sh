@@ -46,7 +46,8 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y app.zen_browser.zen re.sonny.Junction
+flatpak install -y app.zen_browser.zen re.sonny.Junction com.belmoussaoui.Authenticator \
+  com.mattjakeman.ExtensionManager
 
 echo "Set default browser"
 xdg-settings set default-web-browser re.sonny.Junction.desktop
