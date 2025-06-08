@@ -1,12 +1,15 @@
 #!/bin/bash
 
 echo "Install ArchLinux packages"
-sudo pacman -S --noconfirm git base-devel flatpak zsh curl openssh \
-  docker ddcutil xclip fastfetch transmission-gtk vlc unzip neovim \
-  cmatrix fd curl wget nerd-fonts ttf-font-awesome solaar cargo \
-  spotify-launcher steam papirus-icon-theme gnome-themes-extra \
-  pacman-contrib networkmanager-openvpn xorg-xhost libnma tmux \
-  mangohud networkmanager-openvpn-gnome sqlite3
+sudo pacman -Syu --noconfirm git base-devel flatpak curl openssh \
+  ddcutil xclip vlc unzip cmatrix fd curl solaar fastfetch cava \
+  bash-completion networkmanager-openvpn vim qbittorrent tmux \
+  chromium alacritty libnma ripgrep mangohud sqlite fuse2 \
+  neovim librewolf docker papirus-icon-theme wget nerd-fonts \
+  ttf-font-awesome spotify-launcher xorg-xhost pacman-contrib \
+  discord dbeaver ttf-nerd-fonts-symbols-mono \
+  gnome-console gnome-themes-extra gnome-system-monitor \
+  gnome-shell-extension-appindicator
 
 echo "Install yay"
 git clone https://aur.archlinux.org/yay.git
