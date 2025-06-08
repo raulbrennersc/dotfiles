@@ -11,8 +11,10 @@ sudo pacman -Syu --noconfirm git base-devel flatpak curl openssh \
   gnome-console gnome-themes-extra gnome-system-monitor \
   gnome-shell-extension-appindicator
 
-echo "Install yay"
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd
+if ! command -v yay 2>&1 >/dev/null; then
+  echo "Install yay"
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+  makepkg -si
+  cd
+fi
