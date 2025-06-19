@@ -67,7 +67,7 @@ show-upload=false
 show-swap=false
 
 
-[org/gnome/shell/extensions/system-monitor/tiling-assistant]
+[org/gnome/shell/extensions/tiling-assistant]
 activate-layout0=@as []
 activate-layout1=['<Super>e']
 activate-layout2=['<Super>w']

@@ -86,6 +86,11 @@ custom-font='Hack Nerd Font 14'
 [org/gnome/settings-daemon/plugins/media-keys]
 home=['<Super>e']
 
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding=['<Alt>t']
+command='wezterm'
+name='wezterm'
+
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-battery-type='nothing'
 sleep-inactive-ac-type='nothing'
