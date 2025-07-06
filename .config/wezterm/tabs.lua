@@ -30,7 +30,7 @@ local function setup()
 		table.insert(tab_content, { Text = theme.dividers.left })
 
 		-- tab title
-		title = wezterm.truncate_right(title, event_config.tab_max_width - 1)
+		title = wezterm.truncate_right(title, event_config.tab_max_width - 6)
 		table.insert(tab_content, { Background = { Color = background } })
 		table.insert(tab_content, { Foreground = { Color = foreground } })
 		table.insert(tab_content, { Text = (tab.tab_index + 1) .. ":" })
