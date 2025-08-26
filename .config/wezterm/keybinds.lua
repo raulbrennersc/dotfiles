@@ -22,6 +22,16 @@ local function setup(config)
 			}),
 		},
 		{
+			key = "<",
+			mods = "LEADER|SHIFT",
+			action = act.MoveTabRelative(-1),
+		},
+		{
+			key = ">",
+			mods = "LEADER|SHIFT",
+			action = act.MoveTabRelative(1),
+		},
+		{
 			key = "f",
 			mods = "ALT",
 			action = act.TogglePaneZoomState,
@@ -74,7 +84,7 @@ local function setup(config)
 			action = act.CloseCurrentTab({ confirm = true }),
 		},
 		{
-			key = "=",
+			key = "-",
 			mods = "LEADER",
 			action = act.SplitPane({
 				direction = "Right",
@@ -82,7 +92,7 @@ local function setup(config)
 			}),
 		},
 		{
-			key = "-",
+			key = "=",
 			mods = "LEADER",
 			action = act.SplitPane({
 				direction = "Down",

@@ -7,11 +7,11 @@ local function setup()
 	local color_scheme = theme.colors.color_scheme
 	wezterm.on("update-status", function(window, pane)
 		local left_status = {
-			{ Background = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
-			{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.fg_color } },
+			{ Background = { Color = color_scheme.tab_bar.active_tab.bg_color } },
+			{ Foreground = { Color = color_scheme.tab_bar.active_tab.fg_color } },
 			{ Text = " " .. utils.get_os_icon(pane) .. " " },
 			{ Background = { Color = color_scheme.tab_bar.background } },
-			{ Foreground = { Color = color_scheme.tab_bar.inactive_tab.bg_color } },
+			{ Foreground = { Color = color_scheme.tab_bar.active_tab.bg_color } },
 			{ Text = theme.dividers.right .. " " },
 		}
 
