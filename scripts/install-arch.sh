@@ -19,4 +19,4 @@ if ! command -v yay 2>&1 >/dev/null; then
   cd
 fi
 
-wget -O- raulbrennersc.dev/dotfiles/install-dotfiles.sh | bash -s
+wget -O- raulbrennersc.dev/dotfiles/clone-dotfiles.sh | bash -s
