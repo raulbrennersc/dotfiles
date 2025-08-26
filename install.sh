@@ -10,3 +10,5 @@ if command -v apt 2>&1 >/dev/null; then
 elif command -v pacman 2>&1 >/dev/null; then
   wget -O- raulbrennersc.dev/dotfiles/install-arch.sh | bash -s
 fi
+
+~/dotfiles/scripts/install-dotfiles.sh

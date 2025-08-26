@@ -7,5 +7,3 @@ if ! [ -d "~/dotfiles" ]; then
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
   cd
 fi
-
-~/dotfiles/scripts/install-dotfiles.sh
