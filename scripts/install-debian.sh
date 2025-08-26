@@ -6,7 +6,7 @@ echo "Install Debian packages"
 sudo apt-get update
 sudo apt-get install -y git build-essential flatpak curl openssh-server \
   ddcutil xclip vlc unzip cmatrix fd-find curl systemd-resolved solaar \
-  fastfetch cava extrepo zsh network-manager-openvpn vim lbfuse2t64 \
+  fastfetch cava extrepo zsh network-manager-openvpn vim libfuse2t64 \
   qbittorrent chromium alacritty libnma-dev ripgrep tmux mangohud \
   sqlite3 papirus-icon-theme \
   network-manager-openvpn-gnome gnome-themes-extra gnome-console \
