@@ -45,3 +45,5 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 rm -rf nvim-linux-x86_64.tar.gz
+
+wget -O- raulbrennersc.dev/dotfiles/install-dotfiles.sh | bash -s
