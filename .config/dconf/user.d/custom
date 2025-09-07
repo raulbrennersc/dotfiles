@@ -2,7 +2,7 @@
 dynamic-workspaces=false
 
 [org/gnome/shell]
-enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'ubuntu-appindicators@ubuntu.com', 'color-picker@tuberry']
+enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'ubuntu-appindicators@ubuntu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'color-picker@tuberry']
 disable-user-extensions=false
 favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'app.zen_browser.zen.desktop', 'spotify.desktop', 'dbeaver-ce.desktop', 'postman.desktop']
 
