@@ -14,12 +14,15 @@ sudo apt-get install -y git build-essential flatpak curl openssh-server \
   gnome-shell-extension-appindicator
 
 sudo systemctl restart systemd-resolved.service
+sudo sed -i 's/# - non-free/- non-free/' /etc/extrepo/config.yaml
 
 echo "Add extrepo repositories"
-sudo extrepo enable librewolf docker spotify steam
+sudo extrepo enable librewolf
+sudo extrepo enable docker-ce
+sudo extrepo enable spotify
 echo "Install packages from extrepo"
 sudo apt-get update
-sudo apt-get install -y librewolf spotify-client steam \
+sudo apt-get install -y librewolf spotify-client \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Add additional repositories"
@@ -45,5 +48,3 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 rm -rf nvim-linux-x86_64.tar.gz
-
-wget -O- raulbrennersc.dev/dotfiles/clone-dotfiles.sh | bash -s
