@@ -20,9 +20,10 @@ echo "Add extrepo repositories"
 sudo extrepo enable librewolf
 sudo extrepo enable docker-ce
 sudo extrepo enable spotify
+sudo extrepo enable steam
 echo "Install packages from extrepo"
 sudo apt-get update
-sudo apt-get install -y librewolf spotify-client \
+sudo apt-get install -y librewolf spotify-client steam \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Add additional repositories"
