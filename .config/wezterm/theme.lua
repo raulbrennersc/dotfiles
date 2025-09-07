@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local main_theme = require("themes.moonfly")
+local main_theme = require("themes.tokyonight")
 
 local function setup(config, is_transparent)
 	config.inactive_pane_hsb = {
