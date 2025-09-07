@@ -3,6 +3,7 @@ export DEBIAN_FRONTEND=noninteractive
 export NONINTERACTIVE=1
 
 echo "Install Debian packages"
+sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install -y git build-essential flatpak curl openssh-server \
   ddcutil xclip vlc unzip cmatrix fd-find curl systemd-resolved solaar \
@@ -20,10 +21,10 @@ echo "Add extrepo repositories"
 sudo extrepo enable librewolf
 sudo extrepo enable docker-ce
 sudo extrepo enable spotify
-sudo extrepo enable steam
+# sudo extrepo enable steam
 echo "Install packages from extrepo"
 sudo apt-get update
-sudo apt-get install -y librewolf spotify-client steam \
+sudo apt-get install -y librewolf spotify-client \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 echo "Add additional repositories"
@@ -37,12 +38,16 @@ sudo apt-get update
 sudo apt-get install -y wezterm-nightly
 
 echo "Download .deb files"
-echo "-- DBeaver"
-wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O dbeaver.deb
+
+# echo "-- Dbeaver"
+# wget https://dbeaver.io/files/dbeaver-ce_latest_amd6
+
+echo "-- Steam"
+wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
 
 echo "Install packages from .deb files"
-sudo apt-get install -y ./dbeaver.deb
-rm -rf ./dbeaver.deb
+sudo apt-get install -y ./steam.deb
+rm -rf ./steam.deb
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
