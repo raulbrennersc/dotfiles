@@ -19,6 +19,8 @@ sudo apt-get install -y git build-essential flatpak curl openssh-server \
   gnome-software-plugin-flatpak gnome-shell-extension-system-monitor \
   gnome-shell-extension-appindicator
 
+sudo sed -i 's/\/usr\/share\/dbeaver-ce\/dbeaver.png/dbeaver/' /usr/share/applications/dbeaver-ce.desktop
+sudo sed -i 's/Name=dbeaver-ce/Name=DBeaver/' /usr/share/applications/dbeaver-ce.desktop
 sudo systemctl restart systemd-resolved.service
 sudo sed -i 's/# - non-free/- non-free/' /etc/extrepo/config.yaml
 
@@ -96,8 +98,7 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y app.zen_browser.zen re.sonny.Junction com.belmoussaoui.Authenticator \
-  com.mattjakeman.ExtensionManager
+flatpak install -y re.sonny.Junction com.belmoussaoui.Authenticator com.mattjakeman.ExtensionManager
 
 echo "Set default browser"
 xdg-settings set default-web-browser re.sonny.Junction.desktop
