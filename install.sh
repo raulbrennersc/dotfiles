@@ -120,11 +120,11 @@ echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
 sudo dconf update
 
-echo "Install oh-my-zsh"
-curl -L http://install.ohmyz.sh | sh
-
 echo "Install oh-my-posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
+
+echo "Install oh-my-zsh"
+curl -L http://install.ohmyz.sh | sh
 
 sudo chsh -s $(which zsh) $(whoami)
 rm -rf ~/.zshrc
