@@ -66,10 +66,10 @@ rm -rf nvim-linux-x86_64.tar.gz
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
   git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
-  cd ~/dotfiles
-  git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
-  cd
 fi
+cd ~/dotfiles
+git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+cd
 
 echo "Generate ssh keys and config"
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -P ""
