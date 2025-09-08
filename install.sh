@@ -19,8 +19,6 @@ sudo apt-get install -y git build-essential flatpak curl openssh-server \
   gnome-software-plugin-flatpak gnome-shell-extension-system-monitor \
   gnome-shell-extension-appindicator
 
-sudo sed -i 's/\/usr\/share\/dbeaver-ce\/dbeaver.png/dbeaver/' /usr/share/applications/dbeaver-ce.desktop
-sudo sed -i 's/Name=dbeaver-ce/Name=DBeaver/' /usr/share/applications/dbeaver-ce.desktop
 sudo systemctl restart systemd-resolved.service
 sudo sed -i 's/# - non-free/- non-free/' /etc/extrepo/config.yaml
 
@@ -55,6 +53,9 @@ wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
 echo "Install packages from .deb files"
 sudo apt-get install -y ./steam.deb ./dbeaver.deb
 rm -rf ./steam.deb ./dbeaver.deb
+
+sudo sed -i 's/\/usr\/share\/dbeaver-ce\/dbeaver.png/dbeaver/' /usr/share/applications/dbeaver-ce.desktop
+sudo sed -i 's/Name=dbeaver-ce/Name=DBeaver/' /usr/share/applications/dbeaver-ce.desktop
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -100,9 +101,6 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 echo "Install flatpaks"
 flatpak install -y re.sonny.Junction com.belmoussaoui.Authenticator com.mattjakeman.ExtensionManager
 
-echo "Set default browser"
-xdg-settings set default-web-browser re.sonny.Junction.desktop
-
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
 mkdir ~/Applications/
@@ -119,6 +117,9 @@ rm -rf ~/.fonts/Hack.zip
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
 sudo dconf update
+
+echo "Set default browser"
+xdg-settings set default-web-browser re.sonny.Junction.desktop
 
 echo "Install oh-my-posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
