@@ -39,15 +39,15 @@ sudo apt-get install -y wezterm-nightly
 
 echo "Download .deb files"
 
-# echo "-- Dbeaver"
-# wget https://dbeaver.io/files/dbeaver-ce_latest_amd6
+echo "-- Dbeaver"
+wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O dbeaver.deb
 
 echo "-- Steam"
 wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
 
 echo "Install packages from .deb files"
-sudo apt-get install -y ./steam.deb
-rm -rf ./steam.deb
+sudo apt-get install -y ./steam.deb ./dbeaver.deb
+rm -rf ./steam.deb ./dbeaver.deb
 
 echo "Install Neovim"
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz

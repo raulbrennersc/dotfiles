@@ -1,15 +1,71 @@
 #!/bin/bash
-
-set -e
-set -f
-
 export DEBIAN_FRONTEND=noninteractive
-export NONINTERACTIVE=1
 
-if command -v apt 2>&1 >/dev/null; then
-  ~/dotfiles/scripts/install-debian.sh
-elif command -v pacman 2>&1 >/dev/null; then
-  ~/dotfiles/scripts/install-debian.sh
+# if command -v apt 2>&1 >/dev/null; then
+#   ~/dotfiles/scripts/install-debian.sh
+# elif command -v pacman 2>&1 >/dev/null; then
+#   ~/dotfiles/scripts/install-debian.sh
+# fi
+
+echo "Install Debian packages"
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install -y git build-essential flatpak curl openssh-server \
+  ddcutil xclip vlc unzip cmatrix fd-find curl systemd-resolved solaar \
+  fastfetch cava extrepo zsh network-manager-openvpn vim libfuse2t64 \
+  qbittorrent chromium alacritty libnma-dev ripgrep tmux mangohud \
+  sqlite3 papirus-icon-theme \
+  network-manager-openvpn-gnome gnome-themes-extra gnome-console \
+  gnome-software-plugin-flatpak gnome-shell-extension-system-monitor \
+  gnome-shell-extension-appindicator
+
+sudo systemctl restart systemd-resolved.service
+sudo sed -i 's/# - non-free/- non-free/' /etc/extrepo/config.yaml
+
+echo "Add extrepo repositories"
+sudo extrepo enable librewolf
+sudo extrepo enable docker-ce
+sudo extrepo enable spotify
+# sudo extrepo enable steam
+echo "Install packages from extrepo"
+sudo apt-get update
+sudo apt-get install -y librewolf spotify-client \
+  docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+echo "Add additional repositories"
+echo "-- Wezterm"
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+
+echo "Install packages from additional repositories"
+sudo apt-get update
+sudo apt-get install -y wezterm-nightly
+
+echo "Download .deb files"
+
+echo "-- Dbeaver"
+wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O dbeaver.deb
+
+echo "-- Steam"
+wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
+
+echo "Install packages from .deb files"
+sudo apt-get install -y ./steam.deb ./dbeaver.deb
+rm -rf ./steam.deb ./dbeaver.deb
+
+echo "Install Neovim"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+rm -rf nvim-linux-x86_64.tar.gz
+
+if ! [ -d "~/dotfiles" ]; then
+  echo "Clone dotfiles"
+  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
+  cd ~/dotfiles
+  git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
+  cd
 fi
 
 echo "Generate ssh keys and config"
@@ -69,10 +125,10 @@ curl -L http://install.ohmyz.sh | sh
 echo "Install oh-my-posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
+sudo chsh -s $(which zsh) $(whoami)
 rm -rf ~/.zshrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.zprofile ~/.zprofile
-sudo chsh -s $(which zsh) $(whoami)
 
 sudo usermod -aG docker $USER
 newgrp docker
