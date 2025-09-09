@@ -99,7 +99,9 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaks"
-flatpak install -y re.sonny.Junction com.belmoussaoui.Authenticator com.mattjakeman.ExtensionManager
+flatpak install flathub re.sonny.Junction -y --noninteractive
+flatpak install flathub com.belmoussaoui.Authenticator -y --noninteractive
+flatpak install flathub com.mattjakeman.ExtensionManager -y --noninteractive
 
 echo "Install Postman"
 curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
@@ -118,8 +120,8 @@ echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d
 sudo dconf update
 
-echo "Set default browser"
-xdg-settings set default-web-browser re.sonny.Junction.desktop
+# echo "Set default browser"
+# xdg-settings set default-web-browser /var/lib/flatpak/exports/share/applications/re.sonny.Junction.desktop
 
 echo "Install oh-my-posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
