@@ -86,9 +86,9 @@ ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
-ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
+# ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
 ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
-cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
+# cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/autostart/solaar.desktop
 cp ~/dotfiles/.config/autostart/startup.desktop ~/.config/autostart/startup.desktop
