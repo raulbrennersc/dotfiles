@@ -80,8 +80,13 @@ local function setup(config)
 		},
 		{
 			key = "q",
+			mods = "LEADER|SHIFT",
+			action = act.CloseCurrentTab({ confirm = false }),
+		},
+		{
+			key = "q",
 			mods = "LEADER",
-			action = act.CloseCurrentTab({ confirm = true }),
+			action = act.CloseCurrentPane({ confirm = false }),
 		},
 		{
 			key = "-",
