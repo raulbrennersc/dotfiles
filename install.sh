@@ -102,14 +102,7 @@ echo "Install flatpaks"
 flatpak install flathub re.sonny.Junction -y --noninteractive
 flatpak install flathub com.belmoussaoui.Authenticator -y --noninteractive
 flatpak install flathub com.mattjakeman.ExtensionManager -y --noninteractive
-
-echo "Install Postman"
-curl -L -o postman.tar.gz https://dl.pstmn.io/download/latest/linux_64
-mkdir ~/Applications/
-tar xzvf postman.tar.gz -C Applications/
-sudo ln -s ~/Applications/Postman/Postman /usr/bin/postman
-sudo cp ~/dotfiles/.config/applications/postman.desktop /usr/share/applications/postman.desktop
-rm -rf postman.tar.gz
+flatpak install flathub com.usebruno.Bruno -y --noninteractive
 
 echo "Install Hack Nerd Font"
 wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
