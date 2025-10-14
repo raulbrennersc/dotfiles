@@ -1,12 +1,6 @@
 #!/bin/bash
 export DEBIAN_FRONTEND=noninteractive
 
-# if command -v apt 2>&1 >/dev/null; then
-#   ~/dotfiles/scripts/install-debian.sh
-# elif command -v pacman 2>&1 >/dev/null; then
-#   ~/dotfiles/scripts/install-debian.sh
-# fi
-
 echo "Install Debian packages"
 sudo dpkg --add-architecture i386
 sudo apt-get update
@@ -26,7 +20,6 @@ echo "Add extrepo repositories"
 sudo extrepo enable librewolf
 sudo extrepo enable docker-ce
 sudo extrepo enable spotify
-# sudo extrepo enable steam
 echo "Install packages from extrepo"
 sudo apt-get update
 sudo apt-get install -y librewolf spotify-client \
@@ -47,12 +40,9 @@ echo "Download .deb files"
 echo "-- Dbeaver"
 wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O dbeaver.deb
 
-echo "-- Steam"
-wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb -O steam.deb
-
 echo "Install packages from .deb files"
-sudo apt-get install -y ./steam.deb ./dbeaver.deb
-rm -rf ./steam.deb ./dbeaver.deb
+sudo apt-get install -y ./dbeaver.deb
+rm -rf ./dbeaver.deb
 
 sudo sed -i 's/\/usr\/share\/dbeaver-ce\/dbeaver.png/dbeaver/' /usr/share/applications/dbeaver-ce.desktop
 sudo sed -i 's/Name=dbeaver-ce/Name=DBeaver/' /usr/share/applications/dbeaver-ce.desktop
@@ -86,14 +76,14 @@ ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
-# ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
 ln -s ~/dotfiles/.config/dconf/user.d ~/.config/dconf/user.d
-# cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
 cp ~/dotfiles/.docker/config.json ~/.docker/config.json
 cp ~/dotfiles/.config/autostart/solaar.desktop ~/.config/autostart/solaar.desktop
 cp ~/dotfiles/.config/autostart/startup.desktop ~/.config/autostart/startup.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
-sudo ln -s ~/dotfiles/scripts/devcontainers.sh /usr/bin/devcontainer
+# ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
+# cp ~/dotfiles/.config/environment.d/mangohud.conf ~/.config/environment.d/mangohud.conf
+sudo ln -s ~/dotfiles/scripts/devcontainer.sh /usr/bin/devcontainer
 
 echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

@@ -4,7 +4,7 @@ dynamic-workspaces=false
 [org/gnome/shell]
 enabled-extensions=['display-brightness-ddcutil@themightydeity.github.com', 'ubuntu-appindicators@ubuntu.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'color-picker@tuberry']
 disable-user-extensions=false
-favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'firefox-esr.desktop', 'spotify.desktop', 'dbeaver-ce.desktop', 'postman.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'firefox-esr.desktop', 'spotify.desktop', 'dbeaver-ce.desktop', 'com.usebruno.Bruno.desktop']
 
 [org/gnome/shell/keybindings]
 focus-active-notification=@as []
