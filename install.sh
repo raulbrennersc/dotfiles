@@ -91,7 +91,6 @@ echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Install flatpaksinstal"
-flatpak install flathub re.sonny.Junction -y --noninteractive
 flatpak install flathub com.belmoussaoui.Authenticator -y --noninteractive
 flatpak install flathub com.mattjakeman.ExtensionManager -y --noninteractive
 flatpak install flathub com.usebruno.Bruno -y --noninteractive
