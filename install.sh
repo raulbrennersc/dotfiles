@@ -13,6 +13,8 @@ sudo apt-get install -y git build-essential flatpak curl openssh-server \
   gnome-software-plugin-flatpak gnome-shell-extension-system-monitor \
   gnome-shell-extension-appindicator
 
+sudo apt-get remove firefox-esr
+
 sudo systemctl restart systemd-resolved.service
 sudo sed -i 's/# - non-free/- non-free/' /etc/extrepo/config.yaml
 
@@ -88,11 +90,12 @@ sudo ln -s ~/dotfiles/scripts/devcontainer.sh /usr/bin/devcontainer
 echo "Enable flathub"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Install flatpaks"
+echo "Install flatpaksinstal"
 flatpak install flathub re.sonny.Junction -y --noninteractive
 flatpak install flathub com.belmoussaoui.Authenticator -y --noninteractive
 flatpak install flathub com.mattjakeman.ExtensionManager -y --noninteractive
 flatpak install flathub com.usebruno.Bruno -y --noninteractive
+flatpak install flathub org.mozilla.firefox -y --noninteractive
 
 echo "Install Hack Nerd Font"
 wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
