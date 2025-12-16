@@ -5,6 +5,9 @@
 	name = Raul Costa
 	email = raulbrennersc@gmail.com
 
+[core]
+  editor = vim
+
 [init]
 	defaultBranch = main
 

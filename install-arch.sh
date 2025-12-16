@@ -6,7 +6,7 @@ sudo pacman -Syu --needed base-devel git flatpak curl openssh ddcutil \
   vim fuse2 fuse3 qbittorrent chromium alacritty libnma-gtk4 ripgrep vlc \
   gnome-shell-extension-appindicator gnome-shell-extension-vitals neovim \
   docker docker-compose firefox papirus-icon-theme dbeaver xclip sqlite \
-  spotify-launcher
+  spotify-launcher steam
 
 sudo systemctl restart systemd-resolved.service
 
@@ -56,6 +56,7 @@ flatpak install flathub com.belmoussaoui.Authenticator -y --noninteractive
 flatpak install flathub com.mattjakeman.ExtensionManager -y --noninteractive
 flatpak install flathub com.usebruno.Bruno -y --noninteractive
 flatpak install flathub org.mozilla.firefox -y --noninteractive
+flatpak install flathub io.dbeaver.DBeaverCommunity -y --noninteractive
 
 echo "Install Hack Nerd Font"
 wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
