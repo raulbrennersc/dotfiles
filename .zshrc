@@ -4,7 +4,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
 export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOST}}
 
-alias vi="nvim"
+alias vim="nvim"
 alias tmux="tmux new-session -A -s $USER"
 
 alias gb="git branch"
