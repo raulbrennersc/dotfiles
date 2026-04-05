@@ -15,13 +15,13 @@
   insteadOf = "me:"
 
 [url "git@github.com:"]
-  insteadOf = "gh:"
-
-[url "git@gitlab.com:"]
-  insteadOf = "gl:"
-
-[url "https://github.com/"]
   insteadOf = "ghs:"
 
-[url "https://gitlab.com/"]
+[url "git@gitlab.com:"]
   insteadOf = "gls:"
+
+[url "https://github.com/"]
+  insteadOf = "gh:"
+
+[url "https://gitlab.com/"]
+  insteadOf = "gl:"
