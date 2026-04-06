@@ -1,2 +1,2 @@
-vim.pack.add {"gh:bluz71/vim-moonfly-colors"}
-vim.cmd [[colorscheme moonfly]]
+vim.pack.add {"gh:catppuccin/nvim"}
+vim.cmd [[colorscheme catppuccin-mocha]]
