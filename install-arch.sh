@@ -6,7 +6,7 @@ sudo pacman -Syu --needed base-devel git flatpak curl openssh ddcutil \
   vim fuse2 fuse3 qbittorrent chromium alacritty libnma-gtk4 ripgrep vlc \
   gnome-shell-extension-appindicator gnome-shell-extension-vitals neovim \
   docker docker-compose firefox papirus-icon-theme dbeaver xclip sqlite \
-  spotify-launcher steam
+  spotify-launcher steam stylua lua-language-server
 
 sudo systemctl restart systemd-resolved.service
 

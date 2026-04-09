@@ -27,10 +27,7 @@ if [ -d "/workspaces" ]; then
   ln -s /workspaces ~/workspaces
 fi
 
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-rm -rf nvim-linux-x86_64.tar.gz
+brew install stylua lua-language-server neovim
 
 curl -L http://install.ohmyz.sh | sh
 curl -s https://ohmyposh.dev/install.sh | bash -s

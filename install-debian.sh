@@ -49,11 +49,9 @@ rm -rf ./dbeaver.deb
 sudo sed -i 's/\/usr\/share\/dbeaver-ce\/dbeaver.png/dbeaver/' /usr/share/applications/dbeaver-ce.desktop
 sudo sed -i 's/Name=dbeaver-ce/Name=DBeaver/' /usr/share/applications/dbeaver-ce.desktop
 
-echo "Install Neovim"
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-rm -rf nvim-linux-x86_64.tar.gz
+echo "Install Homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install stylua lua-language-server neovim
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"

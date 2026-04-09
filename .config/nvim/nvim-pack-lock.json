@@ -8,6 +8,10 @@
       "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
       "src": "gh:nvim-mini/mini.nvim"
     },
+    "moonfly": {
+      "rev": "43d8eb9dd2a1154dd8259ee3ce37cbbdb28c405c",
+      "src": "https://github.com/bluz71/vim-moonfly-colors"
+    },
     "nvim": {
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "gh:catppuccin/nvim"
