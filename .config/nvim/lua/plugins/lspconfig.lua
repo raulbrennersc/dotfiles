@@ -8,6 +8,11 @@ vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "LSP code 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format current buffer" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.bo.autocomplete = vim.bo.buftype == ""
+  end,
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp_completion", { clear = true }),
@@ -27,4 +32,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.cmd("set completeopt+=noselect")
-

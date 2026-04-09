@@ -1,3 +1,4 @@
+require("vim._core.ui2").enable({})
 local opt = vim.opt
 
 opt.number = true
@@ -6,7 +7,7 @@ opt.expandtab = true
 opt.shiftwidth = 2
 opt.smartindent = true
 opt.termguicolors = true
-opt.signcolumn = 'yes:1'
+opt.signcolumn = "yes:1"
 opt.swapfile = false
 opt.confirm = true
 opt.smoothscroll = true
@@ -22,5 +23,3 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.clipboard = "unnamedplus"
-opt.autocomplete = true
-
