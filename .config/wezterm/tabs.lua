@@ -3,49 +3,49 @@ local theme = require("theme")
 local color_scheme = theme.colors.color_scheme
 
 local function tab_title(tab_info)
-	local title = tab_info.tab_title
-	if title and #title > 0 then
-		return title
-	end
-	return tab_info.active_pane.title
+  local title = tab_info.tab_title
+  if title and #title > 0 then
+    return title
+  end
+  return tab_info.active_pane.title
 end
 
 local function setup()
-	wezterm.on("format-tab-title", function(tab, _, _, event_config)
-		local background = color_scheme.tab_bar.active_tab.bg_color
-		local foreground = color_scheme.tab_bar.active_tab.fg_color
-		local is_active = tab.is_active
+  wezterm.on("format-tab-title", function(tab, _, _, event_config)
+    local background = color_scheme.tab_bar.active_tab.bg_color
+    local foreground = color_scheme.tab_bar.active_tab.fg_color
+    local is_active = tab.is_active
 
-		if not is_active then
-			background = color_scheme.tab_bar.inactive_tab.bg_color
-			foreground = color_scheme.tab_bar.inactive_tab.fg_color
-		end
+    if not is_active then
+      background = color_scheme.tab_bar.inactive_tab.bg_color
+      foreground = color_scheme.tab_bar.inactive_tab.fg_color
+    end
 
-		local title = tab_title(tab)
+    local title = tab_title(tab)
 
-		local tab_content = {}
-		-- left tab divider
-		table.insert(tab_content, { Foreground = { Color = background } })
-		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
-		table.insert(tab_content, { Text = theme.dividers.left })
+    local tab_content = {}
+    -- left tab divider
+    table.insert(tab_content, { Foreground = { Color = background } })
+    table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+    table.insert(tab_content, { Text = theme.dividers.left })
 
-		-- tab title
-		title = wezterm.truncate_right(title, event_config.tab_max_width - 6)
-		table.insert(tab_content, { Background = { Color = background } })
-		table.insert(tab_content, { Foreground = { Color = foreground } })
-		table.insert(tab_content, { Text = (tab.tab_index + 1) .. ":" })
-		table.insert(tab_content, { Text = " " .. title })
+    -- tab title
+    title = wezterm.truncate_right(title, event_config.tab_max_width - 6)
+    table.insert(tab_content, { Background = { Color = background } })
+    table.insert(tab_content, { Foreground = { Color = foreground } })
+    table.insert(tab_content, { Text = (tab.tab_index + 1) .. ":" })
+    table.insert(tab_content, { Text = " " .. title })
 
-		-- right tab divider
-		table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
-		table.insert(tab_content, { Foreground = { Color = background } })
-		table.insert(tab_content, { Text = theme.dividers.right })
+    -- right tab divider
+    table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
+    table.insert(tab_content, { Foreground = { Color = background } })
+    table.insert(tab_content, { Text = theme.dividers.right })
 
-		table.insert(tab_content, { Text = " " })
+    table.insert(tab_content, { Text = " " })
 
-		return tab_content
-	end)
+    return tab_content
+  end)
 end
 return {
-	setup = setup,
+  setup = setup,
 }
