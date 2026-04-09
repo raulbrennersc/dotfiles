@@ -21,3 +21,6 @@ opt.foldenable = true
 opt.ignorecase = true
 opt.smartcase = true
 
+opt.clipboard = "unnamedplus"
+opt.autocomplete = true
+

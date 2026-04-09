@@ -1,4 +1,6 @@
-vim.pack.add({ "gh:nvim-treesitter/nvim-treesitter" })
+vim.pack.add({
+  { src="gh:nvim-treesitter/nvim-treesitter", branch="main" }
+})
 
 require('nvim-treesitter.config').setup({
     ensure_installed = {
