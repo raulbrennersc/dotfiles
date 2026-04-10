@@ -3,6 +3,7 @@
 # console_title_template = " {{.PWD}}"
 console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
+
 # moonfly
 # [palette]
 # accent = "#80a0ff"
@@ -21,6 +22,7 @@ version = 3
 # background = "#1a1b26"
 # root = "#f38ba8"
 
+# tokyonight
 [palette]
 accent     = "#7aa2f7"  # TokyoNight Blue
 secondary  = "#3b4261"  # Darker Blue/Grey for contrast

@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local main_theme = require("themes.moonfly")
+local main_theme = require("themes.catppuccin")
 
 local function setup(config, is_transparent)
   config.inactive_pane_hsb = {
@@ -29,42 +29,15 @@ local function setup(config, is_transparent)
   config.cursor_blink_rate = 400
   config.tab_max_width = 25
 
-  config.color_scheme = main_theme.builtin_color_scheme_name
-
   if is_transparent then
     config.window_background_opacity = 0.85
     main_theme.color_scheme.background = "black"
-    main_theme.background_color = "transparent"
   end
 
   main_theme.color_scheme.cursor_border = main_theme.primary_color
   main_theme.color_scheme.cursor_bg = main_theme.primary_color
 
-  main_theme.color_scheme.tab_bar = {
-    active_tab = {
-      bg_color = main_theme.primary_color,
-      fg_color = main_theme.background_color,
-    },
-    inactive_tab_hover = {
-      italic = false,
-      bg_color = main_theme.inactive_color,
-      fg_color = main_theme.primary_color,
-    },
-    inactive_tab = {
-      bg_color = main_theme.inactive_color,
-      fg_color = main_theme.primary_color,
-    },
-    new_tab = {
-      bg_color = main_theme.background_color,
-      fg_color = main_theme.primary_color,
-    },
-    new_tab_hover = {
-      bg_color = main_theme.inactive_color,
-      fg_color = main_theme.primary_color,
-    },
-    background = main_theme.background_color,
-  }
-
+  config.color_scheme = main_theme.builtin_color_scheme_name
   config.color_schemes = {
     [main_theme.builtin_color_scheme_name] = main_theme.color_scheme,
   }
