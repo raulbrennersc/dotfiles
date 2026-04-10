@@ -1,8 +1,20 @@
 {
   "plugins": {
+    "catppuccin": {
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "src": "gh:catppuccin/nvim"
+    },
     "conform.nvim": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "gh:stevearc/conform.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "gh:rafamadriz/friendly-snippets"
+    },
+    "gruvbox": {
+      "rev": "334d5fd49fc8033f26408425366c66c6390c57bb",
+      "src": "gh:ellisonleao/gruvbox.nvim"
     },
     "mini.nvim": {
       "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
@@ -24,9 +36,17 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "gh:nvim-treesitter/nvim-treesitter"
     },
+    "rose-pine": {
+      "rev": "9504524e5ed0e326534698f637f9d038ba4cd0ee",
+      "src": "gh:rose-pine/neovim"
+    },
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "gh:folke/snacks.nvim"
+    },
+    "tokyonight": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "gh:folke/tokyonight.nvim"
     }
   }
 }

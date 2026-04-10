@@ -10,7 +10,7 @@ require("tabs").setup()
 require("domains").setup(config)
 require("keybinds").setup(config)
 
-wezterm.on("gui-attached", function(domain)
+wezterm.on("gui-attached", function()
   -- maximize all displayed windows on startup
   local workspace = mux.get_active_workspace()
   for _, window in ipairs(mux.all_windows()) do

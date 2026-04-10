@@ -1,5 +1,5 @@
 vim.pack.add({
-  { src = "https://github.com/bluz71/vim-moonfly-colors", name = "moonfly" },
+  { src = "gh:folke/tokyonight.nvim", name = "tokyonight" },
 })
 
-vim.cmd([[colorscheme moonfly]])
+vim.cmd([[colorscheme tokyonight-night]])
