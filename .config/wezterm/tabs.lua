@@ -24,7 +24,7 @@ local function setup()
     local title = tab_title(tab)
 
     local tab_content = {}
-    -- left tab divider
+    -- left side divider
     table.insert(tab_content, { Foreground = { Color = background } })
     table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
     table.insert(tab_content, { Text = theme.dividers.left })
@@ -36,7 +36,7 @@ local function setup()
     table.insert(tab_content, { Text = (tab.tab_index + 1) .. ":" })
     table.insert(tab_content, { Text = " " .. title })
 
-    -- right tab divider
+    -- right side divider
     table.insert(tab_content, { Background = { Color = color_scheme.tab_bar.background } })
     table.insert(tab_content, { Foreground = { Color = background } })
     table.insert(tab_content, { Text = theme.dividers.right })
