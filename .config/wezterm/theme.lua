@@ -34,9 +34,6 @@ local function setup(config, is_transparent)
     main_theme.color_scheme.background = "black"
   end
 
-  main_theme.color_scheme.cursor_border = main_theme.primary_color
-  main_theme.color_scheme.cursor_bg = main_theme.primary_color
-
   config.color_scheme = main_theme.builtin_color_scheme_name
   config.color_schemes = {
     [main_theme.builtin_color_scheme_name] = main_theme.color_scheme,
