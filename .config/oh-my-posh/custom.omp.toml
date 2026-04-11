@@ -1,35 +1,15 @@
 "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
-# console_title_template = "{{regexReplaceAll \"(.)(/.*/)\" .PWD \"${1}/../\"}}"
-# console_title_template = " {{.PWD}}"
 console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
 
-# moonfly
-# [palette]
-# accent = "#80a0ff"
-# secondary = "#303030"
-# error = "#e91e63"
-# success = "#36c692"
-# background = "#080808"
-# root = "#f38ba8"
-
-# tokyonight
-# [palette]
-# accent = "#82aaff"
-# secondary = "#3b4261"
-# error = "#f7768e"
-# success = "#9ece6a"
-# background = "#1a1b26"
-# root = "#f38ba8"
-
 # tokyonight
 [palette]
-accent     = "#7aa2f7"  # TokyoNight Blue
-secondary  = "#3b4261"  # Darker Blue/Grey for contrast
-error      = "#f7768e"  # TokyoNight Red
-success    = "#9ece6a"  # TokyoNight Green
-background = "#1a1b26"  # Main background color
-root       = "#e0af68"  # TokyoNight Yellow/Orange
+accent     = "#7aa2f7"
+secondary  = "#292e42"
+error      = "#f7768e"
+success    = "#9ece6a"
+background = "#1a1b26"
+root       = "#e0af68"
 
 [transient_prompt]
 foreground = "p:accent"
