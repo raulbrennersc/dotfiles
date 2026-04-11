@@ -224,9 +224,9 @@
 ; foreground = default
 
 # SDL and sdl_glsl only support hex code colors, these are the default:
-; background = '#111111'
+; background = '#1a1b26'
 # foreground = '#80a0ff'
-foreground = '#82aaff'
+foreground = '#7aa2f7'
 
 
 # Gradient mode, only hex defined colors are supported,
@@ -252,8 +252,8 @@ foreground = '#82aaff'
 ; integral = 77
 
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable.
-; monstercat = 0
-; waves = 0
+; monstercat = 100
+; waves = 100
 
 # Set gravity percentage for "drop off". Higher values means bars will drop faster.
 # Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".
