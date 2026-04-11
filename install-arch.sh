@@ -58,10 +58,10 @@ flatpak install flathub com.usebruno.Bruno -y --noninteractive
 flatpak install flathub org.mozilla.firefox -y --noninteractive
 flatpak install flathub io.dbeaver.DBeaverCommunity -y --noninteractive
 
-echo "Install Hack Nerd Font"
-wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-unzip ~/.fonts/Hack.zip -d ~/.fonts/Hack
-rm -rf ~/.fonts/Hack.zip
+echo "Install Nerd Font"
+wget -P ~/.fonts/ https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip ~/.fonts/JetBrainsMono.zip -d ~/.fonts/JetBrainsMono
+rm -rf ~/.fonts/JetBrainsMono.zip
 
 echo "Apply GNOME customization"
 dconf compile ~/.config/dconf/user ~/.config/dconf/user.d

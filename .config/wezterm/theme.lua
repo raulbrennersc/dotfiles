@@ -8,7 +8,7 @@ local function setup(config, is_transparent)
   }
 
   config.font = wezterm.font({
-    family = "Hack Nerd Font",
+    family = "JetBrainsMono Nerd Font",
   })
   config.font_size = 15
   config.window_decorations = "NONE"

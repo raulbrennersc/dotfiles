@@ -2,7 +2,7 @@
 size = 14
 
 [font.normal]
-family = "Hack Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Medium"
 
 [window]
