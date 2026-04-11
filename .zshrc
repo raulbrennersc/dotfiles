@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:$HOME/.local/bin:/opt/nvim-linux-x86_64/bin
+export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 source $ZSH/oh-my-zsh.sh
 export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOST}}
