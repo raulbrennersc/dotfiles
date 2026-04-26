@@ -10,12 +10,13 @@ sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd solaar fastfetch 
   ddcutil bluetui firefox libnewt hyprlock hypridle impala less polkit-gnome \
   gnome-disk-utility bash-completion hyprpicker grim slurp hyprshot \
   gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard ffmpeg \
-  chromium brightnessctl
+  chromium brightnessctl pulsemixer networkmanager
 
 sudo systemctl restart systemd-resolved.service
 sudo modprobe i2c-dev
 sudo systemctl enable sddm
 sudo systemctl enable --now power-profiles-daemon
+sudo systemctl enable --now NetworkManager
 
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -52,7 +53,7 @@ ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
-ln -s ~/dotfiles/.config/cava ~/.config/cava
+ln -s ~/dotfiles/.config/elephant ~/.config/elephant
 ln -s ~/dotfiles/.config/mako ~/.config/mako
 ln -s ~/dotfiles/.docker ~/.docker
 ln -s ~/dotfiles/.config/ghostty ~/.config/ghostty
@@ -61,8 +62,8 @@ ln -s ~/dotfiles/.config/autostart ~/.config/autostart
 
 ln -s ~/dotfiles/scripts ~/.local/bin/scripts
 
-ln -s ~/dotfiles/.desktop/bluetooth.desktop ~/.local/share/applications/bluetooth.desktop
-ln -s ~/dotfiles/.desktop/wifi.desktop ~/.local/share/applications/wifi.desktop
+ln -s ~/dotfiles/.desktop/tui-bluetooth.desktop ~/.local/share/applications/tui-bluetooth.desktop
+ln -s ~/dotfiles/.desktop/tui-wifi.desktop ~/.local/share/applications/tui-wifi.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 
 echo "Install oh-my-posh"

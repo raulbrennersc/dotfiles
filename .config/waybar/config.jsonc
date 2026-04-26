@@ -14,6 +14,17 @@
         "tray"
     ],
 
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  {ifname}",
+        "format-linked": "󰈀  {ifname} (No IP)",
+        "format-disconnected": "󰖪  Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-wifi": "{essid} ({signaldBm}dBm) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "on-click": "alacritty --class tui-popup -e impala"
+    },
+
     // Modules Configuration
     "hyprland/workspaces": {
         "format": "{name}",
@@ -29,7 +40,7 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 Muted",
         "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
-        "on-click": "pavucontrol"
+        "on-click": "alacritty --class tui-popup -e pulsemixer"
     },
 
     "custom/idle": {

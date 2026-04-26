@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if pgrep -x "hypridle" > /dev/null; then
-    echo '{"text": "󰈈", "class": "off", "tooltip": "Idle Active"}'
+    echo '{"text": "󰈈 ", "class": "off", "tooltip": "Idle Active"}'
 else
-    echo '{"text": "󰅶", "class": "on", "tooltip": "Idle Inactive"}'
+    echo '{"text": "󰅶 ", "class": "on", "tooltip": "Idle Inactive"}'
 fi
