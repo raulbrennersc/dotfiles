@@ -2,7 +2,7 @@
 
 echo "Install packages"
 sudo pacman -Syu --needed git base-devel
-sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd solaar fastfetch \
+sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd fastfetch \
   cava tmux vim qbittorrent chromium alacritty ripgrep vlc neovim docker \
   docker-compose firefox dbeaver sqlite spotify-launcher steam stylua \
   lua-language-server hyprland waybar nautilus mako sddm ttf-jetbrains-mono-nerd \
@@ -51,7 +51,6 @@ ln -s ~/dotfiles/.config/fastfetch ~/.config/fastfetch
 ln -s ~/dotfiles/.config/tmux ~/.config/tmux
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/elephant ~/.config/elephant
 ln -s ~/dotfiles/.config/mako ~/.config/mako
