@@ -1,0 +1,40 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(20, 20, 20, 0.8); /* Slight transparency */
+    color: #ffffff;
+    border-bottom: 1px solid #333333;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: #888888;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#clock, #battery, #pulseaudio, #network, #backlight, #custom-power-profile {
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+#battery.critical {
+    color: #ff5555;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to { background-color: #ff5555; color: #ffffff; }
+}

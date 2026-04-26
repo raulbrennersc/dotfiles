@@ -1,0 +1,55 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "battery",
+        "custom/power-profile",
+        "custom/idle",
+        "tray"
+    ],
+
+    // Modules Configuration
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate"
+    },
+    
+    "clock": {
+        "format": "󰃭  {:%a %b %d  %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Muted",
+        "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/idle": {
+      "exec": "~/.local/bin/scripts/idle-status",
+      "return-type": "json",
+      "on-click": "~/.local/bin/scripts/idle-toggle",
+      "signal": 10,
+      "interval": "once"
+    },
+
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "custom/power-profile": {
+        "exec": "powerprofilesctl get",
+        "interval": 30,
+        "format": "󰈐 {}",
+        "on-click": "~/.local/bin/power-menu" 
+    }
+}

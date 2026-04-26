@@ -44,6 +44,7 @@ echo "Create symlinks to dotfiles"
 mkdir -p ~/.config/ ~/.docker/ ~/.local/bin
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.config/hypr ~/.config/hypr
+ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/.config/git ~/.config/git
 ln -s ~/dotfiles/.config/fastfetch ~/.config/fastfetch
 ln -s ~/dotfiles/.config/tmux ~/.config/tmux

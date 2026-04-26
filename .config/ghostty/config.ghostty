@@ -1,3 +1,4 @@
 font-size = 16
 theme = TokyoNight Night
 background-opacity= 0.7
+confirm-close-surface= false
