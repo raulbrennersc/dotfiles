@@ -1,6 +1,8 @@
 vim.pack.add({ "gh:folke/snacks.nvim" })
 require("snacks").setup({
   picker = {
+    hidden = true,
+    ignored = true,
     enabled = true,
     sources = {
       explorer = {
