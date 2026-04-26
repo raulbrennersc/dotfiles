@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Check if bluetooth is powered on
+power=$(bluetoothctl show | grep "Powered: yes")
+
+if [ -z "$power" ]; then
+    echo '{"text": "󰂲", "class": "off", "tooltip": "Bluetooth Off"}'
+    exit 0
+fi
+
+# Check for connected devices
+device=$(bluetoothctl info | grep "Name:" | cut -d ' ' -f 2-)
+
+if [ -z "$device" ]; then
+    echo '{"text": "󰂯", "class": "on", "tooltip": "Bluetooth On (Disconnected)"}'
+else
+    echo "{\"text\": \"󰂱\", \"class\": \"connected\", \"tooltip\": \"Connected to $device\"}"
+fi

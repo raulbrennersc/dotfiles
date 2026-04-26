@@ -6,6 +6,7 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": [
+        "custom/bluetooth",
         "network",
         "pulseaudio",
         "battery",
@@ -44,11 +45,19 @@
     },
 
     "custom/idle": {
-      "exec": "~/.local/bin/scripts/idle-status",
+      "exec": "idle-status",
       "return-type": "json",
-      "on-click": "~/.local/bin/scripts/idle-toggle",
+      "on-click": "idle-toggle",
       "signal": 10,
       "interval": "once"
+    },
+
+    "custom/bluetooth": {
+      "exec": "bluetooth-status",
+      "return-type": "json",
+      "interval": 30,
+      "on-click": "tui-bluetooth",
+      "signal": 11
     },
 
     "battery": {
@@ -61,6 +70,6 @@
         "exec": "powerprofilesctl get",
         "interval": 30,
         "format": "󰈐 {}",
-        "on-click": "~/.local/bin/power-menu" 
+        "on-click": "power-menu" 
     }
 }

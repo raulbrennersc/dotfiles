@@ -10,7 +10,8 @@ sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd fastfetch \
   ddcutil bluetui firefox libnewt hyprlock hypridle impala less polkit-gnome \
   gnome-disk-utility bash-completion hyprpicker grim slurp hyprshot \
   gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard ffmpeg \
-  chromium brightnessctl pulsemixer networkmanager
+  chromium brightnessctl pulsemixer networkmanager noto-fonts-emoji
+
 
 sudo systemctl restart systemd-resolved.service
 sudo modprobe i2c-dev
@@ -22,7 +23,11 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd
-yay -Syu walker elephant elephant-desktopapplications elephant-clipboard 
+yay -Syu walker elephant elephant-desktopapplications elephant-clipboard \
+elephant-calc elephant-clipboard elephant-bluetooth elephant-desktopapplications \
+elephant-files elephant-menus elephant-providerlist elephant-runner elephant-symbols \
+elephant-unicode elephant-websearch elephant-todo 
+
 
 elephant service enable
 systemctl --user start elephant.service
@@ -52,6 +57,7 @@ ln -s ~/dotfiles/.config/tmux ~/.config/tmux
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/cava ~/.config/cava
+ln -s ~/dotfiles/.config/walker ~/.config/walker
 ln -s ~/dotfiles/.config/elephant ~/.config/elephant
 ln -s ~/dotfiles/.config/mako ~/.config/mako
 ln -s ~/dotfiles/.docker ~/.docker

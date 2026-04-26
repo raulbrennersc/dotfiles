@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 if pgrep -x "hypridle" > /dev/null; then
     pkill hypridle
-    notify-send "Caffeine" "Idle inhibitor ON (Hypridle stopped)" -i coffee
+    notify-send "Hypridle" "Idle inhibitor ON (Hypridle stopped)" -i coffee
 else
     hypridle &
-    notify-send "Caffeine" "Idle inhibitor OFF (Hypridle started)" -i battery
+    notify-send "Hypridle" "Idle inhibitor OFF (Hypridle started)" -i battery
 fi
 
 pkill -RTMIN+10 waybar

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Define options with icons
+options="󰐥  Shutdown\n󰑐  Reboot\n󰤄  Suspend\n󰍃  Logout\n󰗼  Lock"
+
+# Open Walker in dmenu mode
+chosen=$(echo -e "$options" | walker --dmenu --placeholder "System Action" | xargs)
+
+case "$chosen" in
+    "󰐥 Shutdown") systemctl poweroff ;;
+    "󰑐 Reboot") systemctl reboot ;;
+    "󰤄 Suspend") systemctl suspend ;;
+    "󰍃 Logout") hyprctl dispatch exit ;;
+    "󰗼 Lock") loginctl lock-session ;;
+esac
