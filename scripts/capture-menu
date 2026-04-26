@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+options="󰄀  Color Picker\n󰄄  Screenshot (Region)\n󰹑  Screenshot (Full)\n󰑋  Record Screen"
+chosen=$(echo -e "$options" | walker --dmenu | xargs)
+
+case "$chosen" in
+    "󰄀 Color Picker") hyprpicker -a ;;
+    "󰄄 Screenshot (Region)") hyprshot -m region ;;
+    "󰹑 Screenshot (Full)") hyprshot -m output ;;
+    "󰑋 Record Screen") 
+        gpu-screen-recorder -w $(hyprctl activewindow -j | jq -r .address) \
+        -f 60 -a "default_output" -o ~/Videos/rec_$(date +%d%b_%H%M).mp4 ;;
+esac

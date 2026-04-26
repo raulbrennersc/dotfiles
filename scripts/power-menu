@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+current=$(powerprofilesctl get)
+
+options="󰓅  Performance\n󰾅  Balanced\n󰾆  Power-saver"
+
+chosen=$(echo -e "$options" | walker --dmenu --placeholder "Current: $current" | xargs)
+
+case "$chosen" in
+    "󰓅 Performance")
+        powerprofilesctl set performance
+        notify-send "Power Profile" "Switched to Performance" -i high-priority
+        ;;
+    "󰾅 Balanced")
+        powerprofilesctl set balanced
+        notify-send "Power Profile" "Switched to Balanced" -i battery
+        ;;
+    "󰾆 Power-saver")
+        powerprofilesctl set power-saver
+        notify-send "Power Profile" "Switched to Power-saver" -i battery-caution
+        ;;
+esac

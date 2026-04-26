@@ -9,8 +9,8 @@ sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd solaar fastfetch 
   swayosd xdg-desktop-portal-hyprland xdg-desktop-portal-gtk uwsm swaybg \
   ddcutil bluetui firefox libnewt hyprlock hypridle impala less polkit-gnome \
   gnome-disk-utility bash-completion hyprpicker grim slurp hyprshot \
-  gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard \
-  chromium ghostty
+  gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard ffmpeg \
+  chromium brightnessctl
 
 sudo systemctl restart systemd-resolved.service
 sudo modprobe i2c-dev
@@ -22,6 +22,10 @@ cd yay
 makepkg -si
 cd
 yay -Syu walker elephant elephant-desktopapplications elephant-clipboard 
+
+elephant service enable
+systemctl --user start elephant.service
+sudo systemctl start swayosd-libinput-backend.service
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
@@ -59,7 +63,6 @@ ln -s ~/dotfiles/scripts ~/.local/bin/scripts
 ln -s ~/dotfiles/.desktop/bluetooth.desktop ~/.local/share/applications/bluetooth.desktop
 ln -s ~/dotfiles/.desktop/wifi.desktop ~/.local/share/applications/wifi.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
-sudo ln -s ~/dotfiles/scripts/devcontainer.sh /usr/bin/devcontainer
 
 echo "Install oh-my-posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s

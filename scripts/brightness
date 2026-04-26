@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ "$1" == "up" ]; then
+    ddcutil --sleep-multiplier 0.1 --noverify --skip-ddc-checks --bus 7 setvcp 10 + 10
+else
+    ddcutil --sleep-multiplier 0.1 --noverify --skip-ddc-checks --bus 7 setvcp 10 - 10
+fi
+NEW_VAL=$(ddcutil getvcp 10 -t | cut -d ' ' -f 4)
+
+# Set new brightness via ddcutil
+# ddcutil setvcp -b 7 10 $new
+# echo $new
+
+# Update SwayOSD
+NEW_VAL=$(echo "$NEW_VAL / 100" | bc -l)
+echo $NEW_VAL
+swayosd-client --custom-progress $NEW_VAL --custom-icon "display-brightness"
