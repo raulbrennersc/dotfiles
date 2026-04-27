@@ -57,6 +57,7 @@ ln -s ~/dotfiles/.config/tmux ~/.config/tmux
 ln -s ~/dotfiles/.config/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/cava ~/.config/cava
+ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
 ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
 ln -s ~/dotfiles/.config/walker ~/.config/walker
 ln -s ~/dotfiles/.config/elephant ~/.config/elephant
