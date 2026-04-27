@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/.local/bin:$HOME/.local//bin/scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts
 export XDG_CONFIG_HOME=$HOME/.config
 export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOST}}
 bind 'set completion-ignore-case on'

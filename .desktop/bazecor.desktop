@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Bazecor
+Exec=~/.local/share/applications/Bazecor.AppImage
+Icon=keyboard
+Terminal=false
+Type=Application
+Categories=System;
