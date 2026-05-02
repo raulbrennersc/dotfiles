@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Devcontainer Connect
+Exec=~/.local/bin/scripts/devcontainer-connect
+Icon=
+Terminal=false
+Type=Application
+Categories=System;

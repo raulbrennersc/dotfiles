@@ -74,6 +74,7 @@ ln -s ~/dotfiles/scripts ~/.local/bin/scripts
 ln -s ~/dotfiles/.desktop/tui-bluetooth.desktop ~/.local/share/applications/tui-bluetooth.desktop
 ln -s ~/dotfiles/.desktop/bazecor.desktop ~/.local/share/applications/bazecor.desktop
 ln -s ~/dotfiles/.desktop/tui-wifi.desktop ~/.local/share/applications/tui-wifi.desktop
+ln -s ~/dotfiles/.desktop/devcontainer.desktop ~/.local/share/applications/devcontainer.desktop
 cp ~/dotfiles/.ssh/config ~/.ssh/config
 
 echo "Install oh-my-posh"

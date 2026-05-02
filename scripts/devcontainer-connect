@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+IN=$(devcontainer list)
+echo $power
+
+options=""
+IFS=' ' read -ra ADDR <<< "$IN"
+for i in "${ADDR[@]}"; do
+  options+="${i%%|*}\n"
+done
+chosen=$(echo -e "$options" | walker --dmenu --placeholder "System Action" | xargs)
+container="${chosen%%.*}"
+ghostty -e devcontainer connect $container
+
