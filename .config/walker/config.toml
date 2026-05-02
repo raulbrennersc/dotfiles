@@ -1,3 +1,5 @@
+theme="tokyo-night"
+
 [[plugins]]
 name = "clipboard"
 placeholder = "Clipboard"
@@ -47,4 +49,10 @@ provider = "websearch"
 [[providers.prefixes]]
 prefix = "$"
 provider = "clipboard"
+
+# [style]
+# layout = "center"
+#
+# [effects]
+# blur = true
 

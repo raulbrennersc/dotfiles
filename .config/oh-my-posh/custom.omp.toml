@@ -1,14 +1,16 @@
 "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
 console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
+[palettes]
+template = "tokyonight"
 
 # tokyonight
-[palette]
+[palettes.list.tokyonight]
 accent     = "#7aa2f7"
-secondary  = "#292e42"
+secondary  = "#1a1b26"
 error      = "#f7768e"
 success    = "#9ece6a"
-background = "#1a1b26"
+background = "#292e42"
 root       = "#e0af68"
 
 [transient_prompt]
@@ -24,7 +26,7 @@ type = "prompt"
 [[blocks.segments]]
 type = "os"
 style = "diamond"
-background = "p:secondary"
+background = "p:background"
 foreground = "p:accent"
 template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
@@ -44,7 +46,7 @@ display_root=true
 style = "letter"
 
 [[blocks.segments]]
-background = "p:secondary"
+background = "p:background"
 foreground = "p:accent"
 powerline_symbol = ""
 style = "powerline"
@@ -68,7 +70,7 @@ overflow = "hide"
 type = "prompt"
 
 [[blocks.segments]]
-background = "p:secondary"
+background = "p:background"
 foreground = "p:accent"
 leading_diamond = ""
 style = "diamond"

@@ -8,7 +8,11 @@ IFS=' ' read -ra ADDR <<< "$IN"
 for i in "${ADDR[@]}"; do
   options+="${i%%|*}\n"
 done
-chosen=$(echo -e "$options" | walker --dmenu --placeholder "System Action" | xargs)
+chosen=$(echo -e "$options" | walker --dmenu --placeholder "Connect to Devcontainer" | xargs)
 container="${chosen%%.*}"
-ghostty -e devcontainer connect $container
+
+
+if [[ -n "$container" ]]; then
+  ghostty -e devcontainer connect $container
+fi
 
