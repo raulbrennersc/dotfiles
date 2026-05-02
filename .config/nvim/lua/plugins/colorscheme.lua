@@ -3,11 +3,11 @@ vim.pack.add({
 })
 
 require("tokyonight").setup({
-  -- transparent = true,
-  -- styles = {
-  --   sidebar = "transparent",
-  --   floats = "transparent",
-  -- },
+  transparent = true,
+  styles = {
+    sidebar = "transparent",
+    floats = "transparent",
+  },
 })
 
 vim.cmd([[colorscheme tokyonight-night]])

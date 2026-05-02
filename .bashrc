@@ -1,6 +1,6 @@
 export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts
 export XDG_CONFIG_HOME=$HOME/.config
-export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOST}}
+export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOSTNAME}}
 bind 'set completion-ignore-case on'
 
 alias vi="nvim"
