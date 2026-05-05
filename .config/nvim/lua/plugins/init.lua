@@ -1,3 +1,4 @@
+require("plugins.dependencies")
 require("plugins.colorscheme")
 require("plugins.lspconfig")
 require("plugins.mini")

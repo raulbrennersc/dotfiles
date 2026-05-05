@@ -1,12 +1,23 @@
 theme="tokyo-night"
+force_keyboard_focus = true
+selection_wrap = true
+hide_action_hints = true
 
 [[plugins]]
 name = "clipboard"
 placeholder = "Clipboard"
 
-force_keyboard_focus = true
-selection_wrap = true
-hide_action_hints = true
+[[plugins]]
+name = "notifications"
+placeholder = "Notifications"
+show_items_anyway = true
+terminal = false
+command = '/home/raul/.local/bin/scripts/walker-mako'
+
+[plugins.switcher]
+maintain_state = false
+command = "makoctl dismiss --all" # Example: clear all on selection
+
 
 [placeholders]
 "default" = { input = " Search...", list = "No Results" }

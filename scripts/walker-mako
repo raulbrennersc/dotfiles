@@ -1,0 +1,13 @@
+# Fetch history
+data=$(makoctl history -j)
+
+# If empty, return an empty array for Walker
+if [[ "$data" == "[]" || -z "$data" ]]; then
+    echo "[]"
+    exit 0
+fi
+
+# Convert Mako JSON to Walker Plugin JSON
+output=$(echo "$data" | jq -r '.[] | "[\(.app_name)] \(.summary) \(.body // "")"')
+echo $output
+chosen=$(echo -e "$output" | walker --dmenu --placeholder "Current: $current" | xargs)

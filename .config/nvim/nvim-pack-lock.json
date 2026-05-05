@@ -16,6 +16,10 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "gh:nvim-treesitter/nvim-treesitter"
     },
+    "nvim-web-devicons": {
+      "rev": "4fc505ac7bd7692824a142e96e5f529c133862f8",
+      "src": "gh:nvim-tree/nvim-web-devicons"
+    },
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "gh:folke/snacks.nvim"
