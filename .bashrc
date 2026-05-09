@@ -3,7 +3,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export CUSTOM_HOST=${DEVCONTAINER_NAME:-${HOSTNAME}}
 bind 'set completion-ignore-case on'
 
-alias vi="nvim"
+alias vim="nvim"
 alias tmux="tmux new-session -A -s $USER"
 
 alias gb="git branch"
