@@ -30,7 +30,7 @@
     haptic-level, haptic-play, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: 4099C0950000
-  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore, rgb_control: true, rgb_zone_1: true}
+  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore, per-key-lighting: ignore, rgb_control: true, rgb_zone_1: true}
   _serial: 13C0A9A9
   _unitId: 13C0A9A9
   _wpid: '4099'
