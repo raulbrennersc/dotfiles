@@ -11,7 +11,7 @@ sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd fastfetch \
   gnome-disk-utility bash-completion hyprpicker grim slurp hyprshot \
   gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard ffmpeg \
   chromium brightnessctl pulsemixer networkmanager noto-fonts-emoji \
-  imagemagick
+  imagemagick solaar adw-gtk-theme
 
 
 sudo systemctl restart systemd-resolved.service
@@ -51,6 +51,7 @@ ssh-add ~/.ssh/id_ed25519
 echo "Create symlinks to dotfiles"
 mkdir -p ~/.config/ ~/.docker/ ~/.local/bin
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/hypr ~/.config/hypr
 ln -s ~/dotfiles/.config/waybar ~/.config/waybar
 ln -s ~/dotfiles/.config/git ~/.config/git
