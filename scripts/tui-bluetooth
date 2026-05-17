@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
 alacritty --class tui-popup -e bluetui
-pkill -RTMIN+11 waybar

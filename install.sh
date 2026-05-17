@@ -5,13 +5,13 @@ sudo pacman -Syu --needed git base-devel
 sudo pacman -Syu flatpak curl openssh ddcutil unzip cmatrix fd fastfetch \
   cava tmux vim qbittorrent chromium alacritty ripgrep vlc neovim docker \
   docker-compose firefox dbeaver sqlite spotify-launcher steam stylua \
-  lua-language-server hyprland waybar nautilus mako sddm ttf-jetbrains-mono-nerd \
-  swayosd xdg-desktop-portal-hyprland xdg-desktop-portal-gtk uwsm swaybg \
+  lua-language-server hyprland nautilus sddm ttf-jetbrains-mono-nerd \
+  xdg-desktop-portal-hyprland xdg-desktop-portal-gtk uwsm hyprpaper \
   ddcutil bluetui firefox libnewt hyprlock hypridle impala less polkit-gnome \
   gnome-disk-utility bash-completion hyprpicker grim slurp hyprshot \
   gpu-screen-recorder power-profiles-daemon fzf fd wl-clipboard ffmpeg \
   chromium brightnessctl pulsemixer networkmanager noto-fonts-emoji \
-  imagemagick solaar adw-gtk-theme
+  imagemagick solaar adw-gtk-theme quickshell noto-fonts-cjk
 
 
 sudo systemctl restart systemd-resolved.service
@@ -25,15 +25,12 @@ cd yay
 makepkg -si
 cd
 
-yay -Syu walker elephant elephant-desktopapplications elephant-clipboard \
-elephant-calc elephant-clipboard elephant-bluetooth elephant-desktopapplications \
-elephant-files elephant-menus elephant-providerlist elephant-runner elephant-symbols \
-elephant-unicode elephant-websearch elephant-todo 
+yay -Syu qml-language-server-bin
 
 
 elephant service enable
 systemctl --user start elephant.service
-sudo systemctl start swayosd-libinput-backend.service
+systemctl --user enable hyprpaper.service
 
 if ! [ -d "~/dotfiles" ]; then
   echo "Clone dotfiles"
@@ -53,7 +50,7 @@ mkdir -p ~/.config/ ~/.docker/ ~/.local/bin
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/dotfiles/.config/solaar ~/.config/solaar
 ln -s ~/dotfiles/.config/hypr ~/.config/hypr
-ln -s ~/dotfiles/.config/waybar ~/.config/waybar
+ln -s ~/dotfiles/.config/quickshell ~/.config/quickshell
 ln -s ~/dotfiles/.config/git ~/.config/git
 ln -s ~/dotfiles/.config/fastfetch ~/.config/fastfetch
 ln -s ~/dotfiles/.config/tmux ~/.config/tmux
@@ -64,7 +61,6 @@ ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
 ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
 ln -s ~/dotfiles/.config/walker ~/.config/walker
 ln -s ~/dotfiles/.config/elephant ~/.config/elephant
-ln -s ~/dotfiles/.config/mako ~/.config/mako
 ln -s ~/dotfiles/.docker ~/.docker
 ln -s ~/dotfiles/.config/ghostty ~/.config/ghostty
 
