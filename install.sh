@@ -28,8 +28,6 @@ cd
 yay -Syu qml-language-server-bin
 
 
-elephant service enable
-systemctl --user start elephant.service
 systemctl --user enable hyprpaper.service
 
 if ! [ -d "~/dotfiles" ]; then
@@ -59,8 +57,6 @@ ln -s ~/dotfiles/.config/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/.config/cava ~/.config/cava
 ln -s ~/dotfiles/.config/environment.d ~/.config/environment.d
 ln -s ~/dotfiles/.config/MangoHud ~/.config/MangoHud
-ln -s ~/dotfiles/.config/walker ~/.config/walker
-ln -s ~/dotfiles/.config/elephant ~/.config/elephant
 ln -s ~/dotfiles/.docker ~/.docker
 ln -s ~/dotfiles/.config/ghostty ~/.config/ghostty
 

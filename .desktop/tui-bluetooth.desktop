@@ -2,6 +2,6 @@
 Name=Bluetooth TUI
 Exec=~/.local/bin/scripts/tui-bluetooth
 Icon=bluetooth
-Terminal=false
+Terminal=true
 Type=Application
 Categories=System;
