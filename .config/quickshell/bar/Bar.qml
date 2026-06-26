@@ -7,7 +7,7 @@ import Quickshell.Services.SystemTray
 import Quickshell.Io
 import Quickshell.Services.Mpris
 import Quickshell.Services.Pipewire
-// import "NotificationBell"
+
 Scope {
   id: root
   property var theme: DefaultTheme {}

@@ -18,6 +18,7 @@ opt.foldtext = "v:lua.vim.lsp.foldtext()"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
+opt.wrap = false
 
 opt.ignorecase = true
 opt.smartcase = true
