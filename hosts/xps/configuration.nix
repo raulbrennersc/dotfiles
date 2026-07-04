@@ -49,7 +49,7 @@
     jetbrains-mono
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   system.stateVersion = "24.05";
