@@ -5,7 +5,7 @@
   home.homeDirectory = "/home/raul";
 
   home.packages = with pkgs; [
-    newt adw-gtk-theme
+    newt adw-gtk3
 
     unzip cmatrix fd fastfetch cava tmux neovim ripgrep less
     fzf wl-clipboard ffmpeg imagemagick slurp grim ddcutil
@@ -14,8 +14,6 @@
     qbittorrent chromium alacritty vlc firefox dbeaver-bin
     sqlite spotify steam solaar nautilus gnome-disk-utility
     wezterm ghostty
-
-    adw-gtk-theme
 
     hyprpaper hyprlock hypridle hyprpicker
     quickshell hyprshot
