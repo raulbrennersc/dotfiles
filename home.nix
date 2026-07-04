@@ -4,9 +4,6 @@
   home.username = "raul";
   home.homeDirectory = "/home/raul";
 
-   adw-gtk-theme
-
-
   home.packages = with pkgs; [
     newt adw-gtk-theme
 
