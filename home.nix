@@ -89,10 +89,13 @@
 
   programs.git = {
     enable = true;
-    userName = "Raul Costa";
-    userEmail = "raulbrennersc@gmail.com";
 
-    extraConfig = {
+    settings = {
+      user = {
+        email = "raulbrennersc@gmail.com";
+        name = "Raul Costa";
+      }
+
       core = {
         editor = "vim";
       };
@@ -138,17 +141,16 @@
 
   programs.ssh = {
     enable = true;
-
-    matchBlocks = {
+    settings = {
       "*.devcontainer" = {
-        hostname = "localhost";
-        user = "dev";
-        forwardAgent = true;
-        forwardX11 = true;
-        forwardX11Trusted = true;
+        HostName = "localhost";
+        User = "dev";
+        ForwardAgent = true;
+        ForwardX11 = true;
+        ForwardX11Trusted = true;
       };
-    };
+    }
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 }
