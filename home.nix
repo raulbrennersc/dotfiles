@@ -135,7 +135,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    MANGOHUD=1
+    MANGOHUD=1;
   };
 
   programs.ssh = {
