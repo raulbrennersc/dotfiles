@@ -149,7 +149,7 @@
         ForwardX11 = true;
         ForwardX11Trusted = true;
       };
-    }
+    };
   };
 
   home.stateVersion = "26.05";
