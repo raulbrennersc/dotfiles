@@ -94,7 +94,7 @@
       user = {
         email = "raulbrennersc@gmail.com";
         name = "Raul Costa";
-      }
+      };
 
       core = {
         editor = "vim";
