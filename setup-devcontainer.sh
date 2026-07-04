@@ -16,12 +16,12 @@ if ! [ -d "~/dotfiles" ]; then
 fi
 
 mkdir -p ~/.config/git ~/.config/tmux
-ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+ln -s ~/dotfiles/configs/nvim ~/.config/nvim
 
-ln -s ~/dotfiles/.config/git/config ~/.config/git/config
-ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
+ln -s ~/dotfiles/configs/git/config ~/.config/git/config
+ln -s ~/dotfiles/configs/tmux/tmux.conf ~/.config/tmux/tmux.conf
 mkdir -p ~/.docker
-cp ~/dotfiles/.docker/config.json ~/.docker/config.json
+cp ~/dotfiles/configs/.docker/config.json ~/.docker/config.json
 
 if [ -d "/workspaces" ]; then
   ln -s /workspaces ~/workspaces
