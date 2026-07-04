@@ -33,29 +33,59 @@
     settings = builtins.fromJSON (builtins.readFile ./configs/oh-my-posh/custom.omp.toml);
   };
 
-  home.file.".docker".source = ./configs/.docker;
-
-  xdg.configFile = {
-    "nvim".source = ./configs/nvim;
-    "hypr".source = ./configs/hypr;
-    "tmux".source = ./configs/tmux;
-    "alacritty".source = ./configs/alacritty;
-    "wezterm".source = ./configs/wezterm
-    "fastfetch".source = ./configs/fastfetch;
-    "cava".source = ./configs/cava;
-    "solaar".source = ./configs/solaar;
-    "quickshell".source = ./configs/quickshell;
-    "ghostty".source = ./configs/ghostty;
-    "MangoHud".source = ./configs/MangoHud;
-    "autostart".source = ./configs/autostart;
+  home.file = {
+    ".docker".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/.docker";
+    ".local/bin/scripts".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/scripts";
   };
 
-  home.file.".local/bin/scripts".source = ./configs/scripts;
+  xdg.configFile = {
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
+    "hypr".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/hypr";
+    "tmux".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/tmux";
+    "alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/alacritty";
+    "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/wezterm";
+    "fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/fastfetch";
+    "cava".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/cava";
+    "solaar".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/solaar";
+    "quickshell".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/quickshell";
+    "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/ghostty";
+    "MangoHud".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
+    "autostart".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/autostart";
+  };
 
-  home.file.".local/share/applications/tui-bluetooth.desktop".source = ./configs/desktop/tui-bluetooth.desktop;
-  home.file.".local/share/applications/devcontainer.desktop".source = ./configs/desktop/devcontainer.desktop;
-  home.file.".local/share/applications/wifi.desktop".source = ./configs/desktop/wifi.desktop;
-  home.file.".local/share/applications/bazecor.desktop".source = ./configs/desktop/bazecor.desktop;
+  xdg.desktopEntries = {
+    tui-bluetooth = {
+      name = "Bluetooth";
+      exec = "tui-bluetooth";
+      icon = "bluetooth";
+      terminal = true;
+      categories = ["System"];
+    };
+
+    devcontainer = {
+      name = "Devcontainer Connect";
+      exec = "devcontainer-connect";
+      icon = "";
+      terminal = false;
+      categories = ["System"];
+    };
+
+    wifi = {
+      name = "Wifi";
+      exec = "tui-wifi";
+      icon = "network-wireless-symbolic";
+      terminal = false;
+      categories = ["System"];
+    };
+
+    bazecor = {
+      name = "Bazecor";
+      exec = "${config.home.homeDirectory}/.local/share/applications/Bazecor.AppImage";
+      icon = "keyboard";
+      terminal = false;
+      categories = ["System"];
+    };
+  };
 
   programs.bash = {
     enable = true;
@@ -101,6 +131,10 @@
   };
 
   services.hyprpaper.enable = true;
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin/scripts"
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";

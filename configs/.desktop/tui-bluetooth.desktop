@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Bluetooth TUI
-Exec=~/.local/bin/scripts/tui-bluetooth
-Icon=bluetooth
-Terminal=true
-Type=Application
-Categories=System;
