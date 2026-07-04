@@ -11,8 +11,13 @@
   services.openssh.enable = true;
 
   hardware.i2c.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.xpadneo.enable = true;
+  hardware.steam-hardware.enable = true;
 
   services.power-profiles-daemon.enable = true;
+  services.udisks2.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -45,6 +50,16 @@
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
     noto-fonts-emoji
+  ];
+
+  fileSystems."/mnt/media" = {
+    device = "/dev/disk/by-label/media";
+    fsType = "ext4";
+    options = [ "nofail" "defaults" ]; 
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /mnt/media 0755 raul users -"
   ];
 
   system.stateVersion = "24.05";
