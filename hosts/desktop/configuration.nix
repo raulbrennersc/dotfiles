@@ -13,6 +13,7 @@
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
     logitech-udev-rules
+    bazecor
   ];
 
   hardware.i2c.enable = true;
@@ -49,11 +50,13 @@
     withUWSM = true;
   };
 
+
+  programs.fuse.userAllowOther = true;
   virtualisation.docker.enable = true;
 
   users.users.raul = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" "dialout"];
     shell = pkgs.bash;
   };
 
@@ -65,6 +68,8 @@
     pulseaudio
     solaar
     playerctl
+    appimage-run
+    bazecor
   ];
 
   programs.gpu-screen-recorder.enable = true;
@@ -75,6 +80,8 @@
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
   ];
+
+  security.polkit.enable = true;
 
   fileSystems."/mnt/media" = {
     device = "/dev/disk/by-label/media";

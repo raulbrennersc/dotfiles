@@ -71,14 +71,6 @@
       terminal = false;
       categories = ["System"];
     };
-
-    bazecor = {
-      name = "Bazecor";
-      exec = "${config.home.homeDirectory}/.local/share/applications/Bazecor.AppImage";
-      icon = "keyboard";
-      terminal = false;
-      categories = ["System"];
-    };
   };
 
   programs.bash = {
