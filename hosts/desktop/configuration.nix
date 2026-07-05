@@ -11,6 +11,9 @@
   networking.hostName = "raul-desktop";
   services.resolved.enable = true;
   services.openssh.enable = true;
+  services.udev.packages = with pkgs; [
+    logitech-udev-rules
+  ];
 
   hardware.i2c.enable = true;
   hardware.bluetooth.enable = true;
@@ -19,6 +22,8 @@
   hardware.steam-hardware.enable = true;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
   services.pipewire = {
     enable = true;
@@ -27,6 +32,11 @@
   services.playerctld.enable = true;
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
+
+  services.udev.extraRules = ''
+    # Grant the 'input' group access to uinput for Solaar on Wayland
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
 
   services.xserver.videoDrivers = ["amdgpu"];
 
@@ -43,7 +53,7 @@
 
   users.users.raul = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" ];
     shell = pkgs.bash;
   };
 
@@ -53,6 +63,7 @@
     vim
     polkit_gnome
     pulseaudio
+    solaar
     playerctl
   ];
 

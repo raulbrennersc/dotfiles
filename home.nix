@@ -11,7 +11,7 @@
     brightnessctl pulsemixer bluetui impala
 
     qbittorrent chromium alacritty vlc firefox dbeaver-bin
-    sqlite spotify steam solaar nautilus gnome-disk-utility
+    sqlite spotify steam nautilus gnome-disk-utility
     wezterm ghostty
 
     hyprpaper hyprlock hypridle hyprpicker
