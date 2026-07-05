@@ -152,5 +152,25 @@
     };
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+  };
+
   home.stateVersion = "26.05";
 }
