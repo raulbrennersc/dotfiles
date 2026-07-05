@@ -9,6 +9,9 @@
 
   networking.networkmanager.enable = true;
   networking.hostName = "raul-desktop";
+  networking.wireless.enable = false;
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
   services.resolved.enable = true;
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
