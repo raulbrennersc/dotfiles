@@ -5,8 +5,7 @@
   home.homeDirectory = "/home/raul";
 
   home.packages = with pkgs; [
-    newt adw-gtk3
-
+    newt adw-gtk3 papirus-icon-theme
     unzip cmatrix fd fastfetch cava tmux neovim ripgrep less
     fzf wl-clipboard ffmpeg imagemagick slurp grim ddcutil
     brightnessctl pulsemixer bluetui impala
@@ -137,6 +136,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     MANGOHUD=1;
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+    QS_ICON_THEME = "Papirus-Dark";
   };
 
   programs.ssh = {
@@ -160,16 +161,16 @@
 
   gtk = {
     enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
-  };
-
-  home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 
   home.stateVersion = "26.05";

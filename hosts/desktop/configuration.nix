@@ -8,7 +8,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
-  networking.hostName = "raul-desktop"
+  networking.hostName = "raul-desktop";
   services.resolved.enable = true;
   services.openssh.enable = true;
 
