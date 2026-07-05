@@ -15,9 +15,14 @@
   hardware.bluetooth.powerOnBoot = true;
   hardware.xpadneo.enable = true;
   hardware.steam-hardware.enable = true;
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+
 
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
+
+  services.xserver.videoDrivers = ["amdgpu"];
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
