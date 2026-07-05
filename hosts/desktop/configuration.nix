@@ -3,6 +3,7 @@
 {
   imports = [ ./hardware-configuration.nix ];
   nixpkgs.config.allowUnfree = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -18,7 +19,11 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
-
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+  services.playerctld.enable = true;
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
 
@@ -46,6 +51,8 @@
     curl
     vim
     polkit_gnome
+    pulseaudio
+    playerctl
   ];
 
   programs.gpu-screen-recorder.enable = true;
