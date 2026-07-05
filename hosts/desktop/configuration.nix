@@ -93,5 +93,7 @@
     "d /mnt/media 0755 raul users -"
   ];
 
+  time.timeZone = "America/Sao_Paulo";
+
   system.stateVersion = "24.05";
 }
