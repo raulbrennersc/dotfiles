@@ -29,6 +29,7 @@ hl.config({
     allow_tearing = false,
     layout = "dwindle",
   },
+
   decoration = {
     active_opacity = 1.0,
     inactive_opacity = 0.9,
@@ -57,8 +58,8 @@ hl.config({
   },
 })
 
-hl.animation({ leaf = "windows", enabled = true, speed = 8, bezier = "default" })
-hl.animation({ leaf = "windows", enabled = true, speed = 10, bezier = "default" })
+hl.animation({ leaf = "windows", enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "default" })
 
 hl.workspace_rule({ workspace = "w[t1]", gaps_out = { top = 0, bottom = 0, right = 300, left = 300 } })
 hl.workspace_rule({ workspace = "w[t2-10]", gaps_out = { top = 4, bottom = 4, right = 10, left = 10 }, gaps_in = 2 })
