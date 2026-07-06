@@ -14,7 +14,7 @@
     sqlite spotify steam nautilus gnome-disk-utility
     wezterm ghostty
 
-    hyprpaper hyprlock hypridle hyprpicker
+    hyprpaper hyprlock hyprpicker
     quickshell hyprshot
 
     docker-compose stylua lua-language-server
