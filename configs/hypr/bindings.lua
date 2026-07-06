@@ -36,7 +36,17 @@ hl.bind(
   { locked = true, repeating = true }
 )
 hl.bind(
+  "SHIFT + XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+"),
+  { locked = true, repeating = true }
+)
+hl.bind(
   "XF86AudioLowerVolume",
+  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),
+  { locked = true, repeating = true }
+)
+hl.bind(
+  "SHIFT + XF86AudioLowerVolume",
   hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),
   { locked = true, repeating = true }
 )
