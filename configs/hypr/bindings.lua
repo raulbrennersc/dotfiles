@@ -4,6 +4,10 @@ local fileManager = "nautilus"
 hl.bind(mainMod .. " + t", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + q", hl.dsp.window.close())
 hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(fileManager))
+hl.bind(
+  mainMod .. " + M",
+  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+)
 
 hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("qs ipc call launcher toggle"))
 

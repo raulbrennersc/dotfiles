@@ -44,8 +44,13 @@
 
   services.xserver.videoDrivers = ["amdgpu"];
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland = {
+      enable = true;
+    };
+  };
+
   programs.uwsm.enable = true;
   programs.hyprland = {
     enable = true;

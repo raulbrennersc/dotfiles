@@ -14,6 +14,7 @@ hl.device({
 hl.on("hyprland.start", function()
   hl.exec_cmd("uwsm-app -- qs")
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+  hl.exec_cmd("hyprctl setcursor Nordzy-cursors 24")
 end)
 
 hl.config({

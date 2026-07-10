@@ -25,7 +25,6 @@
   programs.oh-my-posh = {
     enable = true;
     enableBashIntegration = true;
-    # settings = builtins.fromJSON (builtins.readFile ./configs/oh-my-posh/custom.omp.toml);
   };
 
   home.file = {
@@ -35,6 +34,7 @@
 
   xdg.configFile = {
     "nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
+    "uwsm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
     "hypr".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/hypr";
     "tmux".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/tmux";
     "alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/alacritty";
@@ -164,7 +164,20 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
+    cursorTheme = {
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+    };
   };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.nordzy-cursor-theme;
+    name = "Nordzy-cursors";
+    size = 24;
+  };
+
 
   home.stateVersion = "26.05";
 }
