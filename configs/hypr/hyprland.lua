@@ -95,20 +95,21 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "move-hyprland-run",
-  match = {
-    class = "hyprland-run",
-  },
-  move = { 20, "monitor_h-120" },
-  float = true,
-})
-
-hl.window_rule({
   name = "tui-popup",
   float = true,
   center = true,
-  size = { 700, 450 },
+  size = { 1000, 700 },
   match = {
     class = "tui-popup",
+  },
+})
+
+hl.window_rule({
+  name = "steam-popups",
+  float = true,
+  center = true,
+  match = {
+    class = "steam",
+    title = "(Friends List)|(Steam Settings)|(Steam - Browser)",
   },
 })
