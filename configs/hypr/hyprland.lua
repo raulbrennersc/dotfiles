@@ -14,7 +14,6 @@ hl.device({
 hl.on("hyprland.start", function()
   hl.exec_cmd("uwsm-app -- qs")
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-  hl.exec_cmd("uwsm-app -- solaar --window=hide --battery-icons=solaar")
 end)
 
 hl.config({
@@ -54,7 +53,7 @@ hl.config({
 
   misc = {
     force_default_wallpaper = 0,
-    disable_hyprland_logo = false,
+    disable_hyprland_logo = true,
     disable_splash_rendering = true,
   },
 })

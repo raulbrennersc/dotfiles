@@ -3,3 +3,5 @@ theme = TokyoNight Night
 background = #000000
 background-opacity = 0.5
 confirm-close-surface= false
+font-feature = -calt
+font-feature = -liga

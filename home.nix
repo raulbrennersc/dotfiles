@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     newt adw-gtk3 papirus-icon-theme
+
     unzip cmatrix fd fastfetch cava tmux neovim ripgrep less
     fzf wl-clipboard ffmpeg imagemagick slurp grim ddcutil
     brightnessctl pulsemixer bluetui impala
@@ -15,7 +16,7 @@
     wezterm ghostty
 
     hyprpaper hyprlock hyprpicker
-    quickshell hyprshot
+    quickshell hyprshot libnotify
 
     docker-compose stylua lua-language-server
     kdePackages.qtdeclarative

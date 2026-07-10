@@ -73,6 +73,7 @@
     playerctl
     appimage-run
     bazecor
+    discord-ptb
   ];
 
   programs.gpu-screen-recorder.enable = true;
