@@ -3,9 +3,16 @@
 {
   imports = [ ./hardware-configuration.nix ];
   nixpkgs.config.allowUnfree = true;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  
+  users.users.raul = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" "dialout"];
+    shell = pkgs.bash;
+  };
 
   networking.networkmanager.enable = true;
   networking.hostName = "raul-desktop";
@@ -20,6 +27,12 @@
     "2606:4700:4700::1001"
   ];
 
+  services.resolved.enable = true;
+  services.openssh.enable = true;
+  services.udev.packages = with pkgs; [
+    logitech-udev-rules
+    bazecor
+  ];
   services.resolved = {
     enable = true;
     fallbackDns = [
@@ -32,13 +45,24 @@
     dnssec = "true";
     domains = [ "~." ];
   }; 
-
-  services.resolved.enable = true;
-  services.openssh.enable = true;
-  services.udev.packages = with pkgs; [
-    logitech-udev-rules
-    bazecor
-  ];
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+  services.playerctld.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.udisks2.enable = true;
+  services.udev.extraRules = ''
+    # Grant the 'input' group access to uinput for Solaar on Wayland
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
+  services.xserver.videoDrivers = ["amdgpu"];
+  services.displayManager.sddm = {
+    enable = true;
+    wayland = {
+      enable = true;
+    };
+  };
 
   hardware.i2c.enable = true;
   hardware.bluetooth.enable = true;
@@ -50,44 +74,16 @@
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-  services.playerctld.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.udisks2.enable = true;
-
-  services.udev.extraRules = ''
-    # Grant the 'input' group access to uinput for Solaar on Wayland
-    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-  '';
-
-  services.xserver.videoDrivers = ["amdgpu"];
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland = {
-      enable = true;
-    };
-  };
-
   programs.uwsm.enable = true;
+  programs.gpu-screen-recorder.enable = true;
+  programs.fuse.userAllowOther = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     withUWSM = true;
   };
 
-
-  programs.fuse.userAllowOther = true;
   virtualisation.docker.enable = true;
-
-  users.users.raul = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" "dialout"];
-    shell = pkgs.bash;
-  };
 
   environment.systemPackages = with pkgs; [
     git
@@ -101,8 +97,6 @@
     bazecor
     discord-ptb
   ];
-
-  programs.gpu-screen-recorder.enable = true;
 
   fonts.packages = with pkgs; [
     jetbrains-mono
