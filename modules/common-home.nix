@@ -11,7 +11,7 @@
     brightnessctl pulsemixer bluetui impala
 
     qbittorrent chromium alacritty vlc firefox dbeaver-bin
-    sqlite spotify steam nautilus gnome-disk-utility
+    sqlite spotify nautilus gnome-disk-utility
     wezterm ghostty
 
     hyprpaper hyprlock hyprpicker
@@ -29,6 +29,7 @@
   ];
   home.sessionVariables = {
     EDITOR = "nvim";
+    MANGOHUD=1;
     QT_QPA_PLATFORMTHEME = "qt6ct";
     QS_ICON_THEME = "Papirus-Dark";
   };
@@ -59,7 +60,7 @@
   };
   programs.bash = {
     enable = true;
-    initExtra = builtins.readFile ./configs/bashrc;
+    initExtra = builtins.readFile ../configs/bashrc;
   };
 
   programs.git = {
@@ -117,6 +118,7 @@
     "solaar".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/solaar";
     "quickshell".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/quickshell";
     "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/ghostty";
+    "MangoHud".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
     "autostart".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/autostart";
   };
 

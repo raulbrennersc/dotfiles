@@ -15,12 +15,11 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/desktop/configuration.nix
-          
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.raul = import ./home.nix;
+            home-manager.users.raul = import ./hosts/desktop/home.nix; 
           }
         ];
       };
@@ -33,7 +32,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.raul = import ./home.nix;
+            home-manager.users.raul = import ./hosts/xps/home.nix; 
           }
         ];
       };
