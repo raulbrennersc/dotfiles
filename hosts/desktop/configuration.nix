@@ -12,6 +12,27 @@
   networking.wireless.enable = false;
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+    "2606:4700:4700::1111"
+    "2606:4700:4700::1001"
+  ];
+
+  services.resolved = {
+    enable = true;
+    fallbackDns = [
+      "1.1.1.1#one.one.one.one"
+      "1.0.0.1#one.one.one.one"
+      "2606:4700:4700::1111#one.one.one.one"
+      "2606:4700:4700::1001#one.one.one.one"
+    ];
+    dnsovertls = "true";
+    dnssec = "true";
+    domains = [ "~." ];
+  }; 
+
   services.resolved.enable = true;
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
