@@ -9,6 +9,7 @@
     gnomeExtensions.color-picker
     gnomeExtensions.appindicator
     gnomeExtensions.vitals
+    gnomeExtensions.clipboard-indicator
   ];
 
   dconf.settings = {
@@ -25,6 +26,7 @@
         color-picker.extensionUuid
         appindicator.extensionUuid
         vitals.extensionUuid
+        clipboard-indicator.extensionUuid
       ];
 
       favorite-apps = [
@@ -148,6 +150,13 @@
     };
 
 ## EXTENSIONS
+    "/org/gnome/shell/extensions/clipboard-indicator" = {
+      toggle-menu = [ "XF86MonBrightnessDown" ];
+      open-at-cursor = true;
+      history-size = 100;
+      cache-size = 100;
+    };
+
     "org/gnome/shell/extensions/display-brightness-ddcutil" = {
       button-location = 1;
       ddcutil-binary-path = "${pkgs.ddcutil}/bin/ddcutil";
