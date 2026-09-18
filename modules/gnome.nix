@@ -158,7 +158,7 @@
       increase-brightness-shortcut = [ "XF86MonBrightnessUp" ];
       position-system-menu = 3.0;
       show-osd = true;
-      step-change-keyboard = 6.0;
+      step-change-keyboard = 5.0;
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
