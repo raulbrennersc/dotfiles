@@ -12,7 +12,7 @@ local function setup(config, is_transparent)
   })
   config.font_size = 15
   config.window_decorations = "NONE"
-  config.enable_tab_bar = true
+  config.enable_tab_bar = false
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
 

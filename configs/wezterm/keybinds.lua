@@ -5,7 +5,7 @@ local mux = wezterm.mux
 
 local function setup(config)
   config.leader = {
-    key = "a",
+    key = "s",
     mods = "CTRL",
     timeout_milliseconds = 2000,
   }

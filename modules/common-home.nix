@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ 
+    ./gnome.nix 
+  ];
+
   home.username = "raul";
   home.homeDirectory = "/home/raul";
   home.packages = with pkgs; [
@@ -29,13 +33,6 @@
     MANGOHUD=1;
     QT_QPA_PLATFORMTHEME = "qt6ct";
     QS_ICON_THEME = "Papirus-Dark";
-  };
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.nordzy-cursor-theme;
-    name = "Nordzy-cursors";
-    size = 24;
   };
   home.stateVersion = "26.05";
 
@@ -115,40 +112,5 @@
     "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/ghostty";
     "MangoHud".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
     "autostart".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/autostart";
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-    # "org/gnome/shell" = {
-    #   disable-user-extensions = false;
-    #   enabled-extensions = with pkgs.gnomeExtensions; [
-    #     appindicator.extensionUuid
-    #   ];
-    # };
-    "org/gnome/shell" = {
-      enabled-extensions = [
-        pkgs.gnomeExtensions.appindicator.extensionUuid
-      ];
-    };
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-    cursorTheme = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-    };
   };
 }

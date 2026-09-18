@@ -13,7 +13,6 @@
     shell = pkgs.bash;
   };
 
-# NETWORKING
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
   networking.wireless.iwd.enable = true;
@@ -26,7 +25,6 @@
     "2606:4700:4700::1001"
   ];
 
-# NETWORKING
   services.openssh.enable = true;
   services.playerctld.enable = true;
   services.power-profiles-daemon.enable = true;
