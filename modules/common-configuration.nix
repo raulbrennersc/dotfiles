@@ -88,6 +88,7 @@
     playerctl
     appimage-run
     bazecor
+    gnome-tweaks
   ];
 
   environment.gnome.excludePackages = (with pkgs; [

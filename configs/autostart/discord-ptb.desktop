@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Network;InstantMessaging
+Exec=DiscordPTB
+GenericName=All-in-one cross-platform voice and text chat for gamers
+Icon=discord-ptb
+MimeType=x-scheme-handler/discord
+Name=Discord PTB
+StartupWMClass=discord
+Type=Application
+Version=1.5
