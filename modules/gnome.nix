@@ -132,7 +132,7 @@
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Alt>t";
+      binding = "<Super>t";
       command = "wezterm";
       name = "wezterm";
     };
