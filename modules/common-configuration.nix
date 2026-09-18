@@ -41,15 +41,19 @@
 
   services.resolved = {
     enable = true;
-    fallbackDns = [
-      "1.1.1.1#one.one.one.one"
-      "1.0.0.1#one.one.one.one"
-      "2606:4700:4700::1111#one.one.one.one"
-      "2606:4700:4700::1001#one.one.one.one"
-    ];
-    dnsovertls = "true";
-    dnssec = "true";
-    domains = [ "~." ];
+    settings = {
+      Resolve = {
+        DNSOverTLS = "true";
+        DNSSEC = "true";
+        Domains = [ "~." ];
+        FallbackDns = [
+          "1.1.1.1#one.one.one.one"
+          "1.0.0.1#one.one.one.one"
+          "2606:4700:4700::1111#one.one.one.one"
+          "2606:4700:4700::1001#one.one.one.one"
+        ];
+      };
+    };
   }; 
 
   services.pipewire = {
@@ -58,8 +62,8 @@
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   hardware.i2c.enable = true;
   hardware.bluetooth.enable = true;

@@ -30,10 +30,9 @@
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
         "org.wezfurlong.wezterm.desktop"
-        "org.mozilla.firefox.desktop"
+        "firefox.desktop"
         "spotify.desktop"
-        "spotify-launcher.desktop"
-        "io.dbeaver.DBeaverCommunity.desktop"
+        "dbeaver.desktop"
       ];
     };
 

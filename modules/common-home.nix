@@ -38,6 +38,7 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     settings = {
       "*.devcontainer" = {
         HostName = "localhost";
