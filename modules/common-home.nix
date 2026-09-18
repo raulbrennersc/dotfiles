@@ -14,6 +14,8 @@
 
     docker-compose stylua lua-language-server
     kdePackages.qtdeclarative
+
+    gnomeExtensions.appindicator
   ];
   home.file = {
     ".docker".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/.docker";
@@ -119,10 +121,15 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
+    # "org/gnome/shell" = {
+    #   disable-user-extensions = false;
+    #   enabled-extensions = with pkgs.gnomeExtensions; [
+    #     appindicator.extensionUuid
+    #   ];
+    # };
     "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        appindicator.extensionUuid
+      enabled-extensions = [
+        pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
   };
