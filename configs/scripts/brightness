@@ -1,6 +1,0 @@
-
-if [ "$1" == "up" ]; then
-    ddcutil --sleep-multiplier 0.1 --noverify --skip-ddc-checks --bus 10 setvcp 10 + 10
-else
-    ddcutil --sleep-multiplier 0.1 --noverify --skip-ddc-checks --bus 10 setvcp 10 - 10
-fi

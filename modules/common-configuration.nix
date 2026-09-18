@@ -13,6 +13,7 @@
     shell = pkgs.bash;
   };
 
+# NETWORKING
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
   networking.wireless.iwd.enable = true;
@@ -25,11 +26,21 @@
     "2606:4700:4700::1001"
   ];
 
+# NETWORKING
   services.openssh.enable = true;
+  services.playerctld.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.udisks2.enable = true;
+
   services.udev.packages = with pkgs; [
     logitech-udev-rules
     bazecor
   ];
+  services.udev.extraRules = ''
+    # Grant the 'input' group access to uinput for Solaar on Wayland
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
+
   services.resolved = {
     enable = true;
     fallbackDns = [
@@ -42,23 +53,15 @@
     dnssec = "true";
     domains = [ "~." ];
   }; 
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
-  services.playerctld.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.udisks2.enable = true;
-  services.udev.extraRules = ''
-    # Grant the 'input' group access to uinput for Solaar on Wayland
-    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-  '';
-  services.displayManager.sddm = {
-    enable = true;
-    wayland = {
-      enable = true;
-    };
-  };
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   hardware.i2c.enable = true;
   hardware.bluetooth.enable = true;
@@ -70,11 +73,6 @@
   programs.uwsm.enable = true;
   programs.gpu-screen-recorder.enable = true;
   programs.fuse.userAllowOther = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
 
   virtualisation.docker.enable = true;
 
@@ -89,6 +87,21 @@
     appimage-run
     bazecor
   ];
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+    gnome-music
+    gnome-terminal
+    epiphany
+    geary
+    evince
+    gnome-characters
+    totem
+    tali
+    iagno
+    hitori
+    atomix
+  ]);
 
   fonts.packages = with pkgs; [
     jetbrains-mono

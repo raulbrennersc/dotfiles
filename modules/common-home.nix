@@ -7,15 +7,10 @@
     newt adw-gtk3 papirus-icon-theme
 
     unzip cmatrix fd fastfetch cava tmux neovim ripgrep less
-    fzf wl-clipboard ffmpeg imagemagick slurp grim ddcutil
-    brightnessctl pulsemixer bluetui impala
+    fzf wl-clipboard ffmpeg ddcutil
 
-    qbittorrent chromium alacritty vlc firefox dbeaver-bin
-    sqlite spotify nautilus gnome-disk-utility
-    wezterm ghostty
-
-    hyprpaper hyprlock hyprpicker
-    quickshell hyprshot libnotify
+    qbittorrent chromium vlc firefox dbeaver-bin
+    sqlite spotify wezterm ghostty
 
     docker-compose stylua lua-language-server
     kdePackages.qtdeclarative
@@ -106,53 +101,29 @@
     };
   };
 
-  services.hyprpaper.enable = true;
 
   xdg.configFile = {
     "nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
     "uwsm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
-    "hypr".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/hypr";
     "tmux".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/tmux";
-    "alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/alacritty";
     "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/wezterm";
     "fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/fastfetch";
     "cava".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/cava";
     "solaar".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/solaar";
-    "quickshell".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/quickshell";
     "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/ghostty";
     "MangoHud".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
     "autostart".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/autostart";
   };
 
-  xdg.desktopEntries = {
-    tui-bluetooth = {
-      name = "Bluetooth";
-      exec = "tui-bluetooth";
-      icon = "bluetooth";
-      terminal = true;
-      categories = ["System"];
-    };
-
-    devcontainer = {
-      name = "Devcontainer Connect";
-      exec = "devcontainer-connect";
-      icon = "";
-      terminal = false;
-      categories = ["System"];
-    };
-
-    wifi = {
-      name = "Wifi";
-      exec = "tui-wifi";
-      icon = "network-wireless-symbolic";
-      terminal = false;
-      categories = ["System"];
-    };
-  };
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+    };
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        appindicator.extensionUuid
+      ];
     };
   };
 
