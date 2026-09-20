@@ -76,7 +76,7 @@
   programs.oh-my-posh = {
     enable = true;
     enableBashIntegration = true;
-    settings = builtins.fromTOML (builtins.readFile ../configs/oh-my-posh/custom.omp.toml);
+    settings = fromTOML (builtins.readFile ../configs/oh-my-posh/custom.omp.toml);
 
   };
   programs.bash = {
