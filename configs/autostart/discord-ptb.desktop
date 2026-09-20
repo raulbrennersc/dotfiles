@@ -1,10 +1,9 @@
 [Desktop Entry]
-Categories=Network;InstantMessaging
-Exec=DiscordPTB
-GenericName=All-in-one cross-platform voice and text chat for gamers
-Icon=discord-ptb
-MimeType=x-scheme-handler/discord
-Name=Discord PTB
-StartupWMClass=discord
 Type=Application
-Version=1.5
+Exec=/nix/store/v4zid4az3bxr2gjj4w0lr98yff9kpnxp-discord-ptb-1.0.197/opt/DiscordPTB/.DiscordPTB-wrapped
+Hidden=false
+NoDisplay=false
+Name=.DiscordPTB-wrapped
+Icon=/nix/store/v4zid4az3bxr2gjj4w0lr98yff9kpnxp-discord-ptb-1.0.197/opt/DiscordPTB/discord.png
+Comment=Text and voice chat for gamers.
+X-GNOME-Autostart-enabled=true
