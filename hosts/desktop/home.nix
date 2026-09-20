@@ -10,7 +10,8 @@
   ];
 
   xdg.configFile = {
-    "MangoHud".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
+    "MangoHud".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
   };
 
   home.sessionVariables = {

@@ -2,13 +2,19 @@ vim.pack.add({ "gh:neovim/nvim-lspconfig" })
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("vtsls")
-vim.lsp.config("qml-language-server", {
-  cmd = { "qml-language-server" },
-  filetypes = { "qml" },
-  root_markers = { { "qmldir", "shell.qml" }, ".git" },
-})
 
-vim.lsp.enable("qml-language-server")
+vim.lsp.enable("nixd", {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+    },
+  },
+})
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "LSP code diagnostics" })

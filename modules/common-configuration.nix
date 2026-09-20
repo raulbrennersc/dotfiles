@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -6,10 +6,17 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   users.users.raul = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "i2c" "input" "dialout"];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "i2c"
+      "input"
+      "dialout"
+    ];
     shell = pkgs.bash;
   };
 
@@ -54,7 +61,7 @@
         ];
       };
     };
-  }; 
+  };
 
   services.pipewire = {
     enable = true;
@@ -89,22 +96,27 @@
     appimage-run
     bazecor
     gnome-tweaks
+    nixd
+    nixfmt-rfc-style
   ];
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-    gnome-music
-    gnome-terminal
-    epiphany
-    geary
-    evince
-    gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-  ]);
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
+      gnome-tour
+      gnome-music
+      gnome-terminal
+      epiphany
+      geary
+      evince
+      gnome-characters
+      totem
+      tali
+      iagno
+      hitori
+      atomix
+    ]
+  );
 
   fonts.packages = with pkgs; [
     jetbrains-mono
@@ -118,7 +130,10 @@
   fileSystems."/mnt/media" = {
     device = "/dev/disk/by-label/media";
     fsType = "ext4";
-    options = [ "nofail" "defaults" ]; 
+    options = [
+      "nofail"
+      "defaults"
+    ];
   };
 
   systemd.tmpfiles.rules = [

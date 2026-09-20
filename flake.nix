@@ -9,7 +9,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       raul-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -19,7 +19,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.raul = import ./hosts/desktop/home.nix; 
+            home-manager.users.raul = import ./hosts/desktop/home.nix;
           }
         ];
       };
@@ -32,7 +32,7 @@
       #     {
       #       home-manager.useGlobalPkgs = true;
       #       home-manager.useUserPackages = true;
-      #       home-manager.users.raul = import ./hosts/xps/home.nix; 
+      #       home-manager.users.raul = import ./hosts/xps/home.nix;
       #     }
       #   ];
       # };

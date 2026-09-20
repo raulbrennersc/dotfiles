@@ -39,12 +39,12 @@
     };
 
     "org/gnome/shell/keybindings" = {
-      focus-active-notification = [];
-      switch-to-application-1 = [];
-      switch-to-application-2 = [];
-      switch-to-application-3 = [];
-      switch-to-application-4 = [];
-      toggle-message-tray = [];
+      focus-active-notification = [ ];
+      switch-to-application-1 = [ ];
+      switch-to-application-2 = [ ];
+      switch-to-application-3 = [ ];
+      switch-to-application-4 = [ ];
+      toggle-message-tray = [ ];
       show-screenshot-ui = [ "<Shift><Super>s" ];
     };
 
@@ -54,7 +54,7 @@
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      activate-window-menu = [];
+      activate-window-menu = [ ];
       close = [ "<Super>q" ];
       maximize = [ "<Super>m" ];
       move-to-workspace-1 = [ "<Shift><Super>1" ];
@@ -62,10 +62,10 @@
       move-to-workspace-3 = [ "<Shift><Super>3" ];
       move-to-workspace-4 = [ "<Shift><Super>4" ];
       show-desktop = [ "<Super>d" ];
-      switch-applications = [];
-      switch-applications-backward = [];
-      switch-input-source = [];
-      switch-input-source-backward = [];
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
+      switch-input-source = [ ];
+      switch-input-source-backward = [ ];
       switch-to-workspace-1 = [ "<Super>1" ];
       switch-to-workspace-2 = [ "<Super>2" ];
       switch-to-workspace-3 = [ "<Super>3" ];
@@ -74,7 +74,10 @@
       switch-to-workspace-right = [ "<Super>k" ];
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
-      unmaximize = [ "<Super>Down" "<Alt>F5" ];
+      unmaximize = [
+        "<Super>Down"
+        "<Alt>F5"
+      ];
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
@@ -82,7 +85,12 @@
     };
 
     "org/gnome/desktop/input-sources" = {
-      xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:menu_switch" "compose:ralt" "caps:escape" ];
+      xkb-options = [
+        "terminate:ctrl_alt_bksp"
+        "lv3:menu_switch"
+        "compose:ralt"
+        "caps:escape"
+      ];
     };
 
     "org/gnome/desktop/interface" = {
@@ -130,7 +138,9 @@
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>e" ];
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -149,7 +159,7 @@
       idle-delay = lib.hm.gvariant.mkUint32 0;
     };
 
-## EXTENSIONS
+    ## EXTENSIONS
     "/org/gnome/shell/extensions/clipboard-indicator" = {
       toggle-menu = [ "XF86MonBrightnessDown" ];
       open-at-cursor = true;
