@@ -1,5 +1,3 @@
-#!/bin/bash
-
 DEVCONTAINER_IMAGE=raulbrennersc/devcontainer:latest
 DEVCONTAINER_SETUP_SCRIPT_URL=https://raw.githubusercontent.com/raulbrennersc/dotfiles/refs/heads/main/setup-devcontainer.sh
 CONTAINER_ENGINE=docker
