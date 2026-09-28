@@ -17,5 +17,5 @@ fi
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
 
 cd "$HOME/dotfiles" || exit
-nix run github:nix-community/home-manager -- switch --flake .#devcontainer
+nix --extra-experimental-features "nix-command flakes" run github:nix-community/home-manager -- switch --flake .#devcontainer
 
