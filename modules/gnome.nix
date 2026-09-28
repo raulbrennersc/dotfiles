@@ -160,7 +160,7 @@
     };
 
     ## EXTENSIONS
-    "/org/gnome/shell/extensions/clipboard-indicator" = {
+    "org/gnome/shell/extensions/clipboard-indicator" = {
       toggle-menu = [ "XF86MonBrightnessDown" ];
       open-at-cursor = true;
       history-size = 100;
