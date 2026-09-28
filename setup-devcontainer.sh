@@ -1,37 +1,21 @@
 #!/bin/bash
-export XDG_CONFIG_HOME="$HOME"/.config
 export DEBIAN_FRONTEND=noninteractive
 
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
-sudo apt update
-sudo apt install zsh git ripgrep fd-find tmux wezterm-nightly -y
-
-if ! [ -d "~/dotfiles" ]; then
-  git clone https://github.com/raulbrennersc/dotfiles.git ~/dotfiles
-  cd ~/dotfiles
+if [ ! -d "$HOME/dotfiles" ]; then
+  git clone https://github.com "$HOME/dotfiles"
+  cd "$HOME/dotfiles" || exit
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
-  cd
+  cd "$HOME" || exit
 fi
 
-mkdir -p ~/.config/git ~/.config/tmux
-ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-
-ln -s ~/dotfiles/.config/git/config ~/.config/git/config
-ln -s ~/dotfiles/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
-mkdir -p ~/.docker
-cp ~/dotfiles/.docker/config.json ~/.docker/config.json
+rm -rf "$HOME/.bashrc"
 
 if [ -d "/workspaces" ]; then
   ln -s /workspaces ~/workspaces
 fi
 
-brew install stylua lua-language-server neovim
+export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
 
-curl -L http://install.ohmyz.sh | sh
-curl -s https://ohmyposh.dev/install.sh | bash -s
+cd "$HOME/dotfiles" || exit
+nix run github:nix-community/home-manager -- switch --flake .#devcontainer
 
-rm -rf ~/.zshrc
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-sudo chsh -s $(which zsh) $(whoami)
