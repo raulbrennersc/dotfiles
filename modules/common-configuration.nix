@@ -8,6 +8,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "uinput" ];
 
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
+
   users.users.raul = {
     isNormalUser = true;
     extraGroups = [
