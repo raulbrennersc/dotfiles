@@ -10,15 +10,12 @@
   home.packages = with pkgs; [
     newt
     adw-gtk3
-    papirus-icon-theme
 
     unzip
     cmatrix
     fd
     fastfetch
     cava
-    tmux
-    neovim
     ripgrep
     less
     fzf
@@ -26,21 +23,23 @@
     ffmpeg
     ddcutil
 
+    tmux
+    neovim
+    sqlite
+    dbeaver-bin
+    docker-compose
+    stylua
+    lua-language-server
+    wezterm
+    bruno
+
     qbittorrent
     chromium
     vlc
     firefox
-    dbeaver-bin
-    sqlite
     spotify
-    wezterm
-    ghostty
 
-    docker-compose
-    stylua
-    lua-language-server
     kdePackages.qtdeclarative
-
     gnomeExtensions.appindicator
   ];
   home.file = {

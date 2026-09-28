@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     papirus-icon-theme
+    adwaita-icon-theme
     gnomeExtensions.brightness-control-using-ddcutil
     gnomeExtensions.system-monitor
     gnomeExtensions.dash-to-dock
@@ -11,6 +12,20 @@
     gnomeExtensions.vitals
     gnomeExtensions.clipboard-indicator
   ];
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
 
   dconf.settings = {
     "org/gnome/mutter" = {
@@ -231,20 +246,6 @@
     "org/gnome/desktop/interface" = {
       cursor-theme = "Adwaita";
       cursor-size = 24;
-    };
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
     };
   };
 }

@@ -98,7 +98,7 @@
     bazecor
     gnome-tweaks
     nixd
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   environment.gnome.excludePackages = (
