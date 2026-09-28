@@ -8,4 +8,6 @@ configs/nvim/*.log
 configs/nvim/data
 configs/nvim/lazy-lock.json
 configs/cava/shaders
-
+configs/.docker/.token_seed
+configs/.docker/.token_seed.lock
+configs/.docker/buildx/

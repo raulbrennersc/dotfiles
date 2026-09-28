@@ -2,7 +2,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 if [ ! -d "$HOME/dotfiles" ]; then
-  git clone https://github.com "$HOME/dotfiles"
+  git clone https://github.com/raulbrennersc/dotfiles "$HOME/dotfiles"
   cd "$HOME/dotfiles" || exit
   git remote set-url origin git@github.com:raulbrennersc/dotfiles.git
   cd "$HOME" || exit
