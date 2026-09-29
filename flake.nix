@@ -10,6 +10,15 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: {
+    homeConfigurations = {
+      devcontainer = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [
+          ./hosts/devcontainer/configuration.nix
+        ];
+      };
+    };
     nixosConfigurations = {
       raul-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -34,13 +43,6 @@
             home-manager.useUserPackages = true;
             home-manager.users.raul = import ./hosts/xps/home.nix;
           }
-        ];
-      };
-      devcontainer = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          ./hosts/devcontainer/configuration.nix
         ];
       };
       # raul-vm = nixpkgs.lib.nixosSystem {
