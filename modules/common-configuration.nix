@@ -106,6 +106,7 @@
     gnome-tweaks
     nixd
     nixfmt
+    xorg.xhost
   ];
 
   environment.gnome.excludePackages = (
