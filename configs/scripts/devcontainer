@@ -119,7 +119,8 @@ devcontainer_up() {
   echo "insert into devcontainers (name, port, engine) VALUES ('$container_name', '$available_port', '$CONTAINER_ENGINE');" | sqlite3 $DEVCONTAINERS_DB_FILE_PATH
 
   echo "Running setup script"
-  $CONTAINER_ENGINE exec -it -e USER="dev" $container_name bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
+  $CONTAINER_ENGINE exec -it -e USER="dev" -e CUSTOM_SSH_PORT=$available_port -e KEY_TO_AUTHORIZE="$key_to_authorize" -e DEVCONTAINER_NAME="$1" \
+    $container_name bash -c "curl -s $DEVCONTAINER_SETUP_SCRIPT_URL | bash -s"
 }
 
 devcontainer_start() {
