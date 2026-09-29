@@ -11,7 +11,7 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations = {
-      devcontainer = nixpkgs.lib.nixosSystem {
+      devcontainer = home-manager.lib.homeManagerConfiguration  {
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [
