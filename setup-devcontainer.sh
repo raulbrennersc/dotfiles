@@ -26,5 +26,5 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 cd "$HOME/dotfiles" || exit
-nix --extra-experimental-features "nix-command flakes" run github:nix-community/home-manager -- switch --flake .#devcontainer
+nix --extra-experimental-features "nix-command flakes" run github:nix-community/home-manager -- switch --flake .#devcontainer -b backup
 
