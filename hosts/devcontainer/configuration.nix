@@ -21,6 +21,8 @@
     wezterm
     ripgrep
     fd
+    oh-my-posh
+    bash
   ];
 
   xdg.configFile."nvim".source = ../../configs/nvim;
