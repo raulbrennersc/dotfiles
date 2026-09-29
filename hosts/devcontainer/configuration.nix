@@ -23,15 +23,15 @@
     fd
   ];
 
-  xdg.configFile."nvim".source = ./configs/nvim;
-  xdg.configFile."git/config".source = ./configs/git/config;
-  xdg.configFile."tmux/tmux.conf".source = ./configs/tmux/tmux.conf;
+  xdg.configFile."nvim".source = ../../configs/nvim;
+  xdg.configFile."git/config".source = ../../configs/git/config;
+  xdg.configFile."tmux/tmux.conf".source = ../../configs/tmux/tmux.conf;
 
-  home.file.".docker/config.json".source = ./configs/.docker/config.json;
+  home.file.".docker/config.json".source = ../../configs/.docker/config.json;
 
   programs.home-manager.enable = true;
   programs.bash = {
     enable = true;
-    extraConfig = builtins.readFile ./.bashrc;
+    extraConfig = builtins.readFile ../../.bashrc;
   };
 }
