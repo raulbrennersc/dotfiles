@@ -30,8 +30,13 @@
   home.file.".docker/config.json".source = ../../configs/.docker/config.json;
 
   programs.home-manager.enable = true;
+  programs.oh-my-posh = {
+    enable = true;
+    enableBashIntegration = true;
+    settings = fromTOML (builtins.readFile ../../configs/oh-my-posh/custom.omp.toml);
+  };
   programs.bash = {
     enable = true;
-    extraConfig = builtins.readFile ../../configs/bashrc;
+    initExtra = builtins.readFile ../../configs/bashrc;
   };
 }
