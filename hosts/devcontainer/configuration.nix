@@ -32,6 +32,6 @@
   programs.home-manager.enable = true;
   programs.bash = {
     enable = true;
-    extraConfig = builtins.readFile ../../.bashrc;
+    extraConfig = builtins.readFile ../../conigs/.bashrc;
   };
 }
