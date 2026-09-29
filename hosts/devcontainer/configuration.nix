@@ -32,6 +32,6 @@
   programs.home-manager.enable = true;
   programs.bash = {
     enable = true;
-    extraConfig = builtins.readFile ../../configs/.bashrc;
+    extraConfig = builtins.readFile ../../configs/bashrc;
   };
 }
