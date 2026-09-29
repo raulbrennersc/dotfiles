@@ -41,5 +41,10 @@
   programs.bash = {
     enable = true;
     initExtra = builtins.readFile ../../configs/bashrc;
+    profileExtra = ''
+      source /etc/environment
+      source ~/.bashrc
+      sudo chown dev:dev /var/run/docker.sock 2>/dev/null || true
+    '';
   };
 }
