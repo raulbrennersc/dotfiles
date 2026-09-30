@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   home.username = "dev";
   home.homeDirectory = "/home/dev";
   home.stateVersion = "24.11";
@@ -24,9 +24,14 @@
     fd
     oh-my-posh
     bash
+    nixd
+    nixfmt
+    chromium
+    man
   ];
 
-  xdg.configFile."nvim".source = ../../configs/nvim;
+  xdg.configFile."nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/nvim";
   xdg.configFile."git/config".source = ../../configs/git/config;
   xdg.configFile."tmux/tmux.conf".source = ../../configs/tmux/tmux.conf;
 

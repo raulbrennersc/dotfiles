@@ -1,4 +1,18 @@
-vim.pack.add({ "gh:neovim/nvim-lspconfig" })
+vim.pack.add({
+  "gh:williamboman/mason.nvim",
+  "gh:williamboman/mason-lspconfig.nvim",
+  "gh:neovim/nvim-lspconfig",
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "lua_ls",
+    "eslint",
+    "vtsls",
+  },
+})
+
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("vtsls")
