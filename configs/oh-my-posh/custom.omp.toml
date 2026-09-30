@@ -2,9 +2,8 @@
 console_title_template = " {{last (regexSplit \"/\" .PWD -1)}}"
 version = 3
 [palettes]
-template = "tokyonight"
+template = "moonfly"
 
-# tokyonight
 [palettes.list.tokyonight]
 accent     = "#7aa2f7"
 secondary  = "#1a1b26"
@@ -12,6 +11,14 @@ error      = "#f7768e"
 success    = "#9ece6a"
 background = "#292e42"
 root       = "#e0af68"
+
+[palettes.list.moonfly]
+accent     = "#80a0ff"
+secondary  = "#323437"
+error      = "#ff5454"
+success    = "#8cc85f"
+background = "#080808"
+root       = "#e3c78a"
 
 [transient_prompt]
 foreground = "p:accent"

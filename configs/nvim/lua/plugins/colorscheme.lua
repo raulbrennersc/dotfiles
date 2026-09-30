@@ -1,13 +1,4 @@
 vim.pack.add({
-  { src = "gh:folke/tokyonight.nvim", name = "tokyonight" },
+  { src = "gh:bluz71/vim-moonfly-colors", name = "moonfly" },
 })
-
-require("tokyonight").setup({
-  transparent = true,
-  styles = {
-    sidebar = "transparent",
-    floats = "transparent",
-  },
-})
-
-vim.cmd([[colorscheme tokyonight-night]])
+vim.cmd([[colorscheme moonfly]])
