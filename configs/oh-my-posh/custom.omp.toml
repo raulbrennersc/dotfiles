@@ -33,7 +33,7 @@ type = "prompt"
 [[blocks.segments]]
 type = "os"
 style = "diamond"
-background = "p:background"
+background = "p:secondary"
 foreground = "p:accent"
 template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 
