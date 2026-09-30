@@ -41,8 +41,8 @@ template = " {{if .Env.DEVCONTAINER}}{{else}}{{.Icon}}{{end}} "
 macos = ""
 
 [[blocks.segments]]
-background = "p:accent"
-foreground = "p:background"
+background = "p:background"
+foreground = "p:accent"
 powerline_symbol = ""
 style = "powerline"
 template = " {{ .Path }}"
@@ -53,8 +53,8 @@ display_root=true
 style = "letter"
 
 [[blocks.segments]]
-background = "p:background"
-foreground = "p:accent"
+background = "p:accent"
+foreground = "p:background"
 powerline_symbol = ""
 style = "powerline"
 type = "git"
