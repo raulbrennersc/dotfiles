@@ -26,7 +26,6 @@
     bash
     nixd
     nixfmt
-    chromium
     man
   ];
 
