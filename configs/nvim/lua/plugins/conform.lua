@@ -4,6 +4,7 @@ require("conform").setup({
     lua = { "stylua" },
     javascript = { "prettier" },
     typescript = { "prettier" },
+    nix = { "nixfmt" },
   },
 })
 
