@@ -3,7 +3,6 @@
 {
   imports = [
     ../../modules/common-home.nix
-    ./gnome.nix
   ];
 
   home.packages = with pkgs; [

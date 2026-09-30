@@ -43,14 +43,6 @@
         vitals.extensionUuid
         clipboard-indicator.extensionUuid
       ];
-
-      favorite-apps = [
-        "org.gnome.Nautilus.desktop"
-        "org.wezfurlong.wezterm.desktop"
-        "firefox.desktop"
-        "spotify.desktop"
-        "dbeaver.desktop"
-      ];
     };
 
     "org/gnome/shell/keybindings" = {

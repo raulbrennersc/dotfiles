@@ -38,6 +38,7 @@
     vlc
     firefox
     spotify
+    libreoffice
 
     kdePackages.qtdeclarative
     gnomeExtensions.appindicator
