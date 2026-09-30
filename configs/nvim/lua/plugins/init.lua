@@ -1,7 +1,7 @@
 require("plugins.dependencies")
 require("plugins.colorscheme")
 require("plugins.lspconfig")
-require("plugins.blink")
+require("plugins.autocompletion")
 require("plugins.mini")
 require("plugins.snacks")
 require("plugins.treesitter")
