@@ -27,6 +27,7 @@
     nixd
     nixfmt
     man
+    cargo
   ];
 
   xdg.configFile."nvim".source =

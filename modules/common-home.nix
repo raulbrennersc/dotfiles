@@ -22,6 +22,7 @@
     wl-clipboard
     ffmpeg
     ddcutil
+    cargo
 
     tmux
     neovim
