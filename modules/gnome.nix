@@ -19,6 +19,10 @@
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
@@ -98,6 +102,12 @@
         "compose:ralt"
         "caps:escape"
       ];
+      sources = [
+        (lib.hm.gvariant.mkTuple [
+          "xkb"
+          "br"
+        ])
+      ];
     };
 
     "org/gnome/desktop/interface" = {
@@ -108,7 +118,6 @@
       accent-color = "blue";
       enable-hot-corners = false;
       icon-theme = "Papirus-Dark";
-      gtk-theme = "Adwaita-dark";
       clock-show-weekday = true;
     };
 
