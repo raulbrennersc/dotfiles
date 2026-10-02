@@ -1,12 +1,13 @@
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 
 [user]
-	name = Raul Costa
-	email = raulbrennersc@gmail.com
+  name = Raul Costa
+  email = raulbrennersc@gmail.com
 
 [core]
   editor = nvim
+  ignoreCase = true
 
 [init]
 	defaultBranch = main
