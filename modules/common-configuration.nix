@@ -47,7 +47,8 @@
 
   services.udev.packages = with pkgs; [
     logitech-udev-rules
-    bazecor
+    via
+    vial
   ];
   services.udev.extraRules = ''
     # Grant the 'input' group access to uinput for Solaar on Wayland
@@ -102,7 +103,6 @@
     solaar
     playerctl
     appimage-run
-    bazecor
     gnome-tweaks
     nixd
     nixfmt
