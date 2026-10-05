@@ -213,7 +213,7 @@
       height-fraction = 0.9;
       hot-keys = false;
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
-      isolate-workspaces = true;
+      isolate-workspaces = false;
       running-indicator-dominant-color = false;
       running-indicator-style = "DOTS";
       show-mounts = false;
