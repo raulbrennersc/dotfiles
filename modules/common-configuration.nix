@@ -92,6 +92,10 @@
   programs.uwsm.enable = true;
   programs.gpu-screen-recorder.enable = true;
   programs.fuse.userAllowOther = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   virtualisation.docker.enable = true;
 
