@@ -10,7 +10,8 @@ local function setup(config, is_transparent)
   config.font = wezterm.font({
     family = "JetBrainsMono Nerd Font",
   })
-  config.font_size = 15
+
+  config.font_size = 16
   config.window_decorations = "NONE"
   config.enable_tab_bar = false
   config.use_fancy_tab_bar = false
