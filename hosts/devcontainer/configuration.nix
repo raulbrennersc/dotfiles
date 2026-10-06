@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   home.username = "dev";
   home.homeDirectory = "/home/dev";
-  home.stateVersion = "24.11";
+  home.stateVersion = "26.11";
 
   nix.package = pkgs.nix;
   nix.settings = {
