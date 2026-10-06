@@ -50,6 +50,10 @@
     };
 
     "org/gnome/shell/keybindings" = {
+      screen-brightness-down = [ ];
+      screen-brightness-up = [ ];
+      screen-brightness-down-monitor = [ ];
+      screen-brightness-up-monitor = [ ];
       focus-active-notification = [ ];
       switch-to-application-1 = [ ];
       switch-to-application-2 = [ ];
@@ -119,6 +123,8 @@
       enable-hot-corners = false;
       icon-theme = "Papirus-Dark";
       clock-show-weekday = true;
+      cursor-theme = "Adwaita";
+      cursor-size = 24;
     };
 
     "org/gnome/desktop/file-chooser" = {
@@ -157,6 +163,8 @@
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
       ];
+      screen-brightness-up = [ ];
+      screen-brightness-down = [ ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -177,7 +185,7 @@
 
     ## EXTENSIONS
     "org/gnome/shell/extensions/clipboard-indicator" = {
-      toggle-menu = [ "XF86MonBrightnessDown" ];
+      toggle-menu = [ "<Super>v" ];
       open-at-cursor = true;
       history-size = 100;
       cache-size = 100;
@@ -198,13 +206,13 @@
 
     "org/gnome/shell/extensions/dash-to-dock" = {
       always-center-icons = false;
-      apply-custom-theme = true;
+      apply-custom-theme = false;
       background-color = "rgb(48,48,48)";
       background-opacity = 1.0;
       click-action = "focus-minimize-or-previews";
       custom-background-color = true;
       custom-theme-customize-running-dots = true;
-      custom-theme-running-dots-color = "rgb(130,170,255)";
+      custom-theme-running-dots-color = "rgb(120,160,255)";
       custom-theme-shrink = true;
       dash-max-icon-size = 48;
       dock-fixed = false;
@@ -215,7 +223,7 @@
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
       isolate-workspaces = true;
       running-indicator-dominant-color = false;
-      running-indicator-style = "DOTS";
+      running-indicator-style = "DASHES";
       show-mounts = false;
       show-show-apps-button = true;
       show-trash = false;
@@ -242,11 +250,6 @@
       show-download = false;
       show-upload = false;
       show-swap = false;
-    };
-
-    "org/gnome/desktop/interface" = {
-      cursor-theme = "Adwaita";
-      cursor-size = 24;
     };
   };
 }

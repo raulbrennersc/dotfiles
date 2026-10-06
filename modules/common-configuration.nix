@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  system.stateVersion = "26.11";
   nixpkgs.config.allowUnfree = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
