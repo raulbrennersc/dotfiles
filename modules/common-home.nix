@@ -110,19 +110,26 @@
           insteadOf = "me:";
         };
         "git@github.com:" = {
-          insteadOf = "ghs:";
-        };
-        "git@gitlab.com:" = {
-          insteadOf = "gls:";
-        };
-        "https://github.com/" = {
           insteadOf = "gh:";
         };
-        "https://gitlab.com/" = {
+        "git@gitlab.com:" = {
           insteadOf = "gl:";
+        };
+        "https://github.com/" = {
+          insteadOf = "ghs:";
+        };
+        "https://gitlab.com/" = {
+          insteadOf = "gls:";
         };
       };
     };
+  };
+
+  xsession = {
+    enable = true;
+    initExtra = ''
+      ${pkgs.xhost}/bin/xhost +local:
+    '';
   };
 
   xdg.configFile = {

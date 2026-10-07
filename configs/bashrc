@@ -7,7 +7,7 @@ alias vim="nvim"
 alias tmux="tmux new-session -A -s $USER"
 
 alias gb="git branch"
-alias gca="git add -A && git commit -m"
+alias gac="git add -A && git commit -m"
 alias gcm="git commit -m"
 alias gc="git checkout -b"
 alias gs="git status"
