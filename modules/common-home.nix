@@ -38,6 +38,8 @@
     vlc
     spotify
     libreoffice
+    firefox
+    chromium
 
     kdePackages.qtdeclarative
     gnomeExtensions.appindicator
@@ -58,41 +60,6 @@
     QS_ICON_THEME = "Papirus-Dark";
   };
   home.stateVersion = "26.05";
-
-  programs.firefox = {
-    enable = true;
-    profiles.default = {
-      isDefault = true;
-      settings = {
-        "media.hardwaremediakeys.enabled" = false;
-      };
-    };
-    policies = {
-      ExtensionSettings = {
-        "{d634138d-c276-4fc8-924b-40a0ea21d284}" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/1password-x-password-manager/latest.xpi";
-          default_area = "navbar";
-        };
-        "jid1-MnnxcxisBPnSXQ@jetpack" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-          default_area = "menupanel";
-        };
-        "pt-BR@dictionaries.addons.mozilla.org" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/corretor/latest.xpi";
-        };
-      };
-    };
-  };
-
-  programs.chromium = {
-    enable = true;
-    commandLineArgs = [
-      "--disable-features=HardwareMediaKeyHandling"
-    ];
-  };
 
   programs.ssh = {
     enable = true;
