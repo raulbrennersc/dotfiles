@@ -45,7 +45,14 @@
   services.playerctld.enable = true;
   services.power-profiles-daemon.enable = true;
   services.udisks2.enable = true;
-
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
   services.udev.packages = with pkgs; [
     logitech-udev-rules
     via
@@ -112,6 +119,7 @@
     nixd
     nixfmt
     xhost
+    gnome-software
   ];
 
   environment.gnome.excludePackages = (
