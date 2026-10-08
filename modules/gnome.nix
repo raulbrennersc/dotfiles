@@ -205,6 +205,7 @@
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
+      disable-overview-on-startup = true;
       always-center-icons = false;
       apply-custom-theme = false;
       background-color = "rgb(48,48,48)";
