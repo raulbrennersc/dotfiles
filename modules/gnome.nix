@@ -5,7 +5,6 @@
     papirus-icon-theme
     adwaita-icon-theme
     gnomeExtensions.brightness-control-using-ddcutil
-    gnomeExtensions.system-monitor
     gnomeExtensions.dash-to-dock
     gnomeExtensions.color-picker
     gnomeExtensions.appindicator
@@ -40,7 +39,6 @@
       disable-user-extensions = false;
       enabled-extensions = with pkgs.gnomeExtensions; [
         brightness-control-using-ddcutil.extensionUuid
-        system-monitor.extensionUuid
         dash-to-dock.extensionUuid
         color-picker.extensionUuid
         appindicator.extensionUuid
@@ -189,6 +187,7 @@
       open-at-cursor = true;
       history-size = 100;
       cache-size = 100;
+      display-mode = 3;
     };
 
     "org/gnome/shell/extensions/display-brightness-ddcutil" = {
@@ -237,20 +236,13 @@
       enable-systray = false;
     };
 
-    "org/gnome/shell/extensions/blur-my-shell/applications" = {
-      blur = false;
-    };
-
-    "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-      blur = false;
-    };
-
-    "org/gnome/shell/extensions/system-monitor" = {
-      show-memory = true;
-      show-cpu = true;
-      show-download = false;
-      show-upload = false;
-      show-swap = false;
+    "org/gnome/shell/extensions/vitals" = {
+      menu-centered = true;
+      hot-sensors = [
+        "_memory_usage_"
+        "_processor_usage_"
+        "__temperature_avg__"
+      ];
     };
   };
 }
