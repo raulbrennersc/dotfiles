@@ -15,6 +15,7 @@
     fzf
     neovim
     google-cloud-sdk
+    google-cloud-sql-proxy
     stylua
     lua-language-server
     oh-my-posh
