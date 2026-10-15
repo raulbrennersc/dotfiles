@@ -15,3 +15,10 @@ map("n", "<leader>ba", ":<C-u>%bd<CR>", { silent = true, desc = "Close all buffe
 map("n", "<Esc>", function()
   vim.cmd("noh")
 end, { desc = "Clear highlight" })
+
+vim.keymap.set("n", "n", "nzzzv", { silent = true })
+vim.keymap.set("n", "N", "Nzzzv", { silent = true })
+vim.keymap.set("n", "<C-o>", "<C-o>zz", { silent = true })
+vim.keymap.set("n", "<C-i>", "<C-i>zz", { silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
