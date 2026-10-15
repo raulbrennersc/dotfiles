@@ -29,6 +29,7 @@
     nixfmt
     man
     cargo
+    gh
   ];
 
   xdg.configFile."nvim".source =
