@@ -53,3 +53,13 @@
   - XF86_AudioPlay
   - click
 ...
+---
+- Key: [Mouse Gesture Button, pressed]
+- Setting: [B4674F1B, scroll-ratchet, 2]
+- Set: [B4674F1B, scroll-ratchet, 1]
+...
+---
+- Key: [Mouse Gesture Button, pressed]
+- Setting: [B4674F1B, scroll-ratchet, 1]
+- Set: [B4674F1B, scroll-ratchet, 2]
+...
