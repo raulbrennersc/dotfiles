@@ -55,7 +55,6 @@
   ];
   home.sessionVariables = {
     EDITOR = "nvim";
-    MANGOHUD = 1;
     QT_QPA_PLATFORMTHEME = "qt6ct";
     QS_ICON_THEME = "Papirus-Dark";
   };
@@ -149,8 +148,6 @@
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/solaar";
     "ghostty".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/ghostty";
-    "MangoHud".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/MangoHud";
     "autostart".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/configs/autostart";
   };
