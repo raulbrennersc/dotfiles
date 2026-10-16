@@ -124,11 +124,22 @@
     };
   };
 
-  xsession = {
-    enable = true;
-    initExtra = ''
-      ${pkgs.xhost}/bin/xhost +local:
-    '';
+  systemd.user.services.xhost-local = {
+    Unit = {
+      Description = "Allow local users to connect to X server";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.xorg.xhost}/bin/xhost +local:";
+      RemainAfterExit = true;
+    };
   };
 
   xdg.configFile = {
