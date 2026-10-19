@@ -101,7 +101,6 @@
       xkb-options = [
         "terminate:ctrl_alt_bksp"
         "lv3:menu_switch"
-        "compose:ralt"
         "caps:escape"
       ];
       sources = [
