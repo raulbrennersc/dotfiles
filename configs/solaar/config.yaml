@@ -72,6 +72,7 @@
   dpi: 1000
   force-sensing: {0: 5675}
   haptic-level: 60
+  haptic-play: null
   hires-scroll-mode: false
   hires-smooth-invert: false
   hires-smooth-resolution: false
