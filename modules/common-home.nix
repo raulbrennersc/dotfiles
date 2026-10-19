@@ -73,11 +73,13 @@
       };
     };
   };
+
   programs.oh-my-posh = {
     enable = true;
     enableBashIntegration = true;
     settings = fromTOML (builtins.readFile ../configs/oh-my-posh/custom.omp.toml);
   };
+
   programs.bash = {
     enable = true;
     initExtra = builtins.readFile ../configs/bashrc;
@@ -124,6 +126,10 @@
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+  };
+
   systemd.user.services.xhost-local = {
     Unit = {
       Description = "Allow local users to connect to X server";
@@ -137,7 +143,7 @@
 
     Service = {
       Type = "oneshot";
-      ExecStart = "${pkgs.xorg.xhost}/bin/xhost +local:";
+      ExecStart = "${pkgs.xhost}/bin/xhost +local:";
       RemainAfterExit = true;
     };
   };

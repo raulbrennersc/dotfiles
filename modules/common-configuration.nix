@@ -122,6 +122,8 @@
     gnome-software
   ];
 
+  environment.enableAllTerminfo = true;
+
   environment.gnome.excludePackages = (
     with pkgs;
     [
