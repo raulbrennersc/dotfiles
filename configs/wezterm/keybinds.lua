@@ -22,6 +22,11 @@ local function setup(config)
       }),
     },
     {
+      key = "K",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.ResetTerminal,
+    },
+    {
       key = "<",
       mods = "LEADER|SHIFT",
       action = act.MoveTabRelative(-1),
