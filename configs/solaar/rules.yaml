@@ -1,29 +1,5 @@
 %YAML 1.3
 ---
-- Key: [Page Down, pressed]
-- KeyPress:
-  - End
-  - click
-...
----
-- Key: [Page Up, pressed]
-- KeyPress:
-  - Home
-  - click
-...
----
-- Key: [Home, pressed]
-- KeyPress:
-  - Page_Up
-  - click
-...
----
-- Key: [End, pressed]
-- KeyPress:
-  - Page_Down
-  - click
-...
----
 - Test: thumb_wheel_up
 - KeyPress:
   - [Shift_L, XF86_AudioRaiseVolume]
@@ -62,4 +38,8 @@
 - Key: [Mouse Gesture Button, pressed]
 - Setting: [B4674F1B, scroll-ratchet, 1]
 - Set: [B4674F1B, scroll-ratchet, 2]
+...
+---
+- Key: [Haptic, pressed]
+- Set: [B4674F1B, haptic-play, 9]
 ...
