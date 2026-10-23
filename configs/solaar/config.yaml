@@ -63,13 +63,13 @@
     m-key-leds, mr-key-led, multiplatform, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B04200000000
-  _sensitive: {divert-keys: true, force-sensing: true, haptic-level: true, reprogrammable-keys: false, scroll-ratchet-torque: true, thumb-scroll-invert: false,
-    thumb-scroll-mode: true}
+  _sensitive: {divert-keys: true, force-sensing: true, haptic-level: true, reprogrammable-keys: false, scroll-ratchet: false, scroll-ratchet-torque: true,
+    thumb-scroll-invert: false, thumb-scroll-mode: true}
   _serial: B4674F1B
   _unitId: B4674F1B
   _wpid: B042
   change-host: null
-  divert-keys: {82: 0, 83: 1, 86: 1, 195: 1, 196: 1, 416: 1}
+  divert-keys: {82: 0, 83: 1, 86: 1, 195: 1, 196: 0, 416: 1}
   dpi: 1000
   force-sensing: {0: 6110}
   haptic-level: 50
@@ -79,7 +79,7 @@
   hires-smooth-resolution: false
   reprogrammable-keys: {82: 82, 83: 83, 86: 86, 195: 195, 196: 196, 416: 416}
   scroll-ratchet: 2
-  scroll-ratchet-torque: 75
+  scroll-ratchet-torque: 100
   smart-shift: 10
   thumb-scroll-invert: false
   thumb-scroll-mode: true
