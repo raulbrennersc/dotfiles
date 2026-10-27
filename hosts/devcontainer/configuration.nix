@@ -30,6 +30,7 @@
     man
     cargo
     gh
+    postgresql
   ];
 
   xdg.configFile."nvim".source =
