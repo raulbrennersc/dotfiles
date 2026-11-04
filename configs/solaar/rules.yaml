@@ -31,5 +31,7 @@
 ...
 ---
 - Key: [Haptic, pressed]
-- Set: [B4674F1B, haptic-play, 9]
+- KeyPress:
+  - Pause
+  - click
 ...
