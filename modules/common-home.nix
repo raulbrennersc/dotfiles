@@ -40,6 +40,7 @@
     libreoffice
     firefox
     chromium
+    planify
 
     kdePackages.qtdeclarative
     gnomeExtensions.appindicator
